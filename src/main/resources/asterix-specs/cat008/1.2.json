@@ -1,0 +1,548 @@
+{
+  "category": 8,
+  "edition": "1.2",
+  "name": "Monoradar Derived Weather Information",
+  "date": "2014-08-24",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I000",
+      "I020",
+      "I036",
+      "I034",
+      "I040",
+      "I050",
+      "I090",
+      "I100",
+      "I110",
+      "I120",
+      "I038",
+      "SP",
+      "rfs"
+    ]
+  },
+  "items": {
+    "I000": {
+      "title": "Message Type",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "1": "Polar vector",
+            "2": "Cartesian vector of start point/length",
+            "3": "Contour record",
+            "4": "Cartesian start point and end point vector",
+            "254": "SOP message",
+            "255": "EOP message"
+          }
+        }
+      }
+    },
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I020": {
+      "title": "Vector Qualifier",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "ORG",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Local Coordinates",
+                    "1": "System Coordinates"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "I",
+              "title": "Intensity Level",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "S",
+              "title": "Shading Orientation with Respect to North",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "0°",
+                    "1": "22.5°",
+                    "2": "45°",
+                    "3": "67.5°",
+                    "4": "90°",
+                    "5": "112.5°",
+                    "6": "135°",
+                    "7": "157.5°"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Spare",
+              "size": 5
+            },
+            {
+              "type": "Item",
+              "name": "TST",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "Test vector"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "ER",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "Error condition encountered"
+                  }
+                }
+              }
+            }
+          ]
+        ]
+      }
+    },
+    "I034": {
+      "title": "Sequence of Polar Vectors in SPF Notation",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "STR",
+              "title": "Start Range",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "ENDR",
+              "title": "End Range",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "AZ",
+              "title": "Azimuth",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Quantity",
+                  "signed": false,
+                  "lsb": 0.0054931640625,
+                  "unit": "°"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I036": {
+      "title": "Sequence of Cartesian Vectors in SPF Notation",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "X",
+              "title": "X-Component",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Integer",
+                  "signed": true
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "Y",
+              "title": "Y-Component",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Integer",
+                  "signed": true
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "LENGTH",
+              "title": "Length",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I038": {
+      "title": "Sequence of Weather Vectors in SPF Notation",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "X1",
+              "title": "X1-Component",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Integer",
+                  "signed": true
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "Y1",
+              "title": "Y1-Component",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Integer",
+                  "signed": true
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "X2",
+              "title": "X2-Component",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Integer",
+                  "signed": true
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "Y2",
+              "title": "Y2-Component",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Integer",
+                  "signed": true
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I040": {
+      "title": "Contour Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "ORG",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Local Coordinates",
+                  "1": "System Coordinates"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "I",
+            "title": "Intensity Level",
+            "rule": {
+              "type": "Element",
+              "size": 3,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 2
+          },
+          {
+            "type": "Item",
+            "name": "FSTLST",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Intermediate record of a contour",
+                  "1": "Last record of a contour of at least two records",
+                  "2": "First record of a contour of at least two records",
+                  "3": "First and only record, fully defining a contour"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CSN",
+            "title": "Contour Serial Number",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I050": {
+      "title": "Sequence of Contour Points in SPF Notation",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "X1",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Integer",
+                  "signed": true
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "Y1",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Integer",
+                  "signed": true
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I090": {
+      "title": "Time of Day",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I100": {
+      "title": "Processing Status",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "F",
+              "title": "Scaling Factor",
+              "rule": {
+                "type": "Element",
+                "size": 5,
+                "content": {
+                  "type": "Integer",
+                  "signed": true
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "R",
+              "title": "Current Reduction Stage in Use",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "Q",
+              "title": "Processing Parameters",
+              "rule": {
+                "type": "Element",
+                "size": 15,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            }
+          ]
+        ]
+      }
+    },
+    "I110": {
+      "title": "Station Configuration Status",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 0,
+        "fxMode": true,
+        "rule": {
+          "type": "Element",
+          "size": 7,
+          "content": {
+            "type": "Raw"
+          }
+        }
+      }
+    },
+    "I120": {
+      "title": "Total Number of Items Constituting One Weather Picture",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Integer",
+          "signed": false
+        }
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}

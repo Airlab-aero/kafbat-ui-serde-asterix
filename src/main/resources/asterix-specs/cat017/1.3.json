@@ -1,0 +1,521 @@
+{
+  "category": 17,
+  "edition": "1.3",
+  "name": "Mode S Surveillance Coordination Function Messages",
+  "date": "2009-01-01",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I012",
+      "I000",
+      "I350",
+      "I220",
+      "I221",
+      "I140",
+      "I045",
+      "I070",
+      "I050",
+      "I200",
+      "I230",
+      "I240",
+      "I210",
+      "I360",
+      null,
+      null,
+      null,
+      null,
+      null,
+      "SP"
+    ]
+  },
+  "items": {
+    "I000": {
+      "title": "Message Type",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "0": "Network information",
+            "10": "Track data",
+            "20": "Track data request",
+            "21": "Track data stop",
+            "22": "Cancel track data request",
+            "23": "Track data stop acknowledgement",
+            "30": "New Node / Change-over Initial or intermediate message segment",
+            "31": "New Node / Change-over Final or only message segment",
+            "32": "New Node / Change-over Initial or intermediate message segment reply",
+            "33": "New Node / Change-over Final or only message segment reply",
+            "110": "Move node to new cluster state;",
+            "111": "Move node to new cluster state acknowledgement"
+          }
+        }
+      }
+    },
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I012": {
+      "title": "Data Destination Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I045": {
+      "title": "Calculated Position in WGS-84 Coordinates",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "LAT",
+            "title": "Latitude",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 5.364418029785156e-06,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "LON",
+            "title": "Longitude",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 5.364418029785156e-06,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I050": {
+      "title": "Flight Level in Binary Representation",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "V",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Code validated",
+                  "1": "Code not validated"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "G",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Default",
+                  "1": "Garbled code / Error correction applied"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ALT",
+            "title": "Altitude",
+            "rule": {
+              "type": "Element",
+              "size": 14,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.25,
+                "unit": "FL"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I070": {
+      "title": "Mode 3/A Code in Octal Representation",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "V",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Code validated",
+                  "1": "Code not validated"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "G",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Default",
+                  "1": "Garbled code"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "L",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Mode-3/A code derived from the reply of the transponder",
+                  "1": "Smoothed Mode-3/A code not extracted during the last scan"
+                }
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 1
+          },
+          {
+            "type": "Item",
+            "name": "MODE3A",
+            "title": "Mode 3/A Reply in Octal Representation",
+            "rule": {
+              "type": "Element",
+              "size": 12,
+              "content": {
+                "type": "String",
+                "variant": "Octal"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I140": {
+      "title": "Time of Day",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I200": {
+      "title": "Track Velocity in Polar Co-ordinates",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "GSP",
+            "title": "Calculated Groundspeed",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 6.103515625e-05,
+                "unit": "NM/s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "HDG",
+            "title": "Calculated Heading",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0054931640625,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I210": {
+      "title": "Mode S Address List",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 24,
+          "content": {
+            "type": "Raw"
+          }
+        }
+      }
+    },
+    "I220": {
+      "title": "Aircraft Address",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I221": {
+      "title": "Duplicate Address Reference Number (DRN)",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I230": {
+      "title": "Transponder Capability",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "CA",
+            "title": "Communications Capability of the Transponder",
+            "rule": {
+              "type": "Element",
+              "size": 3,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No communications capability (surveillance only), no ability to set CA code 7 either airborne or on the ground",
+                  "1": "Reserved",
+                  "2": "Reserved",
+                  "3": "Reserved",
+                  "4": "At Least Comm. A and Comm. B capability and the ability to set CA code 7 and on the ground",
+                  "5": "At Least Comm. A and Comm. B capability and the ability to set CA code 7 and airborne",
+                  "6": "At Least Comm. A and Comm. B capability and the ability to set CA code 7 and either airborne or on the ground",
+                  "7": "Signifies the DR field is not equal to 0 or the FS field equals 2, 3, 4 or 5 and either airborne or on the ground SI/II-capabilities of the Transponder"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SI",
+            "title": "SI/II-capabilities of the Transponder",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Transponder SI capable",
+                  "1": "Transponder not SI capable"
+                }
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 4
+          }
+        ]
+      }
+    },
+    "I240": {
+      "title": "Track Status",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "CST",
+            "title": "Track Coasted",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Measured position",
+                  "1": "No measured position (coasted)"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "FLT",
+            "title": "Flight Level Tracking",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Last Measured Flight Level",
+                  "1": "Predicted Flight Level"
+                }
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 6
+          }
+        ]
+      }
+    },
+    "I350": {
+      "title": "Cluster Station/Node List",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "SAC",
+              "title": "System Area Code",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SIC",
+              "title": "System Identification Code",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I360": {
+      "title": "Cluster Controller Command State",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}

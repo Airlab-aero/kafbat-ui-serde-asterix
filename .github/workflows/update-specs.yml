@@ -1,0 +1,121 @@
+name: Monthly ASTERIX Spec Update
+
+on:
+  schedule:
+    # Run on the 1st of every month at 04:00 UTC
+    - cron: '0 4 1 * *'
+  workflow_dispatch:
+    inputs:
+      all_editions:
+        description: 'Download all editions (not just latest)'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  update-specs:
+    name: Update ASTERIX Specs and Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Run spec updater
+        id: update
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event.inputs.all_editions }}" = "true" ]; then
+            python3 tools/update-specs.py --all-editions
+          else
+            python3 tools/update-specs.py
+          fi
+          EXIT_CODE=$?
+          if [ $EXIT_CODE -eq 42 ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          elif [ $EXIT_CODE -eq 0 ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Spec updater failed with exit code $EXIT_CODE"
+            exit $EXIT_CODE
+          fi
+
+      - name: Build uber JAR
+        if: steps.update.outputs.changed == 'true'
+        run: mvn -B -q package -DskipTests
+
+      - name: Determine release version
+        if: steps.update.outputs.changed == 'true'
+        id: version
+        run: |
+          DATE=$(date -u '+%Y.%m')
+          # Append a patch number if a release for this month already exists
+          BASE_TAG="v${DATE}"
+          PATCH=0
+          while git tag --list "${BASE_TAG}.${PATCH}" | grep -q .; do
+            PATCH=$((PATCH + 1))
+          done
+          echo "tag=${BASE_TAG}.${PATCH}" >> "$GITHUB_OUTPUT"
+          echo "version=${DATE}.${PATCH}" >> "$GITHUB_OUTPUT"
+
+      - name: Commit updated specs
+        if: steps.update.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/main/resources/asterix-specs/
+          git commit -m "chore: update ASTERIX specs (${{ steps.version.outputs.tag }})"
+
+      - name: Push changes
+        if: steps.update.outputs.changed == 'true'
+        run: git push origin HEAD
+
+      - name: Create GitHub Release
+        if: steps.update.outputs.changed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          JAR=$(ls target/*-uber.jar | head -1)
+          JAR_NAME=$(basename "$JAR")
+
+          # Build release notes from manifest
+          CATS=$(python3 -c "
+          import json
+          with open('src/main/resources/asterix-specs/manifest.json') as f:
+              m = json.load(f)
+          latest = [s for s in m['specs'] if s['latest']]
+          lines = [f'- CAT{s[\"category\"]:03d} edition {s[\"edition\"]}' for s in latest]
+          print('\n'.join(sorted(lines)))
+          ")
+
+          gh release create "$TAG" \
+            --title "ASTERIX Specs $TAG" \
+            --notes "## Bundled ASTERIX Categories (latest editions)
+
+          ${CATS}
+
+          Built from [zoranbosnjak/asterix-specs](https://github.com/zoranbosnjak/asterix-specs)." \
+            "$JAR#$JAR_NAME"
+
+      - name: No changes
+        if: steps.update.outputs.changed == 'false'
+        run: echo "No ASTERIX spec changes detected — skipping release."

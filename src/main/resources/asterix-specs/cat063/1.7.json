@@ -1,0 +1,554 @@
+{
+  "category": 63,
+  "edition": "1.7",
+  "name": "Sensor Status Reports",
+  "date": "2025-06-05",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I015",
+      "I030",
+      "I050",
+      "I060",
+      "I070",
+      "I080",
+      "I081",
+      "I090",
+      "I091",
+      "I092",
+      null,
+      "RE",
+      "SP"
+    ]
+  },
+  "items": {
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I015": {
+      "title": "Service Identification",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I030": {
+      "title": "Time of Message",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I050": {
+      "title": "Sensor Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I060": {
+      "title": "Sensor Configuration and Status",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "CON",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Operational",
+                    "1": "Degraded",
+                    "2": "Initialization",
+                    "3": "Not currently connected"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "PSR",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "PSR GO",
+                    "1": "PSR NOGO"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SSR",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "SSR GO",
+                    "1": "SSR NOGO"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "MDS",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "MDS GO",
+                    "1": "MDS NOGO"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "ADS",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "ADS GO",
+                    "1": "ADS NOGO"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "MLT",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "MLT GO",
+                    "1": "MLT NOGO"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "OPS",
+              "title": "Operational Release Status of the System",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "System is released for operational use",
+                    "1": "Operational use of System is inhibited"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "ODP",
+              "title": "Data Processor Overload Indicator",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default, no overload",
+                    "1": "Overload in DP"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "OXT",
+              "title": "Transmission Subsystem Overload Status",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default, no overload",
+                    "1": "Overload in transmission subsystem"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "MSC",
+              "title": "Monitoring System Connected Status",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Monitoring system connected",
+                    "1": "Monitoring system disconnected"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "TSV",
+              "title": "Time Source Validity",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Valid",
+                    "1": "Invalid"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "NPW",
+              "title": "No Plot Warning",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default (no meaning)",
+                    "1": "No plots being received"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 1
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "TTF",
+              "title": "Test Target Failure Status from Sensor",
+              "rule": {
+                "type": "Group",
+                "items": [
+                  {
+                    "type": "Item",
+                    "name": "EP",
+                    "title": "Element Populated Bit",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Element not populated",
+                          "1": "Element populated"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "VAL",
+                    "title": "Test Target Failure Status Values",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Test Target Operative",
+                          "1": "Test Target Failure"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SPO",
+              "title": "Indication of Spoofing Attack from Sensor",
+              "rule": {
+                "type": "Group",
+                "items": [
+                  {
+                    "type": "Item",
+                    "name": "EP",
+                    "title": "Element Populated Bit",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Element not populated",
+                          "1": "Element populated"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "VAL",
+                    "title": "Indication of Spoofing Attack Values",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "No spoofing detected",
+                          "1": "Potential spoofing attack"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 3
+            }
+          ]
+        ]
+      }
+    },
+    "I070": {
+      "title": "Time Stamping Bias",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 1.0,
+          "unit": "ms"
+        }
+      }
+    },
+    "I080": {
+      "title": "SSR / Mode S Range Gain and Bias",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SRG",
+            "title": "Mode S Range Gain",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 1e-05,
+                "unit": ""
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SRB",
+            "title": "Mode S Range Bias",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.0078125,
+                "unit": "NM"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I081": {
+      "title": "SSR Mode S Azimuth Bias",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 0.0054931640625,
+          "unit": "°"
+        }
+      }
+    },
+    "I090": {
+      "title": "PSR Range Gain and Bias",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "PRG",
+            "title": "PSR Range Gain",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 1e-05,
+                "unit": ""
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "PRB",
+            "title": "PSR Range Bias",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.0078125,
+                "unit": "NM"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I091": {
+      "title": "PSR Azimuth Bias",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 0.0054931640625,
+          "unit": "°"
+        }
+      }
+    },
+    "I092": {
+      "title": "PSR Elevation Bias",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 0.0054931640625,
+          "unit": "°"
+        }
+      }
+    },
+    "RE": {
+      "title": "Reserved Expansion Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}

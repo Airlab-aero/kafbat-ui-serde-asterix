@@ -1,0 +1,384 @@
+{
+  "category": 240,
+  "edition": "1.3",
+  "name": "Radar Video Transmission",
+  "date": "2015-05-13",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I000",
+      "I020",
+      "I030",
+      "I040",
+      "I041",
+      "I048",
+      "I049",
+      "I050",
+      "I051",
+      "I052",
+      "I140",
+      "RE",
+      "SP"
+    ]
+  },
+  "items": {
+    "I000": {
+      "title": "Message Type",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "1": "Video Summary message",
+            "2": "Video message"
+          }
+        }
+      }
+    },
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I020": {
+      "title": "Video Record Header",
+      "rule": {
+        "type": "Element",
+        "size": 32,
+        "content": {
+          "type": "Integer",
+          "signed": false
+        }
+      }
+    },
+    "I030": {
+      "title": "Video Summary",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 8,
+          "content": {
+            "type": "String",
+            "variant": "Ascii"
+          }
+        }
+      }
+    },
+    "I040": {
+      "title": "Video Header Nano",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "STARTAZ",
+            "title": "Start Azimuth of the Cells Group",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0054931640625,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ENDAZ",
+            "title": "End Azimuth of the Cells Group",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0054931640625,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "STARTRG",
+            "title": "Starting Range of the Cells Group, Expressed in Number of Cells",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Integer",
+                "signed": false
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CELLDUR",
+            "title": "Video Cell Duration in Nano-seconds",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 1.0,
+                "unit": "ns"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I041": {
+      "title": "Video Header Femto",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "STARTAZ",
+            "title": "Start Azimuth of the Cells Group",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0054931640625,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ENDAZ",
+            "title": "End Azimuth of the Cells Group",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0054931640625,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "STARTRG",
+            "title": "Starting Range of the Cells Group, Expressed in Number of Cells",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Integer",
+                "signed": false
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CELLDUR",
+            "title": "Video Cell Duration in Femto-seconds",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 1.0,
+                "unit": "fs"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I048": {
+      "title": "Video Cells Resolution & Data Compression Indicator",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "C",
+            "title": "Data Compression Indicator",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No compression applied",
+                  "1": "Compression applied"
+                }
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 7
+          },
+          {
+            "type": "Item",
+            "name": "RES",
+            "title": "Bit Resolution",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "1": "Monobit Resolution (1 bit)",
+                  "2": "Low Resolution (2 bits)",
+                  "3": "Medium Resolution (4 bits)",
+                  "4": "High Resolution (8 bits)",
+                  "5": "Very High Resolution (16 bits)",
+                  "6": "Ultra High Resolution (32 bits)"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I049": {
+      "title": "Video Octets & Video Cells Counters",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "NBVB",
+            "title": "Number of 'valid' Octets",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Integer",
+                "signed": false
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "NBCELLS",
+            "title": "Number of 'valid' Cells",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Integer",
+                "signed": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I050": {
+      "title": "Video Block Low Data Volume",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 32,
+          "content": {
+            "type": "Raw"
+          }
+        }
+      }
+    },
+    "I051": {
+      "title": "Video Block Medium Data Volume",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 512,
+          "content": {
+            "type": "Raw"
+          }
+        }
+      }
+    },
+    "I052": {
+      "title": "Video Block High Data Volume",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 2048,
+          "content": {
+            "type": "Raw"
+          }
+        }
+      }
+    },
+    "I140": {
+      "title": "Time of Day",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "RE": {
+      "title": "Reserved Expansion Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}

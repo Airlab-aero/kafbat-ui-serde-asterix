@@ -1,0 +1,399 @@
+{
+  "category": 16,
+  "edition": "1.0",
+  "name": "Independent Non-Cooperative Surveillance System Configuration Reports",
+  "date": "2019-07-15",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I015",
+      "I000",
+      "I140",
+      "I200",
+      "I300",
+      "I400",
+      "I405",
+      "I410",
+      "I420",
+      "SP"
+    ]
+  },
+  "items": {
+    "I000": {
+      "title": "Message Type",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "1": "System Configuration",
+            "2": "Transmitter / Receiver Configuration"
+          }
+        }
+      }
+    },
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I015": {
+      "title": "Service Identification",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I140": {
+      "title": "Time of Day",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I200": {
+      "title": "System Configuration Reporting Period",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 1.0,
+          "unit": "s"
+        }
+      }
+    },
+    "I300": {
+      "title": "Pair Identification",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "PID",
+              "title": "Pair Identification",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "TID",
+              "title": "Transmitter Identification",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "RID",
+              "title": "Receiver Identification",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I400": {
+      "title": "Position of the System Reference Point",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "LAT",
+            "title": "Latitude",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 8.381903171539307e-08,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "LON",
+            "title": "Longitude",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 8.381903171539307e-08,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I405": {
+      "title": "Height of System Reference Point",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 0.25,
+          "unit": "m"
+        }
+      }
+    },
+    "I410": {
+      "title": "Transmitter Properties",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "TID",
+              "title": "Transmitter ID",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "LAT",
+              "title": "Latitude",
+              "rule": {
+                "type": "Element",
+                "size": 32,
+                "content": {
+                  "type": "Quantity",
+                  "signed": true,
+                  "lsb": 8.381903171539307e-08,
+                  "unit": "°"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "LON",
+              "title": "Longitude",
+              "rule": {
+                "type": "Element",
+                "size": 32,
+                "content": {
+                  "type": "Quantity",
+                  "signed": true,
+                  "lsb": 8.381903171539307e-08,
+                  "unit": "°"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "ALT",
+              "title": "Altitude",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Quantity",
+                  "signed": true,
+                  "lsb": 0.25,
+                  "unit": "m"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "TTO",
+              "title": "Transmission Time Offset",
+              "rule": {
+                "type": "Element",
+                "size": 32,
+                "content": {
+                  "type": "Quantity",
+                  "signed": true,
+                  "lsb": 2.0,
+                  "unit": "ns"
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 4
+            },
+            {
+              "type": "Item",
+              "name": "ATO",
+              "title": "Accuracy of Transmission Time Offset",
+              "rule": {
+                "type": "Element",
+                "size": 20,
+                "content": {
+                  "type": "Quantity",
+                  "signed": false,
+                  "lsb": 1.0,
+                  "unit": "ns"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "PCI",
+              "title": "Parallel Transmitter Index",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I420": {
+      "title": "Receiver Properties",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "RID",
+              "title": "Receiver Component ID",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "LAT",
+              "title": "Latitude",
+              "rule": {
+                "type": "Element",
+                "size": 32,
+                "content": {
+                  "type": "Quantity",
+                  "signed": true,
+                  "lsb": 8.381903171539307e-08,
+                  "unit": "°"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "LON",
+              "title": "Longitude",
+              "rule": {
+                "type": "Element",
+                "size": 32,
+                "content": {
+                  "type": "Quantity",
+                  "signed": true,
+                  "lsb": 8.381903171539307e-08,
+                  "unit": "°"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "ALT",
+              "title": "Altitude",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Quantity",
+                  "signed": true,
+                  "lsb": 0.25,
+                  "unit": "m"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}

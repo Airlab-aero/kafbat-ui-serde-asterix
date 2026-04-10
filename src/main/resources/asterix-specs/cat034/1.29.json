@@ -1,0 +1,1049 @@
+{
+  "category": 34,
+  "edition": "1.29",
+  "name": "Transmission of Monoradar Service Messages",
+  "date": "2021-03-15",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I000",
+      "I030",
+      "I020",
+      "I041",
+      "I050",
+      "I060",
+      "I070",
+      "I100",
+      "I110",
+      "I120",
+      "I090",
+      "RE",
+      "SP"
+    ]
+  },
+  "items": {
+    "I000": {
+      "title": "Message Type",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "1": "North marker message",
+            "2": "Sector crossing message",
+            "3": "Geographical filtering message",
+            "4": "Jamming strobe message",
+            "5": "Solar Storm Message",
+            "6": "SSR Jamming Strobe Message",
+            "7": "Mode S Jamming Strobe Message"
+          }
+        }
+      }
+    },
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I020": {
+      "title": "Sector Number",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 1.40625,
+          "unit": "°"
+        }
+      }
+    },
+    "I030": {
+      "title": "Time of Day",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I041": {
+      "title": "Antenna Rotation Speed",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I050": {
+      "title": "System Configuration and Status",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "COM",
+            "title": "Common Part",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "NOGO",
+                  "title": "Operational Release Status of the System",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "System is released for operational use",
+                        "1": "Operational use of System is inhibited, i.e. the data shall be discarded by an operational SDPS"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "RDPC",
+                  "title": "Radar Data Processor Chain Selection Status",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "RDPC-1 selected",
+                        "1": "RDPC-2 selected"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "RDPR",
+                  "title": "Event to Signal a Reset/restart of the Selected Radar Data Processor Chain, I.e. Expect a New Assignment of Track Numbers",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Default situation",
+                        "1": "Reset of RDPC"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "OVLRDP",
+                  "title": "Radar Data Processor Overload Indicator",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Default, no overload",
+                        "1": "Overload in RDP"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "OVLXMT",
+                  "title": "Transmission Subsystem Overload Status",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Default, no overload",
+                        "1": "Overload in transmission subsystem"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "MSC",
+                  "title": "Monitoring System Connected Status",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Monitoring system connected",
+                        "1": "Monitoring system disconnected"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "TSV",
+                  "title": "Time Source Validity",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Valid",
+                        "1": "Invalid"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Spare",
+                  "size": 1
+                }
+              ]
+            }
+          },
+          {
+            "type": "Fx"
+          },
+          {
+            "type": "Fx"
+          },
+          {
+            "type": "Item",
+            "name": "PSR",
+            "title": "Specific Status Information for a PSR Sensor",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "ANT",
+                  "title": "Selected Antenna",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Antenna 1",
+                        "1": "Antenna 2"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "CHAB",
+                  "title": "Channel A/B Selection Status",
+                  "rule": {
+                    "type": "Element",
+                    "size": 2,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "No channel selected",
+                        "1": "Channel A only selected",
+                        "2": "Channel B only selected",
+                        "3": "Diversity mode ; Channel A and B selected"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "OVL",
+                  "title": "Overload Condition",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "No overload",
+                        "1": "Overload"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "MSC",
+                  "title": "Monitoring System Connected Status",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Monitoring system connected",
+                        "1": "Monitoring system disconnected"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Spare",
+                  "size": 3
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SSR",
+            "title": "Specific Status Information for a SSR Sensor",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "ANT",
+                  "title": "Selected Antenna",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Antenna 1",
+                        "1": "Antenna 2"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "CHAB",
+                  "title": "Channel A/B Selection Status",
+                  "rule": {
+                    "type": "Element",
+                    "size": 2,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "No channel selected",
+                        "1": "Channel A only selected",
+                        "2": "Channel B only selected",
+                        "3": "Invalid combination"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "OVL",
+                  "title": "Overload Condition",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "No overload",
+                        "1": "Overload"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "MSC",
+                  "title": "Monitoring System Connected Status:",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Monitoring system connected",
+                        "1": "Monitoring system disconnected"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Spare",
+                  "size": 3
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "MDS",
+            "title": "Specific Status Information for a Mode S Sensor",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "ANT",
+                  "title": "Selected Antenna",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Antenna 1",
+                        "1": "Antenna 2"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "CHAB",
+                  "title": "Channel A/B Selection Status",
+                  "rule": {
+                    "type": "Element",
+                    "size": 2,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "No channel selected",
+                        "1": "Channel A only selected",
+                        "2": "Channel B only selected",
+                        "3": "Illegal combination"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "OVLSUR",
+                  "title": "Overload Condition",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "No overload",
+                        "1": "Overload"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "MSC",
+                  "title": "Monitoring System Connected Status:",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Monitoring system connected",
+                        "1": "Monitoring system disconnected"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "SCF",
+                  "title": "Channel A/B Selection Status for Surveillance Co-ordination Function",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Channel A in use",
+                        "1": "Channel B in use"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "DLF",
+                  "title": "Channel A/B Selection Status for Data Link Function",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Channel A in use",
+                        "1": "Channel B in use"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "OVLSCF",
+                  "title": "Overload in Surveillance Co-ordination Function",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "No overload",
+                        "1": "Overload"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "OVLDLF",
+                  "title": "Overload in Data Link Function",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "No overload",
+                        "1": "Overload"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Spare",
+                  "size": 7
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "I060": {
+      "title": "System Processing Mode",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "COM",
+            "title": "Common Part",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Spare",
+                  "size": 1
+                },
+                {
+                  "type": "Item",
+                  "name": "REDRDP",
+                  "title": "Reduction Steps in Use for An Overload of the RDP",
+                  "rule": {
+                    "type": "Element",
+                    "size": 3,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "No reduction active",
+                        "1": "Reduction step 1 active",
+                        "2": "Reduction step 2 active",
+                        "3": "Reduction step 3 active",
+                        "4": "Reduction step 4 active",
+                        "5": "Reduction step 5 active",
+                        "6": "Reduction step 6 active",
+                        "7": "Reduction step 7 active"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "REDXMT",
+                  "title": "Reduction Steps in Use for An Overload of the Transmission Subsystem",
+                  "rule": {
+                    "type": "Element",
+                    "size": 3,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "No reduction active",
+                        "1": "Reduction step 1 active",
+                        "2": "Reduction step 2 active",
+                        "3": "Reduction step 3 active",
+                        "4": "Reduction step 4 active",
+                        "5": "Reduction step 5 active",
+                        "6": "Reduction step 6 active",
+                        "7": "Reduction step 7 active"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Spare",
+                  "size": 1
+                }
+              ]
+            }
+          },
+          {
+            "type": "Fx"
+          },
+          {
+            "type": "Fx"
+          },
+          {
+            "type": "Item",
+            "name": "PSR",
+            "title": "Specific Processing Mode Information for a PSR Sensor",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "POL",
+                  "title": "Polarization in Use by PSR",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Linear polarization",
+                        "1": "Circular polarization"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "REDRAD",
+                  "title": "Reduction Steps in Use as Result of An Overload Within the PSR Subsystem",
+                  "rule": {
+                    "type": "Element",
+                    "size": 3,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "No reduction active",
+                        "1": "Reduction step 1 active",
+                        "2": "Reduction step 2 active",
+                        "3": "Reduction step 3 active",
+                        "4": "Reduction step 4 active",
+                        "5": "Reduction step 5 active",
+                        "6": "Reduction step 6 active",
+                        "7": "Reduction step 7 active"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "STC",
+                  "title": "Sensitivity Time Control Map in Use",
+                  "rule": {
+                    "type": "Element",
+                    "size": 2,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "STC Map-1",
+                        "1": "STC Map-2",
+                        "2": "STC Map-3",
+                        "3": "STC Map-4"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Spare",
+                  "size": 2
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SSR",
+            "title": "Specific Processing Mode Information for a SSR Sensor",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "REDRAD",
+                  "title": "Reduction Steps in Use as Result of An Overload Within the SSR Subsystem",
+                  "rule": {
+                    "type": "Element",
+                    "size": 3,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "No reduction active",
+                        "1": "Reduction step 1 active",
+                        "2": "Reduction step 2 active",
+                        "3": "Reduction step 3 active",
+                        "4": "Reduction step 4 active",
+                        "5": "Reduction step 5 active",
+                        "6": "Reduction step 6 active",
+                        "7": "Reduction step 7 active"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Spare",
+                  "size": 5
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "MDS",
+            "title": "Specific Processing Mode Information for a Mode S Sensor",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "REDRAD",
+                  "title": "Reduction Steps in Use as Result of An Overload Within the Mode S Subsystem",
+                  "rule": {
+                    "type": "Element",
+                    "size": 3,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "No reduction active",
+                        "1": "Reduction step 1 active",
+                        "2": "Reduction step 2 active",
+                        "3": "Reduction step 3 active",
+                        "4": "Reduction step 4 active",
+                        "5": "Reduction step 5 active",
+                        "6": "Reduction step 6 active",
+                        "7": "Reduction step 7 active"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "CLU",
+                  "title": "Cluster State",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Autonomous",
+                        "1": "Not autonomous"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Spare",
+                  "size": 4
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "I070": {
+      "title": "Message Count Values",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "TYP",
+              "title": "Type of Message Counter",
+              "rule": {
+                "type": "Element",
+                "size": 5,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "No detection (number of misses)",
+                    "1": "Single PSR target reports",
+                    "2": "Single SSR target reports (Non-Mode S)",
+                    "3": "SSR+PSR target reports (Non-Mode S)",
+                    "4": "Single All-Call target reports (Mode S)",
+                    "5": "Single Roll-Call target reports (Mode S)",
+                    "6": "All-Call + PSR (Mode S) target reports",
+                    "7": "Roll-Call + PSR (Mode S) target reports",
+                    "8": "Filter for Weather data",
+                    "9": "Filter for Jamming Strobe",
+                    "10": "Filter for PSR data",
+                    "11": "Filter for SSR/Mode S data",
+                    "12": "Filter for SSR/Mode S+PSR data",
+                    "13": "Filter for Enhanced Surveillance data",
+                    "14": "Filter for PSR+Enhanced Surveillance",
+                    "15": "Filter for PSR+Enhanced Surveillance + SSR/Mode S data not in Area of Prime Interest",
+                    "16": "Filter for PSR+Enhanced Surveillance + all SSR/Mode S data",
+                    "17": "Re-Interrogations (per sector)",
+                    "18": "BDS Swap and wrong DF replies(per sector)",
+                    "19": "Mode A/C FRUIT (per sector)",
+                    "20": "Mode S FRUIT (per sector)"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "COUNT",
+              "title": "COUNTER",
+              "rule": {
+                "type": "Element",
+                "size": 11,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I090": {
+      "title": "Collimation Error",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "RNG",
+            "title": "Range Error",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.0078125,
+                "unit": "NM"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "AZM",
+            "title": "Azimuth Error",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.02197265625,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I100": {
+      "title": "Generic Polar Window",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "RHOST",
+            "title": "Rho Start",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.00390625,
+                "unit": "NM"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RHOEND",
+            "title": "Rho End",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.00390625,
+                "unit": "NM"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "THETAST",
+            "title": "Theta Start",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0054931640625,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "THETAEND",
+            "title": "Theta End",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0054931640625,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I110": {
+      "title": "Data Filter",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "0": "Invalid value",
+            "1": "Filter for Weather data",
+            "2": "Filter for Jamming Strobe",
+            "3": "Filter for PSR data",
+            "4": "Filter for SSR/Mode S data",
+            "5": "Filter for SSR/Mode S + PSR data",
+            "6": "Enhanced Surveillance data",
+            "7": "Filter for PSR+Enhanced Surveillance data",
+            "8": "Filter for PSR+Enhanced Surveillance + SSR/Mode S data not in Area of Prime Interest",
+            "9": "Filter for PSR+Enhanced Surveillance + all SSR/Mode S data"
+          }
+        }
+      }
+    },
+    "I120": {
+      "title": "3D-Position Of Data Source",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "HGT",
+            "title": "Height of Data Source",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 1.0,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "LAT",
+            "title": "Latitude",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 2.1457672119140625e-05,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "LON",
+            "title": "Longitude",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 2.1457672119140625e-05,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "RE": {
+      "title": "Reserved Expansion Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}

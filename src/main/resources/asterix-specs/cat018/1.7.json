@@ -1,0 +1,1323 @@
+{
+  "category": 18,
+  "edition": "1.7",
+  "name": "Mode S Datalink Function Messages",
+  "date": "2015-11-08",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I036",
+      "I037",
+      "I000",
+      "I001",
+      "I005",
+      "I016",
+      "I017",
+      "I018",
+      "I019",
+      "I028",
+      "I030",
+      "I025",
+      "I027",
+      "I029",
+      "I002",
+      "I006",
+      "I007",
+      "I008",
+      "I009",
+      "I010",
+      "I011",
+      "I014",
+      "I015",
+      "I020",
+      "I021",
+      "I022",
+      "I023",
+      "I004",
+      "I031",
+      "I032",
+      "I033",
+      "I034",
+      "I035",
+      "I012",
+      "I013"
+    ]
+  },
+  "items": {
+    "I000": {
+      "title": "Message Type",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "0": "Associate_req",
+            "1": "Associate_resp",
+            "2": "Release_req",
+            "3": "Release_resp",
+            "4": "Abort_req",
+            "5": "Keep_alive",
+            "16": "Aircraft_report",
+            "17": "Aircraft_command",
+            "18": "II_code_change",
+            "32": "Uplink_packet",
+            "33": "Cancel_uplink_packet",
+            "34": "Uplink_packet_ack",
+            "35": "Downlink_packet",
+            "38": "Data_XON",
+            "39": "Data_XOFF",
+            "48": "Uplink_broadcast",
+            "49": "Cancel_uplink_broadcast",
+            "50": "Uplink_broadcast_ack",
+            "52": "Downlink_broadcast",
+            "64": "GICB_extraction",
+            "65": "Cancel_GICB_extraction",
+            "66": "GICB_extraction_ack",
+            "67": "GICB_response"
+          }
+        }
+      }
+    },
+    "I001": {
+      "title": "Result",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "CAUSE",
+            "title": "Cause",
+            "rule": {
+              "type": "Element",
+              "size": 4,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Accepted, the request is accepted and is under processing",
+                  "1": "Rejected, the request has not been accepted",
+                  "2": "Cancelled, the request has been cancelled",
+                  "3": "Finished, the request has been accepted and successfully processed",
+                  "4": "Delayed, the request processing is temporarily delayed but the request is still valid",
+                  "5": "In Progress, the request is being successfully processed",
+                  "6": "In Progress, the request is being successfully processed"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "DIAG",
+            "title": "Diagnostic",
+            "rule": {
+              "type": "Element",
+              "size": 4,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No diagnostic available",
+                  "1": "Aircraft Exit",
+                  "2": "Incorrect aircraft address",
+                  "3": "Impossibility to process the message",
+                  "4": "Insufficient or change in data link capability",
+                  "5": "Invalid LV field",
+                  "6": "Duplicate request number",
+                  "7": "Unknown request number",
+                  "8": "Timer T3 expiry",
+                  "9": "Expiry of I/R delivery timer",
+                  "10": "Uplink flow disabled by UC"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I002": {
+      "title": "Time of Day",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I004": {
+      "title": "II Code",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "PREVIOUSII",
+            "title": "Former II Code",
+            "rule": {
+              "type": "Element",
+              "size": 4,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CURRENTII",
+            "title": "Current II Code",
+            "rule": {
+              "type": "Element",
+              "size": 4,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I005": {
+      "title": "Mode S Address",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I006": {
+      "title": "Mode S Address List",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 24,
+          "content": {
+            "type": "Raw"
+          }
+        }
+      }
+    },
+    "I007": {
+      "title": "Aircraft Data Link Command",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "UM",
+            "title": "Uplink Mask",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "UC shall be ignored",
+                  "1": "UC shall be taken into account"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "DM",
+            "title": "Downlink Mask",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "DC shall be ignored",
+                  "1": "DC shall be taken into account"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "UC",
+            "title": "Uplink Command",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "the uplink flow shall be enabled",
+                  "1": "the uplink flow shall be stopped"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "DC",
+            "title": "Downlink Command",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "the downlink flow shall be enabled",
+                  "1": "the downlink flow shall be stopped"
+                }
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 4
+          }
+        ]
+      }
+    },
+    "I008": {
+      "title": "Aircraft Data Link Status",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "UDS",
+              "title": "Uplink Default Status",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The interrogator is enabled to uplink frames",
+                    "1": "The interrogator is disabled to uplink frames"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "DDS",
+              "title": "Downlink Default Status",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The interrogator is enabled to extract frames",
+                    "1": "The interrogator is disabled to extract frames"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "UCS",
+              "title": "Uplink Current Status",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The interrogator is enabled to uplink frames",
+                    "1": "The interrogator is disabled to uplink frames"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "DCS",
+              "title": "Downlink Current Status",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The interrogator is enabled to extract frames",
+                    "1": "The interrogator is disabled to extract frames"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 2
+            },
+            {
+              "type": "Item",
+              "name": "EI",
+              "title": "Exit Indication",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The aircraft is in the Datalink coverage map of the interrogator",
+                    "1": "The aircraft is not in the Datalink coverage map of the interrogator"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "IC",
+              "title": "Interrogator Control",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The interrogators current ability to uplink/downlink frames (UCS/DCS) and the content of the Aircraft_report could be changed using D_Data_link_command",
+                    "1": "The interrogators current ability to uplink/downlink frames (UCS/DCS) and the content of the Aircraft_report cannot be changed using D_Data_link_command"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 6
+            }
+          ]
+        ]
+      }
+    },
+    "I009": {
+      "title": "Aircraft Data Link Report Request",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "SR",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The next Aircraft_report may not include D_Data_link_status",
+                    "1": "The next Aircraft_report shall include D_Data_link_status"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "AR",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The next Aircraft_report may not include D_COM",
+                    "1": "The next Aircraft_report shall include D_COM"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "ER",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The next Aircraft_report may not include D_ECA",
+                    "1": "The next Aircraft_report shall include D_ECA"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "FR",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The next Aircraft_report may not include D_CQF",
+                    "1": "The next Aircraft_report shall include D_CQF"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "MR",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The next Aircraft_report may not include D_CQF_method",
+                    "1": "The next Aircraft_report shall include D_CQF_method"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "PR",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The next Aircraft_report may not include D_Polar_position",
+                    "1": "The next Aircraft_report shall include D_Polar_position"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CR",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The next Aircraft_report may not include D_Cartesian_position",
+                    "1": "The next Aircraft_report shall include D_Cartesian_position"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "ID",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The next Aircraft_report may not include Aircraft_ID",
+                    "1": "The next Aircraft_report shall include Aircraft_ID"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "MA",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The next Aircraft_report may not include Mode_A",
+                    "1": "The next Aircraft_report shall include Mode_A"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SP",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The next Aircraft_report may not include Speed",
+                    "1": "The next Aircraft_report shall include Speed"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "HG",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The next Aircraft_report may not include Height",
+                    "1": "The next Aircraft_report shall include Height"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "HD",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "The next Aircraft_report may not include Heading",
+                    "1": "The next Aircraft_report shall include Heading"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 2
+            }
+          ]
+        ]
+      }
+    },
+    "I010": {
+      "title": "Transponder Communications Capability",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Spare",
+            "size": 5
+          },
+          {
+            "type": "Item",
+            "name": "COM",
+            "title": "Communications Capability of the Transponder",
+            "rule": {
+              "type": "Element",
+              "size": 3,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No communications capability (surveillance only)",
+                  "1": "Comm. A and Comm. B capability",
+                  "2": "Comm. A, Comm. B and Uplink ELM",
+                  "3": "Comm. A, Comm. B and Uplink ELM and Downlink ELM",
+                  "4": "Level 5 Transponder capability"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I011": {
+      "title": "Capability Report",
+      "rule": {
+        "type": "Element",
+        "size": 56,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I012": {
+      "title": "Aircraft Coverage Quality Factor",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "FS",
+            "title": "Flight Status",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Aircraft is airborne",
+                  "1": "Aircraft is on the ground"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CQF",
+            "title": "Aircraft CQF",
+            "rule": {
+              "type": "Element",
+              "size": 7,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "The CQF calculation method is not supported",
+                  "1": "The CQF is minimum",
+                  "126": "The CQF is maximum",
+                  "127": "The CQF is undefined according to the calculation method"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I013": {
+      "title": "Aircraft CQF Calculation Method",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I014": {
+      "title": "Aircraft Position in Polar Co-ordinates",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "RHO",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.00390625,
+                "unit": "NM"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "THETA",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0054931640625,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I015": {
+      "title": "Aircraft Position in Cartesian Co-ordinates",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "X",
+            "title": "X-Component",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.0078125,
+                "unit": "NM"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "Y",
+            "title": "Y-Component",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.0078125,
+                "unit": "NM"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I016": {
+      "title": "Packet Number",
+      "rule": {
+        "type": "Element",
+        "size": 32,
+        "content": {
+          "type": "Integer",
+          "signed": false
+        }
+      }
+    },
+    "I017": {
+      "title": "Packet Number List",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 32,
+          "content": {
+            "type": "Integer",
+            "signed": false
+          }
+        }
+      }
+    },
+    "I018": {
+      "title": "Mode S Packet Properties",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Spare",
+            "size": 1
+          },
+          {
+            "type": "Item",
+            "name": "PR",
+            "title": "Mode S Packet Internal Priority",
+            "rule": {
+              "type": "Element",
+              "size": 5,
+              "content": {
+                "type": "Integer",
+                "signed": false
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "PT",
+            "title": "Packet Type",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "SVC packets",
+                  "1": "MSP packets",
+                  "2": "Route packets"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I019": {
+      "title": "Mode S Packet",
+      "rule": {
+        "type": "Explicit"
+      }
+    },
+    "I020": {
+      "title": "Broadcast Number",
+      "rule": {
+        "type": "Element",
+        "size": 32,
+        "content": {
+          "type": "Integer",
+          "signed": false
+        }
+      }
+    },
+    "I021": {
+      "title": "Broadcast Properties",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "PRIORITY",
+            "title": "Priority",
+            "rule": {
+              "type": "Element",
+              "size": 4,
+              "content": {
+                "type": "Integer",
+                "signed": false
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "POWER",
+            "title": "Power",
+            "rule": {
+              "type": "Element",
+              "size": 4,
+              "content": {
+                "type": "Integer",
+                "signed": false
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "DURATION",
+            "title": "Duration",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 1.0,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "COVERAGE",
+            "title": "Coverage",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I022": {
+      "title": "Broadcast Prefix",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Spare",
+            "size": 5
+          },
+          {
+            "type": "Item",
+            "name": "PREFIX",
+            "title": "Prefix Field",
+            "rule": {
+              "type": "Element",
+              "size": 27,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I023": {
+      "title": "Uplink or Downlink Broadcast",
+      "rule": {
+        "type": "Element",
+        "size": 56,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I025": {
+      "title": "GICB Number",
+      "rule": {
+        "type": "Element",
+        "size": 32,
+        "content": {
+          "type": "Integer",
+          "signed": false
+        }
+      }
+    },
+    "I027": {
+      "title": "BDS Code",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I028": {
+      "title": "GICB Extraction Periodicity",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 1.0,
+          "unit": "s"
+        }
+      }
+    },
+    "I029": {
+      "title": "GICB Extracted",
+      "rule": {
+        "type": "Element",
+        "size": 56,
+        "content": {
+          "type": "Bds"
+        }
+      }
+    },
+    "I030": {
+      "title": "GICB Properties",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "PRIORITY",
+            "title": "GICB Priority",
+            "rule": {
+              "type": "Element",
+              "size": 5,
+              "content": {
+                "type": "Integer",
+                "signed": false
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 3
+          },
+          {
+            "type": "Item",
+            "name": "PC",
+            "title": "Periodicity Constraint",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "The periodicity may not be strictly respected",
+                  "1": "The periodicity shall be strictly respected"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "AU",
+            "title": "Asynchronous Update",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "GICB extractions should be sent only when required by the periodicity",
+                  "1": "If a GICB extraction is done due to external conditions, an update will also be sent, even if it does not match the expected periodicity"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "NE",
+            "title": "Non Extraction",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "The GICB extraction is attempted according to the periodicity",
+                  "1": "There will no GICB attempts"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RD",
+            "title": "Reply Destination",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "The extracted GICB must be sent only on the Data Link line",
+                  "1": "The extracted GICB must be sent only on the Surveillance line",
+                  "2": "The extracted GICB must be sent both on the Data Link and on the Surveillance lines"
+                }
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 3
+          }
+        ]
+      }
+    },
+    "I031": {
+      "title": "Aircraft Identity",
+      "rule": {
+        "type": "Element",
+        "size": 48,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I032": {
+      "title": "Aircraft Mode A",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "V",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Code validated",
+                  "1": "Code not validated"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "G",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Default",
+                  "1": "Garbled code"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "L",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Mode-3/A code derived from the reply of the transponder",
+                  "1": "Mode-3/A code not extracted during the last scan"
+                }
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 1
+          },
+          {
+            "type": "Item",
+            "name": "MOD3A",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 12,
+              "content": {
+                "type": "String",
+                "variant": "Octal"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I033": {
+      "title": "Aircraft Height",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "V",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Code validated",
+                  "1": "Code not validated"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "G",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Default",
+                  "1": "Garbled code"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "FL",
+            "title": "Flight Level",
+            "rule": {
+              "type": "Element",
+              "size": 14,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.25,
+                "unit": "FL"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I034": {
+      "title": "Aircraft Speed",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 6.103515625e-05,
+          "unit": "NM/s"
+        }
+      }
+    },
+    "I035": {
+      "title": "Aircraft Heading",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0054931640625,
+          "unit": "°"
+        }
+      }
+    },
+    "I036": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I037": {
+      "title": "Data Destination Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
