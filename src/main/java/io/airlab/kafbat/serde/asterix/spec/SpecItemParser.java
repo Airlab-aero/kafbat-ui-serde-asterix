@@ -72,28 +72,28 @@ public class SpecItemParser implements ItemParser {
         int totalBits = totalBitsOfParts(parts);
         int totalBytes = (totalBits + 7) / 8;
 
-        // Read all bytes into a long (big-endian, up to 8 bytes)
-        long raw = readBitsAsLong(buf, totalBytes);
+        // Read into a byte array — works for groups wider than 64 bits
+        byte[] data = new byte[totalBytes];
+        for (int i = 0; i < totalBytes && buf.hasRemaining(); i++) {
+            data[i] = buf.get();
+        }
 
         ObjectNode result = mapper.createObjectNode();
-        int remaining = totalBytes * 8;
+        int bitPos = 0;
         for (JsonNode part : parts) {
             String ptype = part.path("type").asText();
             int size = partSize(part);
-            remaining -= size;
-            if ("Spare".equals(ptype)) continue;
+            if ("Spare".equals(ptype) || "Fx".equals(ptype)) {
+                bitPos += size;
+                continue;
+            }
             if ("Item".equals(ptype)) {
-                JsonNode subRule = part.path("rule");
                 String name = part.path("name").asText("?");
-                if ("Element".equals(subRule.path("type").asText())) {
-                    long val = (raw >> remaining) & mask(size);
-                    result.set(name, applyContent(subRule.path("content"), val, size, mapper));
-                } else {
-                    // Nested group – recursively read from the buffer directly
-                    // (items already consumed from `raw`; re-read not possible here)
-                    // Fall back: emit hex of the consumed bits
-                    result.put(name, "?nested");
-                }
+                JsonNode subRule = part.path("rule");
+                // All sub-items in Groups are Elements (verified against all bundled specs)
+                long val = extractBitsLong(data, bitPos, size);
+                bitPos += size;
+                result.set(name, applyContent(subRule.path("content"), val, size, mapper));
             }
         }
         return result;
@@ -137,10 +137,18 @@ public class SpecItemParser implements ItemParser {
     private JsonNode parseElement(JsonNode rule, ByteBuffer buf, ObjectMapper mapper) {
         int size = rule.path("size").asInt(8);
         int bytes = (size + 7) / 8;
-        long raw = readBitsAsLong(buf, bytes);
-        // For sizes not multiple of 8, take the top `size` bits
-        int extra = bytes * 8 - size;
-        raw = raw >> extra;
+        if (size > 64) {
+            // Oversized raw element (e.g. CAT240 radar video blocks) — emit as hex
+            byte[] data = new byte[bytes];
+            int toRead = Math.min(bytes, buf.remaining());
+            buf.get(data, 0, toRead);
+            return mapper.getNodeFactory().textNode(ExplicitItemParser.bytesToHex(data));
+        }
+        byte[] data = new byte[bytes];
+        for (int i = 0; i < bytes && buf.hasRemaining(); i++) {
+            data[i] = buf.get();
+        }
+        long raw = extractBitsLong(data, 0, size);
         return applyContent(rule.path("content"), raw, size, mapper);
     }
 
@@ -257,12 +265,22 @@ public class SpecItemParser implements ItemParser {
 
     // ── Bit arithmetic helpers ─────────────────────────────────────────────
 
-    private static long readBitsAsLong(ByteBuffer buf, int bytes) {
-        long raw = 0;
-        for (int i = 0; i < bytes && buf.hasRemaining(); i++) {
-            raw = (raw << 8) | (buf.get() & 0xFF);
+    /**
+     * Extract {@code numBits} bits (MSB-first) starting at bit offset {@code bitPos}
+     * from {@code data}.  Works for any {@code numBits} in [1, 64].
+     */
+    private static long extractBitsLong(byte[] data, int bitPos, int numBits) {
+        long result = 0;
+        for (int i = 0; i < numBits; i++) {
+            int byteIdx = (bitPos + i) >>> 3;
+            int bitIdx  = 7 - ((bitPos + i) & 7);   // MSB of byte = bit 7
+            if (byteIdx < data.length) {
+                result = (result << 1) | ((data[byteIdx] >>> bitIdx) & 1);
+            } else {
+                result <<= 1;
+            }
         }
-        return raw;
+        return result;
     }
 
     private static long mask(int bits) {
