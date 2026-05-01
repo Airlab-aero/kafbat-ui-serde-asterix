@@ -1,23 +1,7 @@
 {
-  "generated": "2026-04-10T20:30:14.616773+00:00",
+  "generated": "2026-05-01T06:32:48.626197+00:00",
   "source": "https://github.com/zoranbosnjak/asterix-specs",
   "specs": [
-    {
-      "category": 1,
-      "edition": "1.2",
-      "name": "Transmission of Monoradar Data Target Reports",
-      "date": "2011-08-01",
-      "file": "cat001/1.2.json",
-      "latest": false
-    },
-    {
-      "category": 1,
-      "edition": "1.3",
-      "name": "Transmission of Monoradar Data Target Reports",
-      "date": "2021-04-01",
-      "file": "cat001/1.3.json",
-      "latest": false
-    },
     {
       "category": 1,
       "edition": "1.4",
@@ -28,26 +12,18 @@
     },
     {
       "category": 2,
-      "edition": "1.0",
-      "name": "Transmission of Monoradar Service Messages",
-      "date": "1997-11-01",
-      "file": "cat002/1.0.json",
-      "latest": false
-    },
-    {
-      "category": 2,
-      "edition": "1.1",
-      "name": "Transmission of Monoradar Service Messages",
-      "date": "2021-04-01",
-      "file": "cat002/1.1.json",
-      "latest": false
-    },
-    {
-      "category": 2,
       "edition": "1.2",
       "name": "Transmission of Monoradar Service Messages",
       "date": "2024-03-15",
       "file": "cat002/1.2.json",
+      "latest": true
+    },
+    {
+      "category": 4,
+      "edition": "1.13",
+      "name": "Safety Net Messages",
+      "date": "2024-06-04",
+      "file": "cat004/1.13.json",
       "latest": true
     },
     {
@@ -60,18 +36,18 @@
     },
     {
       "category": 8,
-      "edition": "1.2",
-      "name": "Monoradar Derived Weather Information",
-      "date": "2014-08-24",
-      "file": "cat008/1.2.json",
-      "latest": false
-    },
-    {
-      "category": 8,
       "edition": "1.3",
       "name": "Monoradar Derived Weather Information",
       "date": "2021-04-01",
       "file": "cat008/1.3.json",
+      "latest": true
+    },
+    {
+      "category": 9,
+      "edition": "2.1",
+      "name": "Composite Weather Reports",
+      "date": "2014-10-22",
+      "file": "cat009/2.1.json",
       "latest": true
     },
     {
@@ -84,26 +60,18 @@
     },
     {
       "category": 11,
-      "edition": "1.2",
+      "edition": "1.3",
       "name": "Transmission of A-SMGCS Data",
-      "date": "2008-05-01",
-      "file": "cat011/1.2.json",
+      "date": "2020-05-11",
+      "file": "cat011/1.3.json",
       "latest": true
     },
     {
       "category": 15,
-      "edition": "1.0",
+      "edition": "1.2",
       "name": "Independent Non-Cooperative Surveillance System Target Reports",
-      "date": "2019-07-15",
-      "file": "cat015/1.0.json",
-      "latest": false
-    },
-    {
-      "category": 15,
-      "edition": "1.1",
-      "name": "Independent Non-Cooperative Surveillance System Target Reports",
-      "date": "2021-03-19",
-      "file": "cat015/1.1.json",
+      "date": "2024-05-01",
+      "file": "cat015/1.2.json",
       "latest": true
     },
     {
@@ -124,14 +92,6 @@
     },
     {
       "category": 18,
-      "edition": "1.7",
-      "name": "Mode S Datalink Function Messages",
-      "date": "2015-11-08",
-      "file": "cat018/1.7.json",
-      "latest": false
-    },
-    {
-      "category": 18,
       "edition": "1.8",
       "name": "Mode S Datalink Function Messages",
       "date": "2024-05-14",
@@ -148,22 +108,6 @@
     },
     {
       "category": 20,
-      "edition": "1.9",
-      "name": "Multilateration Target Reports",
-      "date": "2015-03-25",
-      "file": "cat020/1.9.json",
-      "latest": false
-    },
-    {
-      "category": 20,
-      "edition": "1.10",
-      "name": "Multilateration Target Reports",
-      "date": "2021-02-19",
-      "file": "cat020/1.10.json",
-      "latest": false
-    },
-    {
-      "category": 20,
       "edition": "1.11",
       "name": "Multilateration Target Reports",
       "date": "2025-07-02",
@@ -172,35 +116,11 @@
     },
     {
       "category": 21,
-      "edition": "2.1",
+      "edition": "2.7",
       "name": "ADS-B Target Reports",
-      "date": "2011-05-01",
-      "file": "cat021/2.1.json",
-      "latest": false
-    },
-    {
-      "category": 21,
-      "edition": "2.4",
-      "name": "ADS-B Target Reports",
-      "date": "2015-06-15",
-      "file": "cat021/2.4.json",
-      "latest": false
-    },
-    {
-      "category": 21,
-      "edition": "2.6",
-      "name": "ADS-B Target Reports",
-      "date": "2021-12-21",
-      "file": "cat021/2.6.json",
+      "date": "2025-07-02",
+      "file": "cat021/2.7.json",
       "latest": true
-    },
-    {
-      "category": 23,
-      "edition": "1.2",
-      "name": "CNS/ATM Ground Station and Service Status Reports",
-      "date": "2009-03-01",
-      "file": "cat023/1.2.json",
-      "latest": false
     },
     {
       "category": 23,
@@ -212,27 +132,11 @@
     },
     {
       "category": 25,
-      "edition": "1.5",
-      "name": "CNS/ATM Ground System Status Reports",
-      "date": "2021-07-01",
-      "file": "cat025/1.5.json",
-      "latest": false
-    },
-    {
-      "category": 25,
       "edition": "1.6",
       "name": "CNS/ATM Ground System Status Reports",
       "date": "2025-10-22",
       "file": "cat025/1.6.json",
       "latest": true
-    },
-    {
-      "category": 32,
-      "edition": "1.1",
-      "name": "Miniplan Reports to an SDPS",
-      "date": "2020-12-11",
-      "file": "cat032/1.1.json",
-      "latest": false
     },
     {
       "category": 32,
@@ -244,67 +148,11 @@
     },
     {
       "category": 34,
-      "edition": "1.27",
-      "name": "Transmission of Monoradar Service Messages",
-      "date": "2007-05-01",
-      "file": "cat034/1.27.json",
-      "latest": false
-    },
-    {
-      "category": 34,
-      "edition": "1.28",
-      "name": "Transmission of Monoradar Service Messages",
-      "date": "2021-03-02",
-      "file": "cat034/1.28.json",
-      "latest": false
-    },
-    {
-      "category": 34,
       "edition": "1.29",
       "name": "Transmission of Monoradar Service Messages",
       "date": "2021-03-15",
       "file": "cat034/1.29.json",
       "latest": true
-    },
-    {
-      "category": 48,
-      "edition": "1.27",
-      "name": "Monoradar Target Reports",
-      "date": "2020-06-18",
-      "file": "cat048/1.27.json",
-      "latest": false
-    },
-    {
-      "category": 48,
-      "edition": "1.28",
-      "name": "Monoradar Target Reports",
-      "date": "2021-02-22",
-      "file": "cat048/1.28.json",
-      "latest": false
-    },
-    {
-      "category": 48,
-      "edition": "1.29",
-      "name": "Monoradar Target Reports",
-      "date": "2021-08-10",
-      "file": "cat048/1.29.json",
-      "latest": false
-    },
-    {
-      "category": 48,
-      "edition": "1.30",
-      "name": "Monoradar Target Reports",
-      "date": "2021-11-02",
-      "file": "cat048/1.30.json",
-      "latest": false
-    },
-    {
-      "category": 48,
-      "edition": "1.31",
-      "name": "Monoradar Target Reports",
-      "date": "2022-10-03",
-      "file": "cat048/1.31.json",
-      "latest": false
     },
     {
       "category": 48,
@@ -316,35 +164,11 @@
     },
     {
       "category": 62,
-      "edition": "1.18",
+      "edition": "1.21",
       "name": "SDPS Track Messages",
-      "date": "2018-08-13",
-      "file": "cat062/1.18.json",
-      "latest": false
-    },
-    {
-      "category": 62,
-      "edition": "1.19",
-      "name": "SDPS Track Messages",
-      "date": "2020-11-04",
-      "file": "cat062/1.19.json",
-      "latest": false
-    },
-    {
-      "category": 62,
-      "edition": "1.20",
-      "name": "SDPS Track Messages",
-      "date": "2023-02-13",
-      "file": "cat062/1.20.json",
+      "date": "2025-06-05",
+      "file": "cat062/1.21.json",
       "latest": true
-    },
-    {
-      "category": 63,
-      "edition": "1.6",
-      "name": "Sensor Status Reports",
-      "date": "2020-08-04",
-      "file": "cat063/1.6.json",
-      "latest": false
     },
     {
       "category": 63,
@@ -356,26 +180,18 @@
     },
     {
       "category": 65,
-      "edition": "1.4",
-      "name": "SDPS Service Status Reports",
-      "date": "2014-08-07",
-      "file": "cat065/1.4.json",
-      "latest": false
-    },
-    {
-      "category": 65,
-      "edition": "1.5",
-      "name": "SDPS Service Status Reports",
-      "date": "2020-06-18",
-      "file": "cat065/1.5.json",
-      "latest": false
-    },
-    {
-      "category": 65,
       "edition": "1.6",
       "name": "SDPS Service Status Reports",
       "date": "2023-03-21",
       "file": "cat065/1.6.json",
+      "latest": true
+    },
+    {
+      "category": 150,
+      "edition": "3.0",
+      "name": "MADAP Plan Server - Flight Data Message",
+      "date": "2004-08-20",
+      "file": "cat150/3.0.json",
       "latest": true
     },
     {
@@ -393,14 +209,6 @@
       "date": "2015-05-13",
       "file": "cat240/1.3.json",
       "latest": true
-    },
-    {
-      "category": 247,
-      "edition": "1.2",
-      "name": "Version Number Exchange",
-      "date": "2008-02-01",
-      "file": "cat247/1.2.json",
-      "latest": false
     },
     {
       "category": 247,

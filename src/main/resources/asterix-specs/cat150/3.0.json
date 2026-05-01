@@ -1,0 +1,747 @@
+{
+  "category": 150,
+  "edition": "3.0",
+  "name": "MADAP Plan Server - Flight Data Message",
+  "date": "2004-08-20",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I020",
+      "I030",
+      "I040",
+      "I050",
+      "I060",
+      "I070",
+      "I080",
+      "I090",
+      "I100",
+      "I110",
+      "I120",
+      "I130",
+      "I140",
+      "I150",
+      "I160",
+      "I170",
+      "I180",
+      "I190",
+      "I200",
+      "I210",
+      "I220",
+      "I230",
+      "I240",
+      "I250",
+      "I251",
+      "I171",
+      "I151"
+    ]
+  },
+  "items": {
+    "I010": {
+      "title": "Destination ID",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "CEN",
+            "title": "Centre Identifier",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "POS",
+            "title": "Workstation Identifier",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I020": {
+      "title": "Source ID",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "CEN",
+            "title": "Centre Identifier",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "POS",
+            "title": "Workstation Identifier",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I030": {
+      "title": "Message Type",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "1": "Flight plan creation",
+            "2": "Flight plan modification",
+            "3": "Flight plan repetition",
+            "4": "Manual flight plan deletion",
+            "5": "Automatic flight plan deletion",
+            "6": "Flight is beyond extraction area boundary",
+            "251": "Short term conflict alert",
+            "252": "Correlations",
+            "253": "Decorrelations",
+            "254": "Start of background loop",
+            "255": "End of background loop"
+          }
+        }
+      }
+    },
+    "I040": {
+      "title": "Plan Reference Number",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I050": {
+      "title": "Callsign",
+      "rule": {
+        "type": "Element",
+        "size": 56,
+        "content": {
+          "type": "String",
+          "variant": "Ascii"
+        }
+      }
+    },
+    "I060": {
+      "title": "Present Mode 3A",
+      "rule": {
+        "type": "Element",
+        "size": 32,
+        "content": {
+          "type": "String",
+          "variant": "Ascii"
+        }
+      }
+    },
+    "I070": {
+      "title": "Next Mode 3A",
+      "rule": {
+        "type": "Element",
+        "size": 32,
+        "content": {
+          "type": "String",
+          "variant": "Ascii"
+        }
+      }
+    },
+    "I080": {
+      "title": "Departure Aerodrome",
+      "rule": {
+        "type": "Element",
+        "size": 32,
+        "content": {
+          "type": "String",
+          "variant": "Ascii"
+        }
+      }
+    },
+    "I090": {
+      "title": "Destination Aerodrome",
+      "rule": {
+        "type": "Element",
+        "size": 32,
+        "content": {
+          "type": "String",
+          "variant": "Ascii"
+        }
+      }
+    },
+    "I100": {
+      "title": "Type Flags",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "GAT",
+            "title": "General Air Traffic",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "OAT",
+            "title": "Operational Air Traffic",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 3
+          },
+          {
+            "type": "Item",
+            "name": "CPL",
+            "title": "Complete Flight Plan",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SPN",
+            "title": "Short Flight Plan",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 1
+          }
+        ]
+      }
+    },
+    "I110": {
+      "title": "Status Flags",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Spare",
+            "size": 1
+          },
+          {
+            "type": "Item",
+            "name": "HLD",
+            "title": "Aircraft is in Hold State",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RVQ",
+            "title": "Aircraft is RVSM Equipped",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RVC",
+            "title": "Aircraft is RVSM Capable",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RVX",
+            "title": "Aircraft is RVSM Exempted",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 3
+          }
+        ]
+      }
+    },
+    "I120": {
+      "title": "Aircraft Type",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "NOA",
+            "title": "Number of Aircraft",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "String",
+                "variant": "Ascii"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TOA",
+            "title": "Type of Aircraft",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "String",
+                "variant": "Ascii"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "WT",
+            "title": "Wake Turbulence",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "String",
+                "variant": "Ascii"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I130": {
+      "title": "Cleared Flight Level",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "String",
+          "variant": "Ascii"
+        }
+      }
+    },
+    "I140": {
+      "title": "Route Points, Description",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "T",
+              "title": "Route Point Type",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "1": "P, point",
+                    "2": "B, point with bearing and distance",
+                    "3": "LS, latitude/longitude position short format",
+                    "4": "LL, latitude/longitude position long format",
+                    "5": "X, x/y co-ordinate position",
+                    "6": "G, georeference position",
+                    "14": "E, airport"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "E",
+              "title": "Route Point Description Element",
+              "rule": {
+                "type": "Element",
+                "size": 88,
+                "content": {
+                  "type": "String",
+                  "variant": "Ascii"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I150": {
+      "title": "Route Points, Coordinates",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "X",
+              "title": "X Co-ordinate",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Quantity",
+                  "signed": true,
+                  "lsb": 0.015625,
+                  "unit": "NM"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "Y",
+              "title": "Y Co-ordinate",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Quantity",
+                  "signed": true,
+                  "lsb": 0.015625,
+                  "unit": "NM"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I151": {
+      "title": "Route Points, Geographic Position",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "LAT",
+              "title": "Latitude in WGS.84 in Two's Complement Form",
+              "rule": {
+                "type": "Element",
+                "size": 24,
+                "content": {
+                  "type": "Quantity",
+                  "signed": true,
+                  "lsb": 2.1457672119140625e-05,
+                  "unit": "°"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "LON",
+              "title": "Longitude in WGS.84 in Two's Complement Form",
+              "rule": {
+                "type": "Element",
+                "size": 24,
+                "content": {
+                  "type": "Quantity",
+                  "signed": true,
+                  "lsb": 2.1457672119140625e-05,
+                  "unit": "°"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I160": {
+      "title": "Route Points, Time",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "HH",
+              "title": "Hours",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "String",
+                  "variant": "Ascii"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "MM",
+              "title": "Minutes",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "String",
+                  "variant": "Ascii"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I170": {
+      "title": "Route Points, Flight Level",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 24,
+          "content": {
+            "type": "String",
+            "variant": "Ascii"
+          }
+        }
+      }
+    },
+    "I171": {
+      "title": "Route Points, Requested Flight Level",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 24,
+          "content": {
+            "type": "String",
+            "variant": "Ascii"
+          }
+        }
+      }
+    },
+    "I180": {
+      "title": "Route Points, Speed",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 32,
+          "content": {
+            "type": "String",
+            "variant": "Ascii"
+          }
+        }
+      }
+    },
+    "I190": {
+      "title": "Controller ID",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "String",
+          "variant": "Ascii"
+        }
+      }
+    },
+    "I200": {
+      "title": "Field 18",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 8,
+          "content": {
+            "type": "String",
+            "variant": "Ascii"
+          }
+        }
+      }
+    },
+    "I210": {
+      "title": "Correlated Track Number",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I220": {
+      "title": "Maximum Plan Count",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Integer",
+          "signed": false
+        }
+      }
+    },
+    "I230": {
+      "title": "Number of Plans",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Integer",
+          "signed": false
+        }
+      }
+    },
+    "I240": {
+      "title": "Newly Correlated Plans",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "PLAN",
+              "title": "Plan Number",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "TRACK",
+              "title": "Track Number",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I250": {
+      "title": "Newly De-correlated Plans",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 16,
+          "content": {
+            "type": "Raw"
+          }
+        }
+      }
+    },
+    "I251": {
+      "title": "Tracks in Conflict",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "TRACK1",
+              "title": "Track Number 1",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "TRACK2",
+              "title": "Track Number 2",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

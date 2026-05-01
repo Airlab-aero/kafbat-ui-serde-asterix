@@ -1,0 +1,2568 @@
+{
+  "category": 4,
+  "edition": "1.13",
+  "name": "Safety Net Messages",
+  "date": "2024-06-04",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I000",
+      "I015",
+      "I020",
+      "I040",
+      "I045",
+      "I060",
+      "I030",
+      "I170",
+      "I120",
+      "I070",
+      "I076",
+      "I074",
+      "I075",
+      "I100",
+      "I035",
+      "I171",
+      "I110",
+      null,
+      "RE",
+      "SP"
+    ]
+  },
+  "items": {
+    "I000": {
+      "title": "Message Type",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "1": "Alive Message (AM)",
+            "2": "Route Adherence Monitor Longitudinal Deviation (RAMLD)",
+            "3": "Route Adherence Monitor Heading Deviation (RAMHD)",
+            "4": "Minimum Safe Altitude Warning (MSAW)",
+            "5": "Area Proximity Warning (APW)",
+            "6": "Clearance Level Adherence Monitor (CLAM)",
+            "7": "Short Term Conflict Alert (STCA)",
+            "8": "Approach Path Monitor (APM)",
+            "9": "RIMCAS Arrival / Landing Monitor (ALM)",
+            "10": "RIMCAS Arrival / Departure Wrong Runway Alert (WRA)",
+            "11": "RIMCAS Arrival / Departure Opposite Traffic Alert (OTA)",
+            "12": "RIMCAS Departure Monitor (RDM)",
+            "13": "RIMCAS Runway / Taxiway Crossing Monitor (RCM)",
+            "14": "RIMCAS Taxiway Separation Monitor (TSM)",
+            "15": "RIMCAS Unauthorized Taxiway Movement Monitor(UTMM)",
+            "16": "RIMCAS Stop Bar Overrun Alert (SBOA)",
+            "17": "End Of Conflict (EOC)",
+            "18": "ACAS Resolution Advisory (ACASRA)",
+            "19": "Near Term Conflict Alert (NTCA)",
+            "20": "Downlinked Barometric Pressure Setting Monitor (DBPSM)",
+            "21": "Speed Adherence Monitor (SAM)",
+            "22": "Outside Controlled Airspace Tool (OCAT)",
+            "23": "Vertical Conflict Detection (VCD)",
+            "24": "Vertical Rate Adherence Monitor (VRAM)",
+            "25": "Cleared Heading Adherence Monitor (CHAM)",
+            "26": "Downlinked Selected Altitude Monitor (DSAM)",
+            "27": "Holding Adherence Monitor (HAM)",
+            "28": "Vertical Path Monitor (VPM)",
+            "29": "RIMCAS Taxiway Traffic Alert (TTA)",
+            "30": "RIMCAS Arrival/Departure Close Runway Alert (CRA)",
+            "31": "RIMCAS Arrival/Departure Aircraft Separation Monitor (ASM)",
+            "32": "RIMCAS ILS Area Violation Monitor (IAVM)",
+            "33": "Final Target Distance Indicator (FTD)",
+            "34": "Initial Target Distance Indicator (ITD)",
+            "35": "Wake Vortex Indicator Infringement Alert (IIA)",
+            "36": "Sequence Warning (SQW)",
+            "37": "Catch Up Warning (CUW)",
+            "38": "Conflicting ATC Clearances (CATC)",
+            "39": "No ATC Clearance (NOCLR)",
+            "40": "Aircraft Not Moving despite ATC Clearance (NOMOV)",
+            "41": "Aircraft leaving/entering the aerodrome area without proper handover (NOH)",
+            "42": "Wrong Runway or Taxiway Type (WRTY)",
+            "43": "Stand Occupied (STOCC)",
+            "44": "Ongoing Alert (ONGOING)",
+            "45": "Non-Transgression Zone Violation (NTZ)",
+            "97": "Lost Track Warning (LTW)",
+            "98": "Holding Volume Infringement (HVI)",
+            "99": "Airspace Infringement Warning (AIW)"
+          }
+        }
+      }
+    },
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I015": {
+      "title": "SDPS Identifier",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "SAC",
+              "title": "System Area Code",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SIC",
+              "title": "System Identification Code",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I020": {
+      "title": "Time of Message",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I030": {
+      "title": "Track Number 1",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I035": {
+      "title": "Track Number 2",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I040": {
+      "title": "Alert Identifier",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I045": {
+      "title": "Area and Alert Status",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "AREA",
+            "title": "Area Status",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "EP",
+                  "title": "Element Populated Bit",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Element not populated",
+                        "1": "Element populated"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "VAL",
+                  "title": "Area Status Value",
+                  "rule": {
+                    "type": "Element",
+                    "size": 3,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Inactive",
+                        "1": "Active",
+                        "2": "Pre-active",
+                        "3": "Reserved for Future Use",
+                        "4": "Reserved for Future Use",
+                        "5": "Reserved for Future Use",
+                        "6": "Reserved for Future Use",
+                        "7": "Reserved for Future Use"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "STAT",
+            "title": "Status of the Alert",
+            "rule": {
+              "type": "Element",
+              "size": 3,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 1
+          }
+        ]
+      }
+    },
+    "I060": {
+      "title": "Safety Net Function and System Status",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "MRVA",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "MRVA function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "RAMLD",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "RAMLD function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "RAMHD",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "RAMHD function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "MSAW",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "MSAW function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "APW",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "APW function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CLAM",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "CLAM function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "STCA",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "STCA function"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "APM",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "APM function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "RIMCA",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "RIMCA function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "ACASRA",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "ACAS RA function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "NTCA",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "NTCA function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "DG",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "System degraded"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "OF",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "Overflow error"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "OL",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "Overload error"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "AIW",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "AIW function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "PAIW",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "PAIW function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "OCAT",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "OCAT function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SAM",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "SAM function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "VCD",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "VCD function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CHAM",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "CHAM function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "DSAM",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "DSAM function"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "DBPSMARR",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "DBPSM ARR sub-function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "DBPSMDEP",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "DBPSM DEP sub-function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "DBPSMTL",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "DBPSM TL sub-function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "VRAMCRM",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "VRAM CRM sub-function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "VRAMVTM",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "VRAM VTM sub-function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "VRAMVRM",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "VRAM VRM sub-function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "HAMHD",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "HAM HD sub-function"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "HAMRD",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "HAM RD sub-function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "HAMVD",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "HAM VD sub-function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "HVI",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "HVI function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "LTW",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "LTW function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "VPM",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "VPM function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "TTA",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "TTA function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CRA",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "CRA function"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "ASM",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "ASM sub-function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "IAVM",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "IAVM sub-function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "FTD",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "FTD Function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "ITD",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "ITD function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "IIA",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "IIA function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SQW",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "SQW function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CUW",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "CUW function"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "CATC",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "CATC function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "NOCLR",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "NOCLR sub-function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "NOMOV",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "NOMOV Function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "NOH",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "NOH function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "WRTY",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "WRTY function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "STOCC",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "STOCC function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "ONGOING",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "ONGOING function"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "NTZ",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "Non-Transgression Zone Function"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 6
+            }
+          ]
+        ]
+      }
+    },
+    "I070": {
+      "title": "Conflict Timing and Separation",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "TC",
+            "title": "Time to Conflict",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0078125,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TCA",
+            "title": "Time to Closest Approach",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0078125,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CHS",
+            "title": "Current Horizontal Separation",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.5,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "MHS",
+            "title": "Estimated Minimum Horizontal Separation",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.5,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CVS",
+            "title": "Current Vertical Separation",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 25.0,
+                "unit": "ft"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "MVS",
+            "title": "Estimated Minimum Vertical Separation",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 25.0,
+                "unit": "ft"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I074": {
+      "title": "Longitudinal Deviation",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 32.0,
+          "unit": "m"
+        }
+      }
+    },
+    "I075": {
+      "title": "Transversal Distance Deviation",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 0.5,
+          "unit": "m"
+        }
+      }
+    },
+    "I076": {
+      "title": "Vertical Deviation",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 25.0,
+          "unit": "ft"
+        }
+      }
+    },
+    "I100": {
+      "title": "Area Definition",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "AN",
+            "title": "Area Name",
+            "rule": {
+              "type": "Element",
+              "size": 48,
+              "content": {
+                "type": "String",
+                "variant": "Icao"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CAN",
+            "title": "Crossing Area Name",
+            "rule": {
+              "type": "Element",
+              "size": 56,
+              "content": {
+                "type": "String",
+                "variant": "Ascii"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RT1",
+            "title": "Runway/Taxiway Designator 1",
+            "rule": {
+              "type": "Element",
+              "size": 56,
+              "content": {
+                "type": "String",
+                "variant": "Ascii"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RT2",
+            "title": "Runway/Taxiway Designator 2",
+            "rule": {
+              "type": "Element",
+              "size": 56,
+              "content": {
+                "type": "String",
+                "variant": "Ascii"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SB",
+            "title": "Stop Bar Designator",
+            "rule": {
+              "type": "Element",
+              "size": 56,
+              "content": {
+                "type": "String",
+                "variant": "Ascii"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "G",
+            "title": "Gate Designator",
+            "rule": {
+              "type": "Element",
+              "size": 56,
+              "content": {
+                "type": "String",
+                "variant": "Ascii"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I110": {
+      "title": "FDPS Sector Control Identification",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "CEN",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "POS",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I120": {
+      "title": "Conflict Characteristics",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "CN",
+            "title": "Conflict Nature",
+            "rule": {
+              "type": "Extended",
+              "groups": [
+                [
+                  {
+                    "type": "Item",
+                    "name": "MAS",
+                    "title": "Conflict Location in Military Airspace",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Conflict not predicted to occur in military airspace",
+                          "1": "Conflict predicted to occur in military airspace"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "CAS",
+                    "title": "Conflict Location in Civil Airspace",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Conflict not predicted to occur in civil airspace",
+                          "1": "Conflict predicted to occur in civil airspace"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "FLD",
+                    "title": "Fast Lateral Divergence",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Aircraft are not fast diverging laterally at current time",
+                          "1": "Aircraft are fast diverging laterally at current time"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "FVD",
+                    "title": "Fast Vertical Divergence",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Aircraft are not fast diverging vertically at current time",
+                          "1": "Aircraft are fast diverging vertically at current time"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "TYPE",
+                    "title": "Type of Separation Infringement",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Minor separation infringement",
+                          "1": "Major separation infringement"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "CROSS",
+                    "title": "Crossing Test",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Aircraft have not crossed at starting time of conflict",
+                          "1": "Aircraft have crossed at starting time of conflict"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "DIV",
+                    "title": "Divergence Test",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Aircraft are not diverging at starting time of conflict",
+                          "1": "Aircraft are diverging at starting time of conflict"
+                        }
+                      }
+                    }
+                  }
+                ],
+                [
+                  {
+                    "type": "Item",
+                    "name": "RRC",
+                    "title": "Runway/Runway Crossing in RIMCAS",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Runway/Runway Crossing"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "RTC",
+                    "title": "Runway/Taxiway Crossing in RIMCAS",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Runway/Taxiway Crossing"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "MRVA",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Msg Type 4 (MSAW) indicates MRVA"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "VRAMCRM",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Msg Type 25 (VRAM) indicates CRM"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "VRAMVRM",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Msg Type 25 (VRAM) indicates VRM"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "VRAMVTM",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Msg Type 25 (VRAM) indicates VTM"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "HAMHD",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Msg Type 29 (HAM) indicates HD"
+                        }
+                      }
+                    }
+                  }
+                ],
+                [
+                  {
+                    "type": "Item",
+                    "name": "HAMRD",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Msg Type 29 (HAM) indicates RD"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "HAMVD",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Msg Type 29 (HAM) indicates VD"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "DBPSMARR",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Msg Type 20 (DBPSM) indicates ARR"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "DBPSMDEP",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Msg Type 20 (DBPSM) indicates DEP"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "DBPSMTL",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Msg Type 20 (DBPSM) indicates above TL"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "AIW",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Msg Type 99 (AIW) indicates pAIW Alert"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Spare",
+                    "size": 1
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CC",
+            "title": "Conflict Classification",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "TID",
+                  "title": "Identification of Conflict Categories Definition Table",
+                  "rule": {
+                    "type": "Element",
+                    "size": 4,
+                    "content": {
+                      "type": "Raw"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "CPC",
+                  "title": "Conflict Properties Class",
+                  "rule": {
+                    "type": "Unknown"
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "CS",
+                  "title": "Conflict Severity",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "LOW",
+                        "1": "HIGH"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CP",
+            "title": "Conflict Probability",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.5,
+                "unit": "%"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CD",
+            "title": "Conflict Duration",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0078125,
+                "unit": "s"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I170": {
+      "title": "Aircraft Identification and Characteristics 1",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "AI1",
+            "title": "Aircraft Identifier (in 7 Characters) of Aircraft 1 Involved in the Conflict",
+            "rule": {
+              "type": "Element",
+              "size": 56,
+              "content": {
+                "type": "String",
+                "variant": "Ascii"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "M31",
+            "title": "Mode 3/A Code Aircraft 1",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Spare",
+                  "size": 4
+                },
+                {
+                  "type": "Item",
+                  "name": "MODE3A",
+                  "title": "Mode-3/A Code (Converted Into Octal Representation) of Aircraft 1 Involved in the Conflict",
+                  "rule": {
+                    "type": "Element",
+                    "size": 12,
+                    "content": {
+                      "type": "String",
+                      "variant": "Octal"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CPW",
+            "title": "Predicted Conflict Position Target 1 in WGS-84 Coordinates",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "LAT",
+                  "title": "Latitude in WGS-84 in Two’s Complement",
+                  "rule": {
+                    "type": "Element",
+                    "size": 32,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 5.364418029785156e-06,
+                      "unit": "°"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "LON",
+                  "title": "Longitude in WGS-84 in Two’s Complement",
+                  "rule": {
+                    "type": "Element",
+                    "size": 32,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 5.364418029785156e-06,
+                      "unit": "°"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "ALT",
+                  "title": "Altitude of Predicted Conflict",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 25.0,
+                      "unit": "ft"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CPC",
+            "title": "Predicted Conflict Position for the Aircraft 1 Involved in the Conflict",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "Starting X-position of the Conflict",
+                  "rule": {
+                    "type": "Element",
+                    "size": 24,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.5,
+                      "unit": "m"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "Starting Y-position of the Conflict",
+                  "rule": {
+                    "type": "Element",
+                    "size": 24,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.5,
+                      "unit": "m"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Z",
+                  "title": "Starting Z-position of the Conflict",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 25.0,
+                      "unit": "ft"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TT1",
+            "title": "Time to Runway Threshold for First Approaching Aircraft in a RIMCA",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0078125,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "DT1",
+            "title": "Distance to Runway Threshold for Aircraft 1 Involved in a RIMCA",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.5,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "AC1",
+            "title": "Characteristics of Aircraft 1 Involved in the Conflict",
+            "rule": {
+              "type": "Extended",
+              "groups": [
+                [
+                  {
+                    "type": "Item",
+                    "name": "GATOAT",
+                    "title": "Identification of Conflict Categories Definition Table",
+                    "rule": {
+                      "type": "Element",
+                      "size": 2,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Unknown",
+                          "1": "General Air Traffic",
+                          "2": "Operational Air Traffic",
+                          "3": "Not applicable"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "FR1FR2",
+                    "title": "Flight Rules",
+                    "rule": {
+                      "type": "Element",
+                      "size": 2,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Instrument Flight Rules",
+                          "1": "Visual Flight rules",
+                          "2": "Not applicable",
+                          "3": "Controlled Visual Flight Rules"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "RVSM",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 2,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Unknown",
+                          "1": "Approved",
+                          "2": "Exempt",
+                          "3": "Not Approved"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "HPR",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Normal Priority Flight",
+                          "1": "High Priority Flight"
+                        }
+                      }
+                    }
+                  }
+                ],
+                [
+                  {
+                    "type": "Item",
+                    "name": "CDM",
+                    "title": "Climbing/Descending Mode",
+                    "rule": {
+                      "type": "Element",
+                      "size": 2,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Maintaining",
+                          "1": "Climbing",
+                          "2": "Descending",
+                          "3": "Invalid"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "PRI",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Non primary target",
+                          "1": "Primary target"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "GV",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Ground Vehicle"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Spare",
+                    "size": 3
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "MS1",
+            "title": "Aircraft Identification Downloaded from Aircraft 1 Involved in the Conflict If Equipped with a Mode-S Transponder",
+            "rule": {
+              "type": "Element",
+              "size": 48,
+              "content": {
+                "type": "String",
+                "variant": "Icao"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "FP1",
+            "title": "Number of the Flight Plan Correlated to Aircraft 1 Involved in the Conflict",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Spare",
+                  "size": 5
+                },
+                {
+                  "type": "Item",
+                  "name": "NBR",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 27,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 1.0,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CF1",
+            "title": "Cleared Flight Level for Aircraft 1 Involved in the Conflict",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.25,
+                "unit": "FL"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I171": {
+      "title": "Aircraft Identification and Characteristics 2",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "AI2",
+            "title": "Aircraft Identifier (in 7 Characters) of Aircraft 2 Involved in the Conflict",
+            "rule": {
+              "type": "Element",
+              "size": 56,
+              "content": {
+                "type": "String",
+                "variant": "Ascii"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "M32",
+            "title": "Mode 3/A Code Aircraft 2",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Spare",
+                  "size": 4
+                },
+                {
+                  "type": "Item",
+                  "name": "MODE3A",
+                  "title": "Mode-3/A Code (Converted Into Octal Representation) of Aircraft 2 Involved in the Conflict",
+                  "rule": {
+                    "type": "Element",
+                    "size": 12,
+                    "content": {
+                      "type": "String",
+                      "variant": "Octal"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CPW",
+            "title": "Predicted Conflict Position Target 2 in WGS-84 Coordinates",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "LAT",
+                  "title": "Latitude in WGS-84 in Two’s Complement",
+                  "rule": {
+                    "type": "Element",
+                    "size": 32,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 5.364418029785156e-06,
+                      "unit": "°"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "LON",
+                  "title": "Longitude in WGS-84 in Two’s Complement",
+                  "rule": {
+                    "type": "Element",
+                    "size": 32,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 5.364418029785156e-06,
+                      "unit": "°"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "ALT",
+                  "title": "Altitude of Predicted Conflict",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 25.0,
+                      "unit": "ft"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CPL",
+            "title": "Predicted Conflict Position for the Aircraft 2 Involved in the Conflict",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "Starting X-position of the Conflict",
+                  "rule": {
+                    "type": "Element",
+                    "size": 24,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.5,
+                      "unit": "m"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "Starting Y-position of the Conflict",
+                  "rule": {
+                    "type": "Element",
+                    "size": 24,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.5,
+                      "unit": "m"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Z",
+                  "title": "Starting Z-position of the Conflict",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 25.0,
+                      "unit": "ft"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TT2",
+            "title": "Time to Runway Threshold for Second Approaching Aircraft in a RIMCA",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0078125,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "DT2",
+            "title": "Distance to Runway Threshold for Aircraft 2 Involved in a RIMCA",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.5,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "AC2",
+            "title": "Characteristics of Aircraft 2 Involved in the Conflict",
+            "rule": {
+              "type": "Extended",
+              "groups": [
+                [
+                  {
+                    "type": "Item",
+                    "name": "GATOAT",
+                    "title": "Identification of Conflict Categories Definition Table",
+                    "rule": {
+                      "type": "Element",
+                      "size": 2,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Unknown",
+                          "1": "General Air Traffic",
+                          "2": "Operational Air Traffic",
+                          "3": "Not applicable"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "FR1FR2",
+                    "title": "Flight Rules",
+                    "rule": {
+                      "type": "Element",
+                      "size": 2,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Instrument Flight Rules",
+                          "1": "Visual Flight rules",
+                          "2": "Not applicable",
+                          "3": "Controlled Visual Flight Rules"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "RVSM",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 2,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Unknown",
+                          "1": "Approved",
+                          "2": "Exempt",
+                          "3": "Not Approved"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "HPR",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Normal Priority Flight",
+                          "1": "High Priority Flight"
+                        }
+                      }
+                    }
+                  }
+                ],
+                [
+                  {
+                    "type": "Item",
+                    "name": "CDM",
+                    "title": "Climbing/Descending Mode",
+                    "rule": {
+                      "type": "Element",
+                      "size": 2,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Maintaining",
+                          "1": "Climbing",
+                          "2": "Descending",
+                          "3": "Invalid"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "PRI",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Non primary target",
+                          "1": "Primary target"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "GV",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Default",
+                          "1": "Ground Vehicle"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Spare",
+                    "size": 3
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "MS2",
+            "title": "Aircraft Identification Downloaded From Aircraft 2 Involved in the Conflict If Eequipped With a Mode-S Transponder",
+            "rule": {
+              "type": "Element",
+              "size": 48,
+              "content": {
+                "type": "String",
+                "variant": "Icao"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "FP2",
+            "title": "Number of the Flight Plan Correlated to Aircraft 2 Involved in the Conflict",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Spare",
+                  "size": 5
+                },
+                {
+                  "type": "Item",
+                  "name": "NBR",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 27,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 1.0,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CF2",
+            "title": "Cleared Flight Level for Aircraft 2 Involved in the Conflict",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.25,
+                "unit": "FL"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "RE": {
+      "title": "Reserved Expansion Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}
