@@ -1,0 +1,1030 @@
+{
+  "category": 25,
+  "edition": "1.5",
+  "name": "CNS/ATM Ground System Status Reports",
+  "date": "2021-07-01",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I000",
+      "I200",
+      "I015",
+      "I020",
+      "I070",
+      "I100",
+      "I105",
+      "I120",
+      "I140",
+      "SP",
+      "I600",
+      "I610"
+    ]
+  },
+  "items": {
+    "I000": {
+      "title": "Report Type",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "RTYP",
+            "title": "Report Type",
+            "rule": {
+              "type": "Element",
+              "size": 7,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RG",
+            "title": "Report Generation",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Periodic Report",
+                  "1": "Event Driven Report"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I015": {
+      "title": "Service Identification",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I020": {
+      "title": "Service Designator",
+      "rule": {
+        "type": "Element",
+        "size": 48,
+        "content": {
+          "type": "String",
+          "variant": "Icao"
+        }
+      }
+    },
+    "I070": {
+      "title": "Time of Day",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I100": {
+      "title": "System and Service Status",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "NOGO",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Data is released for operational use",
+                    "1": "Data must not be used operationally"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "OPS",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Operational",
+                    "1": "Operational but in Standby",
+                    "2": "Maintenance",
+                    "3": "Reserved for future use"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SSTAT",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 4,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Running",
+                    "1": "Failed",
+                    "2": "Degraded",
+                    "3": "Undefined",
+                    "4": "Reserved for future use",
+                    "5": "Reserved for future use",
+                    "6": "Reserved for future use",
+                    "7": "Reserved for future use",
+                    "8": "Reserved for future use",
+                    "9": "Reserved for future use",
+                    "10": "Reserved for future use",
+                    "11": "Reserved for future use",
+                    "12": "Reserved for future use",
+                    "13": "Reserved for future use",
+                    "14": "Reserved for future use",
+                    "15": "Reserved for future use"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Spare",
+              "size": 1
+            },
+            {
+              "type": "Item",
+              "name": "SYSTAT",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Running / OK",
+                    "1": "Failed",
+                    "2": "Degraded",
+                    "3": "Undefined",
+                    "4": "Reserved for future use",
+                    "5": "Reserved for future use",
+                    "6": "Reserved for future use",
+                    "7": "Reserved for future use"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SESTAT",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "OK",
+                    "1": "Failed",
+                    "2": "Degraded",
+                    "3": "Undefined",
+                    "4": "Reserved for future use",
+                    "5": "Reserved for future use",
+                    "6": "Reserved for future use",
+                    "7": "Reserved for future use"
+                  }
+                }
+              }
+            }
+          ]
+        ]
+      }
+    },
+    "I105": {
+      "title": "System and Service Error Codes",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 8,
+          "content": {
+            "type": "Table",
+            "values": {
+              "0": "No error detected (shall not be sent)",
+              "1": "Error Code Undefined",
+              "2": "Time Source Invalid",
+              "3": "Time Source Coasting",
+              "4": "Track ID numbering has restarted",
+              "5": "Data Processor Overload",
+              "6": "Ground Interface Data Communications Overload",
+              "7": "System stopped by operator",
+              "8": "CBIT failed",
+              "9": "Test Target Failure",
+              "10": "Reserved for allocation by the AMG",
+              "11": "Reserved for allocation by the AMG",
+              "12": "Reserved for allocation by the AMG",
+              "13": "Reserved for allocation by the AMG",
+              "14": "Reserved for allocation by the AMG",
+              "15": "Reserved for allocation by the AMG",
+              "16": "Reserved for allocation by the AMG",
+              "17": "Reserved for allocation by the AMG",
+              "18": "Reserved for allocation by the AMG",
+              "19": "Reserved for allocation by the AMG",
+              "20": "Reserved for allocation by the AMG",
+              "21": "Reserved for allocation by the AMG",
+              "22": "Reserved for allocation by the AMG",
+              "23": "Reserved for allocation by the AMG",
+              "24": "Reserved for allocation by the AMG",
+              "25": "Reserved for allocation by the AMG",
+              "26": "Reserved for allocation by the AMG",
+              "27": "Reserved for allocation by the AMG",
+              "28": "Reserved for allocation by the AMG",
+              "29": "Reserved for allocation by the AMG",
+              "30": "Reserved for allocation by the AMG",
+              "31": "Reserved for allocation by the AMG",
+              "32": "Reserved for allocation by system manufacturers",
+              "33": "Reserved for allocation by system manufacturers",
+              "34": "Reserved for allocation by system manufacturers",
+              "35": "Reserved for allocation by system manufacturers",
+              "36": "Reserved for allocation by system manufacturers",
+              "37": "Reserved for allocation by system manufacturers",
+              "38": "Reserved for allocation by system manufacturers",
+              "39": "Reserved for allocation by system manufacturers",
+              "40": "Reserved for allocation by system manufacturers",
+              "41": "Reserved for allocation by system manufacturers",
+              "42": "Reserved for allocation by system manufacturers",
+              "43": "Reserved for allocation by system manufacturers",
+              "44": "Reserved for allocation by system manufacturers",
+              "45": "Reserved for allocation by system manufacturers",
+              "46": "Reserved for allocation by system manufacturers",
+              "47": "Reserved for allocation by system manufacturers",
+              "48": "Reserved for allocation by system manufacturers",
+              "49": "Reserved for allocation by system manufacturers",
+              "50": "Reserved for allocation by system manufacturers",
+              "51": "Reserved for allocation by system manufacturers",
+              "52": "Reserved for allocation by system manufacturers",
+              "53": "Reserved for allocation by system manufacturers",
+              "54": "Reserved for allocation by system manufacturers",
+              "55": "Reserved for allocation by system manufacturers",
+              "56": "Reserved for allocation by system manufacturers",
+              "57": "Reserved for allocation by system manufacturers",
+              "58": "Reserved for allocation by system manufacturers",
+              "59": "Reserved for allocation by system manufacturers",
+              "60": "Reserved for allocation by system manufacturers",
+              "61": "Reserved for allocation by system manufacturers",
+              "62": "Reserved for allocation by system manufacturers",
+              "63": "Reserved for allocation by system manufacturers",
+              "64": "Reserved for allocation by system manufacturers",
+              "65": "Reserved for allocation by system manufacturers",
+              "66": "Reserved for allocation by system manufacturers",
+              "67": "Reserved for allocation by system manufacturers",
+              "68": "Reserved for allocation by system manufacturers",
+              "69": "Reserved for allocation by system manufacturers",
+              "70": "Reserved for allocation by system manufacturers",
+              "71": "Reserved for allocation by system manufacturers",
+              "72": "Reserved for allocation by system manufacturers",
+              "73": "Reserved for allocation by system manufacturers",
+              "74": "Reserved for allocation by system manufacturers",
+              "75": "Reserved for allocation by system manufacturers",
+              "76": "Reserved for allocation by system manufacturers",
+              "77": "Reserved for allocation by system manufacturers",
+              "78": "Reserved for allocation by system manufacturers",
+              "79": "Reserved for allocation by system manufacturers",
+              "80": "Reserved for allocation by system manufacturers",
+              "81": "Reserved for allocation by system manufacturers",
+              "82": "Reserved for allocation by system manufacturers",
+              "83": "Reserved for allocation by system manufacturers",
+              "84": "Reserved for allocation by system manufacturers",
+              "85": "Reserved for allocation by system manufacturers",
+              "86": "Reserved for allocation by system manufacturers",
+              "87": "Reserved for allocation by system manufacturers",
+              "88": "Reserved for allocation by system manufacturers",
+              "89": "Reserved for allocation by system manufacturers",
+              "90": "Reserved for allocation by system manufacturers",
+              "91": "Reserved for allocation by system manufacturers",
+              "92": "Reserved for allocation by system manufacturers",
+              "93": "Reserved for allocation by system manufacturers",
+              "94": "Reserved for allocation by system manufacturers",
+              "95": "Reserved for allocation by system manufacturers",
+              "96": "Reserved for allocation by system manufacturers",
+              "97": "Reserved for allocation by system manufacturers",
+              "98": "Reserved for allocation by system manufacturers",
+              "99": "Reserved for allocation by system manufacturers",
+              "100": "Reserved for allocation by system manufacturers",
+              "101": "Reserved for allocation by system manufacturers",
+              "102": "Reserved for allocation by system manufacturers",
+              "103": "Reserved for allocation by system manufacturers",
+              "104": "Reserved for allocation by system manufacturers",
+              "105": "Reserved for allocation by system manufacturers",
+              "106": "Reserved for allocation by system manufacturers",
+              "107": "Reserved for allocation by system manufacturers",
+              "108": "Reserved for allocation by system manufacturers",
+              "109": "Reserved for allocation by system manufacturers",
+              "110": "Reserved for allocation by system manufacturers",
+              "111": "Reserved for allocation by system manufacturers",
+              "112": "Reserved for allocation by system manufacturers",
+              "113": "Reserved for allocation by system manufacturers",
+              "114": "Reserved for allocation by system manufacturers",
+              "115": "Reserved for allocation by system manufacturers",
+              "116": "Reserved for allocation by system manufacturers",
+              "117": "Reserved for allocation by system manufacturers",
+              "118": "Reserved for allocation by system manufacturers",
+              "119": "Reserved for allocation by system manufacturers",
+              "120": "Reserved for allocation by system manufacturers",
+              "121": "Reserved for allocation by system manufacturers",
+              "122": "Reserved for allocation by system manufacturers",
+              "123": "Reserved for allocation by system manufacturers",
+              "124": "Reserved for allocation by system manufacturers",
+              "125": "Reserved for allocation by system manufacturers",
+              "126": "Reserved for allocation by system manufacturers",
+              "127": "Reserved for allocation by system manufacturers",
+              "128": "Reserved for allocation by system manufacturers",
+              "129": "Reserved for allocation by system manufacturers",
+              "130": "Reserved for allocation by system manufacturers",
+              "131": "Reserved for allocation by system manufacturers",
+              "132": "Reserved for allocation by system manufacturers",
+              "133": "Reserved for allocation by system manufacturers",
+              "134": "Reserved for allocation by system manufacturers",
+              "135": "Reserved for allocation by system manufacturers",
+              "136": "Reserved for allocation by system manufacturers",
+              "137": "Reserved for allocation by system manufacturers",
+              "138": "Reserved for allocation by system manufacturers",
+              "139": "Reserved for allocation by system manufacturers",
+              "140": "Reserved for allocation by system manufacturers",
+              "141": "Reserved for allocation by system manufacturers",
+              "142": "Reserved for allocation by system manufacturers",
+              "143": "Reserved for allocation by system manufacturers",
+              "144": "Reserved for allocation by system manufacturers",
+              "145": "Reserved for allocation by system manufacturers",
+              "146": "Reserved for allocation by system manufacturers",
+              "147": "Reserved for allocation by system manufacturers",
+              "148": "Reserved for allocation by system manufacturers",
+              "149": "Reserved for allocation by system manufacturers",
+              "150": "Reserved for allocation by system manufacturers",
+              "151": "Reserved for allocation by system manufacturers",
+              "152": "Reserved for allocation by system manufacturers",
+              "153": "Reserved for allocation by system manufacturers",
+              "154": "Reserved for allocation by system manufacturers",
+              "155": "Reserved for allocation by system manufacturers",
+              "156": "Reserved for allocation by system manufacturers",
+              "157": "Reserved for allocation by system manufacturers",
+              "158": "Reserved for allocation by system manufacturers",
+              "159": "Reserved for allocation by system manufacturers",
+              "160": "Reserved for allocation by system manufacturers",
+              "161": "Reserved for allocation by system manufacturers",
+              "162": "Reserved for allocation by system manufacturers",
+              "163": "Reserved for allocation by system manufacturers",
+              "164": "Reserved for allocation by system manufacturers",
+              "165": "Reserved for allocation by system manufacturers",
+              "166": "Reserved for allocation by system manufacturers",
+              "167": "Reserved for allocation by system manufacturers",
+              "168": "Reserved for allocation by system manufacturers",
+              "169": "Reserved for allocation by system manufacturers",
+              "170": "Reserved for allocation by system manufacturers",
+              "171": "Reserved for allocation by system manufacturers",
+              "172": "Reserved for allocation by system manufacturers",
+              "173": "Reserved for allocation by system manufacturers",
+              "174": "Reserved for allocation by system manufacturers",
+              "175": "Reserved for allocation by system manufacturers",
+              "176": "Reserved for allocation by system manufacturers",
+              "177": "Reserved for allocation by system manufacturers",
+              "178": "Reserved for allocation by system manufacturers",
+              "179": "Reserved for allocation by system manufacturers",
+              "180": "Reserved for allocation by system manufacturers",
+              "181": "Reserved for allocation by system manufacturers",
+              "182": "Reserved for allocation by system manufacturers",
+              "183": "Reserved for allocation by system manufacturers",
+              "184": "Reserved for allocation by system manufacturers",
+              "185": "Reserved for allocation by system manufacturers",
+              "186": "Reserved for allocation by system manufacturers",
+              "187": "Reserved for allocation by system manufacturers",
+              "188": "Reserved for allocation by system manufacturers",
+              "189": "Reserved for allocation by system manufacturers",
+              "190": "Reserved for allocation by system manufacturers",
+              "191": "Reserved for allocation by system manufacturers",
+              "192": "Reserved for allocation by system manufacturers",
+              "193": "Reserved for allocation by system manufacturers",
+              "194": "Reserved for allocation by system manufacturers",
+              "195": "Reserved for allocation by system manufacturers",
+              "196": "Reserved for allocation by system manufacturers",
+              "197": "Reserved for allocation by system manufacturers",
+              "198": "Reserved for allocation by system manufacturers",
+              "199": "Reserved for allocation by system manufacturers",
+              "200": "Reserved for allocation by system manufacturers",
+              "201": "Reserved for allocation by system manufacturers",
+              "202": "Reserved for allocation by system manufacturers",
+              "203": "Reserved for allocation by system manufacturers",
+              "204": "Reserved for allocation by system manufacturers",
+              "205": "Reserved for allocation by system manufacturers",
+              "206": "Reserved for allocation by system manufacturers",
+              "207": "Reserved for allocation by system manufacturers",
+              "208": "Reserved for allocation by system manufacturers",
+              "209": "Reserved for allocation by system manufacturers",
+              "210": "Reserved for allocation by system manufacturers",
+              "211": "Reserved for allocation by system manufacturers",
+              "212": "Reserved for allocation by system manufacturers",
+              "213": "Reserved for allocation by system manufacturers",
+              "214": "Reserved for allocation by system manufacturers",
+              "215": "Reserved for allocation by system manufacturers",
+              "216": "Reserved for allocation by system manufacturers",
+              "217": "Reserved for allocation by system manufacturers",
+              "218": "Reserved for allocation by system manufacturers",
+              "219": "Reserved for allocation by system manufacturers",
+              "220": "Reserved for allocation by system manufacturers",
+              "221": "Reserved for allocation by system manufacturers",
+              "222": "Reserved for allocation by system manufacturers",
+              "223": "Reserved for allocation by system manufacturers",
+              "224": "Reserved for allocation by system manufacturers",
+              "225": "Reserved for allocation by system manufacturers",
+              "226": "Reserved for allocation by system manufacturers",
+              "227": "Reserved for allocation by system manufacturers",
+              "228": "Reserved for allocation by system manufacturers",
+              "229": "Reserved for allocation by system manufacturers",
+              "230": "Reserved for allocation by system manufacturers",
+              "231": "Reserved for allocation by system manufacturers",
+              "232": "Reserved for allocation by system manufacturers",
+              "233": "Reserved for allocation by system manufacturers",
+              "234": "Reserved for allocation by system manufacturers",
+              "235": "Reserved for allocation by system manufacturers",
+              "236": "Reserved for allocation by system manufacturers",
+              "237": "Reserved for allocation by system manufacturers",
+              "238": "Reserved for allocation by system manufacturers",
+              "239": "Reserved for allocation by system manufacturers",
+              "240": "Reserved for allocation by system manufacturers",
+              "241": "Reserved for allocation by system manufacturers",
+              "242": "Reserved for allocation by system manufacturers",
+              "243": "Reserved for allocation by system manufacturers",
+              "244": "Reserved for allocation by system manufacturers",
+              "245": "Reserved for allocation by system manufacturers",
+              "246": "Reserved for allocation by system manufacturers",
+              "247": "Reserved for allocation by system manufacturers",
+              "248": "Reserved for allocation by system manufacturers",
+              "249": "Reserved for allocation by system manufacturers",
+              "250": "Reserved for allocation by system manufacturers",
+              "251": "Reserved for allocation by system manufacturers",
+              "252": "Reserved for allocation by system manufacturers",
+              "253": "Reserved for allocation by system manufacturers",
+              "254": "Reserved for allocation by system manufacturers",
+              "255": "Reserved for allocation by system manufacturers"
+            }
+          }
+        }
+      }
+    },
+    "I120": {
+      "title": "Component Status",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "CID",
+              "title": "Component ID",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "ERRC",
+              "title": "Error Code",
+              "rule": {
+                "type": "Element",
+                "size": 6,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "No Error Detected",
+                    "1": "Error Code Undefined",
+                    "2": "Reserved for allocation by the AMG",
+                    "3": "Reserved for allocation by the AMG",
+                    "4": "Reserved for allocation by the AMG",
+                    "5": "Reserved for allocation by the AMG",
+                    "6": "Reserved for allocation by the AMG",
+                    "7": "Reserved for allocation by the AMG",
+                    "8": "Reserved for allocation by the AMG",
+                    "9": "Reserved for allocation by the AMG",
+                    "10": "Reserved for allocation by the AMG",
+                    "11": "Reserved for allocation by the AMG",
+                    "12": "Reserved for allocation by the AMG",
+                    "13": "Reserved for allocation by the AMG",
+                    "14": "Reserved for allocation by the AMG",
+                    "15": "Reserved for allocation by the AMG",
+                    "16": "Reserved for allocation by system manufacturers",
+                    "17": "Reserved for allocation by system manufacturers",
+                    "18": "Reserved for allocation by system manufacturers",
+                    "19": "Reserved for allocation by system manufacturers",
+                    "20": "Reserved for allocation by system manufacturers",
+                    "21": "Reserved for allocation by system manufacturers",
+                    "22": "Reserved for allocation by system manufacturers",
+                    "23": "Reserved for allocation by system manufacturers",
+                    "24": "Reserved for allocation by system manufacturers",
+                    "25": "Reserved for allocation by system manufacturers",
+                    "26": "Reserved for allocation by system manufacturers",
+                    "27": "Reserved for allocation by system manufacturers",
+                    "28": "Reserved for allocation by system manufacturers",
+                    "29": "Reserved for allocation by system manufacturers",
+                    "30": "Reserved for allocation by system manufacturers",
+                    "31": "Reserved for allocation by system manufacturers",
+                    "32": "Reserved for allocation by system manufacturers",
+                    "33": "Reserved for allocation by system manufacturers",
+                    "34": "Reserved for allocation by system manufacturers",
+                    "35": "Reserved for allocation by system manufacturers",
+                    "36": "Reserved for allocation by system manufacturers",
+                    "37": "Reserved for allocation by system manufacturers",
+                    "38": "Reserved for allocation by system manufacturers",
+                    "39": "Reserved for allocation by system manufacturers",
+                    "40": "Reserved for allocation by system manufacturers",
+                    "41": "Reserved for allocation by system manufacturers",
+                    "42": "Reserved for allocation by system manufacturers",
+                    "43": "Reserved for allocation by system manufacturers",
+                    "44": "Reserved for allocation by system manufacturers",
+                    "45": "Reserved for allocation by system manufacturers",
+                    "46": "Reserved for allocation by system manufacturers",
+                    "47": "Reserved for allocation by system manufacturers",
+                    "48": "Reserved for allocation by system manufacturers",
+                    "49": "Reserved for allocation by system manufacturers",
+                    "50": "Reserved for allocation by system manufacturers",
+                    "51": "Reserved for allocation by system manufacturers",
+                    "52": "Reserved for allocation by system manufacturers",
+                    "53": "Reserved for allocation by system manufacturers",
+                    "54": "Reserved for allocation by system manufacturers",
+                    "55": "Reserved for allocation by system manufacturers",
+                    "56": "Reserved for allocation by system manufacturers",
+                    "57": "Reserved for allocation by system manufacturers",
+                    "58": "Reserved for allocation by system manufacturers",
+                    "59": "Reserved for allocation by system manufacturers",
+                    "60": "Reserved for allocation by system manufacturers",
+                    "61": "Reserved for allocation by system manufacturers",
+                    "62": "Reserved for allocation by system manufacturers",
+                    "63": "Reserved for allocation by system manufacturers"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CS",
+              "title": "Component State/Mode",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Running",
+                    "1": "Failed",
+                    "2": "Maintenance",
+                    "3": "Reserved"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I140": {
+      "title": "Service Statistics",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "TYPE",
+              "title": "Type of Report Counter",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Number of unknown messages received",
+                    "1": "Number of too old messages received",
+                    "2": "Number of failed message conversions",
+                    "3": "Total Number of messages received",
+                    "4": "Total number of messages transmitted",
+                    "5": "Reserved for AMG",
+                    "6": "Reserved for AMG",
+                    "7": "Reserved for AMG",
+                    "8": "Reserved for AMG",
+                    "9": "Reserved for AMG",
+                    "10": "Reserved for AMG",
+                    "11": "Reserved for AMG",
+                    "12": "Reserved for AMG",
+                    "13": "Reserved for AMG",
+                    "14": "Reserved for AMG",
+                    "15": "Reserved for AMG",
+                    "16": "Reserved for AMG",
+                    "17": "Reserved for AMG",
+                    "18": "Reserved for AMG",
+                    "19": "Reserved for AMG",
+                    "20": "Implementation specific",
+                    "21": "Implementation specific",
+                    "22": "Implementation specific",
+                    "23": "Implementation specific",
+                    "24": "Implementation specific",
+                    "25": "Implementation specific",
+                    "26": "Implementation specific",
+                    "27": "Implementation specific",
+                    "28": "Implementation specific",
+                    "29": "Implementation specific",
+                    "30": "Implementation specific",
+                    "31": "Implementation specific",
+                    "32": "Implementation specific",
+                    "33": "Implementation specific",
+                    "34": "Implementation specific",
+                    "35": "Implementation specific",
+                    "36": "Implementation specific",
+                    "37": "Implementation specific",
+                    "38": "Implementation specific",
+                    "39": "Implementation specific",
+                    "40": "Implementation specific",
+                    "41": "Implementation specific",
+                    "42": "Implementation specific",
+                    "43": "Implementation specific",
+                    "44": "Implementation specific",
+                    "45": "Implementation specific",
+                    "46": "Implementation specific",
+                    "47": "Implementation specific",
+                    "48": "Implementation specific",
+                    "49": "Implementation specific",
+                    "50": "Implementation specific",
+                    "51": "Implementation specific",
+                    "52": "Implementation specific",
+                    "53": "Implementation specific",
+                    "54": "Implementation specific",
+                    "55": "Implementation specific",
+                    "56": "Implementation specific",
+                    "57": "Implementation specific",
+                    "58": "Implementation specific",
+                    "59": "Implementation specific",
+                    "60": "Implementation specific",
+                    "61": "Implementation specific",
+                    "62": "Implementation specific",
+                    "63": "Implementation specific",
+                    "64": "Implementation specific",
+                    "65": "Implementation specific",
+                    "66": "Implementation specific",
+                    "67": "Implementation specific",
+                    "68": "Implementation specific",
+                    "69": "Implementation specific",
+                    "70": "Implementation specific",
+                    "71": "Implementation specific",
+                    "72": "Implementation specific",
+                    "73": "Implementation specific",
+                    "74": "Implementation specific",
+                    "75": "Implementation specific",
+                    "76": "Implementation specific",
+                    "77": "Implementation specific",
+                    "78": "Implementation specific",
+                    "79": "Implementation specific",
+                    "80": "Implementation specific",
+                    "81": "Implementation specific",
+                    "82": "Implementation specific",
+                    "83": "Implementation specific",
+                    "84": "Implementation specific",
+                    "85": "Implementation specific",
+                    "86": "Implementation specific",
+                    "87": "Implementation specific",
+                    "88": "Implementation specific",
+                    "89": "Implementation specific",
+                    "90": "Implementation specific",
+                    "91": "Implementation specific",
+                    "92": "Implementation specific",
+                    "93": "Implementation specific",
+                    "94": "Implementation specific",
+                    "95": "Implementation specific",
+                    "96": "Implementation specific",
+                    "97": "Implementation specific",
+                    "98": "Implementation specific",
+                    "99": "Implementation specific",
+                    "100": "Implementation specific",
+                    "101": "Implementation specific",
+                    "102": "Implementation specific",
+                    "103": "Implementation specific",
+                    "104": "Implementation specific",
+                    "105": "Implementation specific",
+                    "106": "Implementation specific",
+                    "107": "Implementation specific",
+                    "108": "Implementation specific",
+                    "109": "Implementation specific",
+                    "110": "Implementation specific",
+                    "111": "Implementation specific",
+                    "112": "Implementation specific",
+                    "113": "Implementation specific",
+                    "114": "Implementation specific",
+                    "115": "Implementation specific",
+                    "116": "Implementation specific",
+                    "117": "Implementation specific",
+                    "118": "Implementation specific",
+                    "119": "Implementation specific",
+                    "120": "Implementation specific",
+                    "121": "Implementation specific",
+                    "122": "Implementation specific",
+                    "123": "Implementation specific",
+                    "124": "Implementation specific",
+                    "125": "Implementation specific",
+                    "126": "Implementation specific",
+                    "127": "Implementation specific",
+                    "128": "Implementation specific",
+                    "129": "Implementation specific",
+                    "130": "Implementation specific",
+                    "131": "Implementation specific",
+                    "132": "Implementation specific",
+                    "133": "Implementation specific",
+                    "134": "Implementation specific",
+                    "135": "Implementation specific",
+                    "136": "Implementation specific",
+                    "137": "Implementation specific",
+                    "138": "Implementation specific",
+                    "139": "Implementation specific",
+                    "140": "Implementation specific",
+                    "141": "Implementation specific",
+                    "142": "Implementation specific",
+                    "143": "Implementation specific",
+                    "144": "Implementation specific",
+                    "145": "Implementation specific",
+                    "146": "Implementation specific",
+                    "147": "Implementation specific",
+                    "148": "Implementation specific",
+                    "149": "Implementation specific",
+                    "150": "Implementation specific",
+                    "151": "Implementation specific",
+                    "152": "Implementation specific",
+                    "153": "Implementation specific",
+                    "154": "Implementation specific",
+                    "155": "Implementation specific",
+                    "156": "Implementation specific",
+                    "157": "Implementation specific",
+                    "158": "Implementation specific",
+                    "159": "Implementation specific",
+                    "160": "Implementation specific",
+                    "161": "Implementation specific",
+                    "162": "Implementation specific",
+                    "163": "Implementation specific",
+                    "164": "Implementation specific",
+                    "165": "Implementation specific",
+                    "166": "Implementation specific",
+                    "167": "Implementation specific",
+                    "168": "Implementation specific",
+                    "169": "Implementation specific",
+                    "170": "Implementation specific",
+                    "171": "Implementation specific",
+                    "172": "Implementation specific",
+                    "173": "Implementation specific",
+                    "174": "Implementation specific",
+                    "175": "Implementation specific",
+                    "176": "Implementation specific",
+                    "177": "Implementation specific",
+                    "178": "Implementation specific",
+                    "179": "Implementation specific",
+                    "180": "Implementation specific",
+                    "181": "Implementation specific",
+                    "182": "Implementation specific",
+                    "183": "Implementation specific",
+                    "184": "Implementation specific",
+                    "185": "Implementation specific",
+                    "186": "Implementation specific",
+                    "187": "Implementation specific",
+                    "188": "Implementation specific",
+                    "189": "Implementation specific",
+                    "190": "Implementation specific",
+                    "191": "Implementation specific",
+                    "192": "Implementation specific",
+                    "193": "Implementation specific",
+                    "194": "Implementation specific",
+                    "195": "Implementation specific",
+                    "196": "Implementation specific",
+                    "197": "Implementation specific",
+                    "198": "Implementation specific",
+                    "199": "Implementation specific",
+                    "200": "Implementation specific",
+                    "201": "Implementation specific",
+                    "202": "Implementation specific",
+                    "203": "Implementation specific",
+                    "204": "Implementation specific",
+                    "205": "Implementation specific",
+                    "206": "Implementation specific",
+                    "207": "Implementation specific",
+                    "208": "Implementation specific",
+                    "209": "Implementation specific",
+                    "210": "Implementation specific",
+                    "211": "Implementation specific",
+                    "212": "Implementation specific",
+                    "213": "Implementation specific",
+                    "214": "Implementation specific",
+                    "215": "Implementation specific",
+                    "216": "Implementation specific",
+                    "217": "Implementation specific",
+                    "218": "Implementation specific",
+                    "219": "Implementation specific",
+                    "220": "Implementation specific",
+                    "221": "Implementation specific",
+                    "222": "Implementation specific",
+                    "223": "Implementation specific",
+                    "224": "Implementation specific",
+                    "225": "Implementation specific",
+                    "226": "Implementation specific",
+                    "227": "Implementation specific",
+                    "228": "Implementation specific",
+                    "229": "Implementation specific",
+                    "230": "Implementation specific",
+                    "231": "Implementation specific",
+                    "232": "Implementation specific",
+                    "233": "Implementation specific",
+                    "234": "Implementation specific",
+                    "235": "Implementation specific",
+                    "236": "Implementation specific",
+                    "237": "Implementation specific",
+                    "238": "Implementation specific",
+                    "239": "Implementation specific",
+                    "240": "Implementation specific",
+                    "241": "Implementation specific",
+                    "242": "Implementation specific",
+                    "243": "Implementation specific",
+                    "244": "Implementation specific",
+                    "245": "Implementation specific",
+                    "246": "Implementation specific",
+                    "247": "Implementation specific",
+                    "248": "Implementation specific",
+                    "249": "Implementation specific",
+                    "250": "Implementation specific",
+                    "251": "Implementation specific",
+                    "252": "Implementation specific",
+                    "253": "Implementation specific",
+                    "254": "Implementation specific",
+                    "255": "Implementation specific"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "REF",
+              "title": "Reference from which the Messages Are Counted",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "From UTC midnight",
+                    "1": "From the previous report"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 7
+            },
+            {
+              "type": "Item",
+              "name": "COUNT",
+              "title": "Counter Value",
+              "rule": {
+                "type": "Element",
+                "size": 32,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I200": {
+      "title": "Message Identification",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Integer",
+          "signed": false
+        }
+      }
+    },
+    "I600": {
+      "title": "Position of the System Reference Point",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "LAT",
+            "title": "Latitude",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 4.190951585769653e-08,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "LON",
+            "title": "Longitude",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 4.190951585769653e-08,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I610": {
+      "title": "Height of the System Reference Point",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 0.25,
+          "unit": "m"
+        }
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}

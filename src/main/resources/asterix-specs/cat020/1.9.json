@@ -1,0 +1,1800 @@
+{
+  "category": 20,
+  "edition": "1.9",
+  "name": "Multilateration Target Reports",
+  "date": "2015-03-25",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I020",
+      "I140",
+      "I041",
+      "I042",
+      "I161",
+      "I170",
+      "I070",
+      "I202",
+      "I090",
+      "I100",
+      "I220",
+      "I245",
+      "I110",
+      "I105",
+      "I210",
+      "I300",
+      "I310",
+      "I500",
+      "I400",
+      "I250",
+      "I230",
+      "I260",
+      "I030",
+      "I055",
+      "I050",
+      "RE",
+      "SP"
+    ]
+  },
+  "items": {
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I020": {
+      "title": "Target Report Descriptor",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "SSR",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Non-Mode S 1090MHz multilateration",
+                    "1": "No Non-Mode S 1090MHz multilat"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "MS",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Mode-S 1090 MHz multilateration",
+                    "1": "No Mode-S 1090 MHz multilateration"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "HF",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "HF multilateration",
+                    "1": "No HF multilateration"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "VDL4",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "VDL Mode 4 multilateration",
+                    "1": "No VDL Mode 4 multilateration"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "UAT",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "UAT multilateration",
+                    "1": "No UAT multilateration"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "DME",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "DME/TACAN multilateration",
+                    "1": "No DME/TACAN multilateration"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "OT",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Other Technology Multilateration",
+                    "1": "No Other Technology Multilateration"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "RAB",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Report from target transponder",
+                    "1": "Report from field monitor (element transponder)"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SPI",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Absence of SPI",
+                    "1": "Special Position Identification"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CHN",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Chain 1",
+                    "1": "Chain 2"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "GBS",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Transponder Ground bit not set",
+                    "1": "Transponder Ground bit set"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CRT",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "No Corrupted reply in multilateration",
+                    "1": "Corrupted replies in multilateration"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SIM",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Actual target report",
+                    "1": "Simulated target report"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "TST",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "Test Target"
+                  }
+                }
+              }
+            }
+          ]
+        ]
+      }
+    },
+    "I030": {
+      "title": "Warning/Error Conditions",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 0,
+        "fxMode": true,
+        "rule": {
+          "type": "Element",
+          "size": 7,
+          "content": {
+            "type": "Table",
+            "values": {
+              "0": "Not defined; never used",
+              "1": "Multipath Reply (Reflection)",
+              "3": "Split plot",
+              "10": "Phantom SSR plot",
+              "11": "Non-Matching Mode-3/A Code",
+              "12": "Mode C code / Mode S altitude code abnormal value compared to the track",
+              "15": "Transponder anomaly detected",
+              "16": "Duplicated or Illegal Mode S Aircraft Address",
+              "17": "Mode S error correction applied",
+              "18": "Undecodable Mode C code / Mode S altitude code"
+            }
+          }
+        }
+      }
+    },
+    "I041": {
+      "title": "Position In WGS-84 Coordinates",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "LAT",
+            "title": "Latitude",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 5.364418029785156e-06,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "LON",
+            "title": "Longitude",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 5.364418029785156e-06,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I042": {
+      "title": "Position in Cartesian Coordinates",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "X",
+            "title": "X-coordinate",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.5,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "Y",
+            "title": "Y-coordinate",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.5,
+                "unit": "m"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I050": {
+      "title": "Mode-2 Code in Octal Representation",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "V",
+            "title": "Validated",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Code validated",
+                  "1": "Code not validated"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "G",
+            "title": "Garbled",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Default",
+                  "1": "Garbled code"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "L",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Mode-2 code derived from the reply of the transponder",
+                  "1": "Smoothed Mode-2 code as provided by a local tracker n"
+                }
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 1
+          },
+          {
+            "type": "Item",
+            "name": "MODE2",
+            "title": "Mode-2 Reply in Octal Representation",
+            "rule": {
+              "type": "Element",
+              "size": 12,
+              "content": {
+                "type": "String",
+                "variant": "Octal"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I055": {
+      "title": "Mode-1 Code in Octal Representation",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "V",
+            "title": "Validated",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Code validated",
+                  "1": "Code not validated"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "G",
+            "title": "Garbled",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Default",
+                  "1": "Garbled code"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "L",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Mode-1 code derived from the reply of the transponder",
+                  "1": "Smoothed Mode-1 code as provided by a local tracker"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "MODE1",
+            "title": "Mode-1 Code in Octal Representation",
+            "rule": {
+              "type": "Element",
+              "size": 5,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I070": {
+      "title": "Mode-3/A Code in Octal Representation",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "V",
+            "title": "Validated",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Code validated",
+                  "1": "Code not validated"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "G",
+            "title": "Garbled",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Default",
+                  "1": "Garbled code"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "L",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Mode-3/A code derived from the reply of the transponder",
+                  "1": "Mode-3/A code not extracted during the last update period"
+                }
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 1
+          },
+          {
+            "type": "Item",
+            "name": "MODE3A",
+            "title": "Mode-3/A Reply in Octal Representation",
+            "rule": {
+              "type": "Element",
+              "size": 12,
+              "content": {
+                "type": "String",
+                "variant": "Octal"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I090": {
+      "title": "Flight Level in Binary Representation",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "V",
+            "title": "Validated",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Code validated",
+                  "1": "Code not validated"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "G",
+            "title": "Garbled",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Default",
+                  "1": "Garbled code"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "FL",
+            "title": "Flight Level",
+            "rule": {
+              "type": "Element",
+              "size": 14,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.25,
+                "unit": "FL"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I100": {
+      "title": "Mode C Code",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "V",
+            "title": "Validated",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Code validated",
+                  "1": "Code not validated"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "G",
+            "title": "Garbled",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Default",
+                  "1": "Garbled code"
+                }
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 2
+          },
+          {
+            "type": "Item",
+            "name": "MODEC",
+            "title": "Mode-C Reply in Gray Notation",
+            "rule": {
+              "type": "Element",
+              "size": 12,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 4
+          },
+          {
+            "type": "Item",
+            "name": "QC1",
+            "title": "Quality Pulse C1",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "High quality pulse C1",
+                  "1": "Low quality pulse C1"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "QA1",
+            "title": "Quality Pulse A1",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "High quality pulse A1",
+                  "1": "Low quality pulse A1"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "QC2",
+            "title": "Quality Pulse C2",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "High quality pulse C2",
+                  "1": "Low quality pulse C2"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "QA2",
+            "title": "Quality Pulse A2",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "High quality pulse A2",
+                  "1": "Low quality pulse A2"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "QC4",
+            "title": "Quality Pulse C4",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "High quality pulse C4",
+                  "1": "Low quality pulse C4"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "QA4",
+            "title": "Quality Pulse A4",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "High quality pulse A4",
+                  "1": "Low quality pulse A4"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "QB1",
+            "title": "Quality Pulse B1",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "High quality pulse B1",
+                  "1": "Low quality pulse B1"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "QD1",
+            "title": "Quality Pulse D1",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "High quality pulse D1",
+                  "1": "Low quality pulse D1"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "QB2",
+            "title": "Quality Pulse B2",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "High quality pulse B2",
+                  "1": "Low quality pulse B2"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "QD2",
+            "title": "Quality Pulse D2",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "High quality pulse B2",
+                  "1": "Low quality pulse B2"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "QB4",
+            "title": "Quality Pulse B4",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "High quality pulse B4",
+                  "1": "Low quality pulse B4"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "QD4",
+            "title": "Quality Pulse D4",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "High quality pulse D4",
+                  "1": "Low quality pulse D4"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I105": {
+      "title": "Geometric Height (WGS-84)",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 6.25,
+          "unit": "ft"
+        }
+      }
+    },
+    "I110": {
+      "title": "Measured Height (Local Cartesian Coordinates)",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 6.25,
+          "unit": "ft"
+        }
+      }
+    },
+    "I140": {
+      "title": "Time of Day",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I161": {
+      "title": "Track Number",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Spare",
+            "size": 4
+          },
+          {
+            "type": "Item",
+            "name": "TRN",
+            "title": "Track Number",
+            "rule": {
+              "type": "Element",
+              "size": 12,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I170": {
+      "title": "Track Status",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "CNF",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Confirmed track",
+                    "1": "Track in initiation phase"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "TRE",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "Last report for a track"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CST",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Not extrapolated",
+                    "1": "Extrapolated"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CDM",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Maintaining",
+                    "1": "Climbing",
+                    "2": "Descending",
+                    "3": "Invalid"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "MAH",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "Horizontal manoeuvre"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "STH",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Measured position",
+                    "1": "Smoothed position"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "GHO",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "Ghost track"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 6
+            }
+          ]
+        ]
+      }
+    },
+    "I202": {
+      "title": "Calculated Track Velocity in Cartesian Coordinates",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "VX",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.25,
+                "unit": "m/s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "VY",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.25,
+                "unit": "m/s"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I210": {
+      "title": "Calculated Acceleration",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "AX",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.25,
+                "unit": "m/s²"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "AY",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.25,
+                "unit": "m/s²"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I220": {
+      "title": "Target Address",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I230": {
+      "title": "Communications/ACAS Capability and Flight Status",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "COM",
+            "title": "Communications Capability of the Transponder",
+            "rule": {
+              "type": "Element",
+              "size": 3,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No communications capability (surveillance only)",
+                  "1": "Comm. A and Comm. B capability",
+                  "2": "Comm. A, Comm. B and Uplink ELM",
+                  "3": "Comm. A, Comm. B, Uplink ELM and Downlink ELM",
+                  "4": "Level 5 Transponder capability",
+                  "5": "Not assigned",
+                  "6": "Not assigned",
+                  "7": "Not assigned"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "STAT",
+            "title": "Flight Status",
+            "rule": {
+              "type": "Element",
+              "size": 3,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No alert, no SPI, aircraft airborne",
+                  "1": "No alert, no SPI, aircraft on ground",
+                  "2": "Alert, no SPI, aircraft airborne",
+                  "3": "Alert, no SPI, aircraft on ground",
+                  "4": "Alert, SPI, aircraft airborne or on ground",
+                  "5": "No alert, SPI, aircraft airborne or on ground",
+                  "6": "Not assigned",
+                  "7": "Information not yet extracted"
+                }
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 2
+          },
+          {
+            "type": "Item",
+            "name": "MSSC",
+            "title": "Mode-S Specific Service Capability",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No",
+                  "1": "Yes"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ARC",
+            "title": "Altitude Reporting Capability",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "100 ft resolution",
+                  "1": "25 ft resolution"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "AIC",
+            "title": "Aircraft Identification Capability",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No",
+                  "1": "Yes"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "B1A",
+            "title": "BDS 1,0 Bit 16",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "B1B",
+            "title": "BDS 1,0 Bits 37/40",
+            "rule": {
+              "type": "Element",
+              "size": 4,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I245": {
+      "title": "Target Identification",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "STI",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Callsign or registration not downlinked from transponder",
+                  "1": "Registration downlinked from transponder",
+                  "2": "Callsign downlinked from transponder",
+                  "3": "Not defined"
+                }
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 6
+          },
+          {
+            "type": "Item",
+            "name": "CHR",
+            "title": "Characters 1-8 (coded on 6 Bits Each) Defining Target Identification",
+            "rule": {
+              "type": "Element",
+              "size": 48,
+              "content": {
+                "type": "String",
+                "variant": "Icao"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I250": {
+      "title": "Mode S MB Data",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "MBDATA",
+              "title": "56-bit Message Conveying Mode S Comm B Message Data",
+              "rule": {
+                "type": "Element",
+                "size": 56,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "BDS1",
+              "title": "Comm B Data Buffer Store 1 Address",
+              "rule": {
+                "type": "Element",
+                "size": 4,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "BDS2",
+              "title": "Comm B Data Buffer Store 2 Address",
+              "rule": {
+                "type": "Element",
+                "size": 4,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I260": {
+      "title": "ACAS Resolution Advisory Report",
+      "rule": {
+        "type": "Element",
+        "size": 56,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I300": {
+      "title": "Vehicle Fleet Identification",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "0": "Unknown",
+            "1": "ATC equipment maintenance",
+            "2": "Airport maintenance",
+            "3": "Fire",
+            "4": "Bird scarer",
+            "5": "Snow plough",
+            "6": "Runway sweeper",
+            "7": "Emergency",
+            "8": "Police",
+            "9": "Bus",
+            "10": "Tug (push/tow)",
+            "11": "Grass cutter",
+            "12": "Fuel",
+            "13": "Baggage",
+            "14": "Catering",
+            "15": "Aircraft maintenance",
+            "16": "Flyco (follow me)"
+          }
+        }
+      }
+    },
+    "I310": {
+      "title": "Pre-programmed Message",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "TRB",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Default",
+                  "1": "In Trouble"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "MSG",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 7,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "1": "Towing aircraft",
+                  "2": "FOLLOW-ME operation",
+                  "3": "Runway check",
+                  "4": "Emergency operation (fire, medical...)",
+                  "5": "Work in progress (maintenance, birds scarer, sweepers...)"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I400": {
+      "title": "Contributing Devices",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "BIT1",
+              "title": "TU1/RU1 Contribution",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "TU1/RU1 has NOT contributed to the target detection",
+                    "1": "TU1/RU1 has contributed to the target detection"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "BIT2",
+              "title": "TU2/RU2 Contribution",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "TU2/RU2 has NOT contributed to the target detection",
+                    "1": "TU2/RU2 has contributed to the target detection"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "BIT3",
+              "title": "TU3/RU3 Contribution",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "TU3/RU3 has NOT contributed to the target detection",
+                    "1": "TU3/RU3 has contributed to the target detection"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "BIT4",
+              "title": "TU4/RU4 Contribution",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "TU4/RU4 has NOT contributed to the target detection",
+                    "1": "TU4/RU4 has contributed to the target detection"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "BIT5",
+              "title": "TU5/RU5 Contribution",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "TU5/RU5 has NOT contributed to the target detection",
+                    "1": "TU5/RU5 has contributed to the target detection"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "BIT6",
+              "title": "TU6/RU6 Contribution",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "TU6/RU6 has NOT contributed to the target detection",
+                    "1": "TU6/RU6 has contributed to the target detection"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "BIT7",
+              "title": "TU7/RU7 Contribution",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "TU7/RU7 has NOT contributed to the target detection",
+                    "1": "TU7/RU7 has contributed to the target detection"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "BIT8",
+              "title": "TU8/RU8 Contribution",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "TU8/RU8 has NOT contributed to the target detection",
+                    "1": "TU8/RU8 has contributed to the target detection"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I500": {
+      "title": "Position Accuracy",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "DOP",
+            "title": "DOP of Position",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "DOP (X-Component)",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.25,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "DOP (Y-Component)",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.25,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "XY",
+                  "title": "DOP (Correlation XY)",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.25,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDP",
+            "title": "Standard Deviation of Position",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "SDP (X-Component)",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.25,
+                      "unit": "m"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "SDP (Y-Component)",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.25,
+                      "unit": "m"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "XY",
+                  "title": "SDP (Correlation XY)",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.25,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDH",
+            "title": "Standard Deviation of Geometric Height (WGS 84)",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.5,
+                "unit": "m"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "RE": {
+      "title": "Reserved Expansion Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}

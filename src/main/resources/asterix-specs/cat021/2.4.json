@@ -1,0 +1,2516 @@
+{
+  "category": 21,
+  "edition": "2.4",
+  "name": "ADS-B Target Reports",
+  "date": "2015-06-15",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I040",
+      "I161",
+      "I015",
+      "I071",
+      "I130",
+      "I131",
+      "I072",
+      "I150",
+      "I151",
+      "I080",
+      "I073",
+      "I074",
+      "I075",
+      "I076",
+      "I140",
+      "I090",
+      "I210",
+      "I070",
+      "I230",
+      "I145",
+      "I152",
+      "I200",
+      "I155",
+      "I157",
+      "I160",
+      "I165",
+      "I077",
+      "I170",
+      "I020",
+      "I220",
+      "I146",
+      "I148",
+      "I110",
+      "I016",
+      "I008",
+      "I271",
+      "I132",
+      "I250",
+      "I260",
+      "I400",
+      "I295",
+      null,
+      null,
+      null,
+      null,
+      null,
+      "RE",
+      "SP"
+    ]
+  },
+  "items": {
+    "I008": {
+      "title": "Aircraft Operational Status",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "RA",
+            "title": "TCAS Resolution Advisory Active",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "TCAS II or ACAS RA not active",
+                  "1": "TCAS RA active"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TC",
+            "title": "Target Trajectory Change Report Capability",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No capability for Trajectory Change Reports",
+                  "1": "Support for TC+0 reports only",
+                  "2": "Support for multiple TC reports",
+                  "3": "Reserved"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TS",
+            "title": "Target State Report Capability",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No capability to support Target State Reports",
+                  "1": "Capable of supporting target State Reports"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ARV",
+            "title": "Air-Referenced Velocity Report Capability",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No capability to generate ARV-reports",
+                  "1": "Capable of generate ARV-reports"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CDTIA",
+            "title": "Cockpit Display of Traffic Information Airborne",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "CDTI not operational",
+                  "1": "CDTI operational"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "NOTTCAS",
+            "title": "TCAS System Status",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "TCAS operational",
+                  "1": "TCAS not operational"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SA",
+            "title": "Single Antenna",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Antenna Diversity",
+                  "1": "Single Antenna only"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I010": {
+      "title": "Data Source Identification",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I015": {
+      "title": "Service Identification",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I016": {
+      "title": "Service Management",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.5,
+          "unit": "s"
+        }
+      }
+    },
+    "I020": {
+      "title": "Emitter Category",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "0": "No ADS-B Emitter Category Information",
+            "1": "Light aircraft <= 15500 lbs",
+            "2": "15500 lbs < small aircraft <75000 lbs",
+            "3": "75000 lbs < medium a/c < 300000 lbs",
+            "4": "High Vortex Large",
+            "5": "300000 lbs <= heavy aircraft",
+            "6": "Highly manoeuvrable (5g acceleration capability) and high speed (>400 knots cruise)",
+            "7": "Reserved",
+            "8": "Reserved",
+            "9": "Reserved",
+            "10": "Rotocraft",
+            "11": "Glider / sailplane",
+            "12": "Lighter-than-air",
+            "13": "Unmanned aerial vehicle",
+            "14": "Space / transatmospheric vehicle",
+            "15": "Ultralight / handglider / paraglider",
+            "16": "Parachutist / skydiver",
+            "17": "Reserved",
+            "18": "Reserved",
+            "19": "Reserved",
+            "20": "Surface emergency vehicle",
+            "21": "Surface service vehicle",
+            "22": "Fixed ground or tethered obstruction",
+            "23": "Cluster obstacle",
+            "24": "Line obstacle"
+          }
+        }
+      }
+    },
+    "I040": {
+      "title": "Target Report Descriptor",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "ATP",
+              "title": "Address Type",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "24-Bit ICAO address",
+                    "1": "Duplicate address",
+                    "2": "Surface vehicle address",
+                    "3": "Anonymous address",
+                    "4": "Reserved for future use",
+                    "5": "Reserved for future use",
+                    "6": "Reserved for future use",
+                    "7": "Reserved for future use"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "ARC",
+              "title": "Altitude Reporting Capability",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "25 ft",
+                    "1": "100 ft",
+                    "2": "Unknown",
+                    "3": "Invalid"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "RC",
+              "title": "Range Check",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "Range Check passed, CPR Validation pending"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "RAB",
+              "title": "Report Type",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Report from target transponder",
+                    "1": "Report from field monitor (fixed transponder)"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "DCR",
+              "title": "Differential Correction",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "No differential correction (ADS-B)",
+                    "1": "Differential correction (ADS-B)"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "GBS",
+              "title": "Ground Bit Setting",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Ground Bit not set",
+                    "1": "Ground Bit set"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SIM",
+              "title": "Simulated Target",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Actual target report",
+                    "1": "Simulated target report"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "TST",
+              "title": "Test Target",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "Test Target"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SAA",
+              "title": "Selected Altitude Available",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Equipment capable to provide Selected Altitude",
+                    "1": "Equipment not capable to provide Selected Altitude"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CL",
+              "title": "Confidence Level",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Report valid",
+                    "1": "Report suspect",
+                    "2": "No information",
+                    "3": "Reserved for future use"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Spare",
+              "size": 1
+            },
+            {
+              "type": "Item",
+              "name": "LLC",
+              "title": "List Lookup Check",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "List Lookup failed (see note)"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "IPC",
+              "title": "Independent Position Check",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default (see note)",
+                    "1": "Independent Position Check failed"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "NOGO",
+              "title": "No-go Bit Status",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "NOGO-bit not set",
+                    "1": "NOGO-bit set"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CPR",
+              "title": "Compact Position Reporting",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "CPR Validation correct",
+                    "1": "CPR Validation failed"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "LDPJ",
+              "title": "Local Decoding Position Jump",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "LDPJ not detected",
+                    "1": "LDPJ detected"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "RCF",
+              "title": "Range Check",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Default",
+                    "1": "Range Check failed"
+                  }
+                }
+              }
+            }
+          ]
+        ]
+      }
+    },
+    "I070": {
+      "title": "Mode 3/A Code in Octal Representation",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Spare",
+            "size": 4
+          },
+          {
+            "type": "Item",
+            "name": "MODE3A",
+            "title": "Mode-3/A Reply in Octal Representation",
+            "rule": {
+              "type": "Element",
+              "size": 12,
+              "content": {
+                "type": "String",
+                "variant": "Octal"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I071": {
+      "title": "Time of Applicability for Position",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I072": {
+      "title": "Time of Applicability for Velocity",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I073": {
+      "title": "Time of Message Reception for Position",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I074": {
+      "title": "Time of Message Reception of Position-High Precision",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "FSI",
+            "title": "Full Second Indication",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "3": "Reserved",
+                  "2": "TOMRp whole seconds = (I021/073) Whole seconds - 1",
+                  "1": "TOMRp whole seconds = (I021/073) Whole seconds + 1",
+                  "0": "TOMRp whole seconds = (I021/073) Whole seconds"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TOMRP",
+            "title": "Fractional Part of the Time of Message Reception for Position in the Ground Station",
+            "rule": {
+              "type": "Element",
+              "size": 30,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 9.313225746154785e-10,
+                "unit": "s"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I075": {
+      "title": "Time of Message Reception for Velocity",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I076": {
+      "title": "Time of Message Reception of Velocity-High Precision",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "FSI",
+            "title": "Full Second Indication",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "3": "Reserved",
+                  "2": "TOMRp whole seconds = (I021/075) Whole seconds - 1",
+                  "1": "TOMRp whole seconds = (I021/075) Whole seconds + 1",
+                  "0": "TOMRp whole seconds = (I021/075) Whole seconds"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TOMRP",
+            "title": "Fractional Part of the Time of Message Reception for Position in the Ground Station",
+            "rule": {
+              "type": "Element",
+              "size": 30,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 9.313225746154785e-10,
+                "unit": "s"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I077": {
+      "title": "Time of ASTERIX Report Transmission",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I080": {
+      "title": "Target Address",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I090": {
+      "title": "Quality Indicators",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "NUCRNACV",
+              "title": "Navigation Uncertainty Category for Velocity NUCr or the Navigation Accuracy Category for Velocity NACv",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "NUCPNIC",
+              "title": "Navigation Uncertainty Category for Position NUCp or Navigation Integrity Category NIC",
+              "rule": {
+                "type": "Element",
+                "size": 4,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "NICBARO",
+              "title": "Navigation Integrity Category for Barometric Altitude",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SIL",
+              "title": "Surveillance (version 1) or Source (version 2) Integrity Level",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "NACP",
+              "title": "Navigation Accuracy Category for Position",
+              "rule": {
+                "type": "Element",
+                "size": 4,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Spare",
+              "size": 2
+            },
+            {
+              "type": "Item",
+              "name": "SILS",
+              "title": "SIL-Supplement",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Measured per flight-hour",
+                    "1": "Measured per sample"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SDA",
+              "title": "Horizontal Position System Design Assurance Level (as Defined in Version 2)",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "GVA",
+              "title": "Geometric Altitude Accuracy",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "PIC",
+              "title": "Position Integrity Category",
+              "rule": {
+                "type": "Element",
+                "size": 4,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 3
+            }
+          ]
+        ]
+      }
+    },
+    "I110": {
+      "title": "Trajectory Intent",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "TIS",
+            "title": "Trajectory Intent Status",
+            "rule": {
+              "type": "Extended",
+              "groups": [
+                [
+                  {
+                    "type": "Item",
+                    "name": "NAV",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Trajectory Intent Data is available for this aircraft",
+                          "1": "Trajectory Intent Data is not available for this aircraft"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "NVB",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Trajectory Intent Data is valid",
+                          "1": "Trajectory Intent Data is not valid"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Spare",
+                    "size": 5
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TID",
+            "title": "Trajectory Intent Data",
+            "rule": {
+              "type": "Repetitive",
+              "repSize": 1,
+              "fxMode": false,
+              "rule": {
+                "type": "Group",
+                "items": [
+                  {
+                    "type": "Item",
+                    "name": "TCA",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "TCP number available",
+                          "1": "TCP number not available"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "NC",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "TCP compliance",
+                          "1": "TCP non-compliance"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "TCPN",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 6,
+                      "content": {
+                        "type": "Raw"
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "ALT",
+                    "title": "Altitude in Two's Complement Form",
+                    "rule": {
+                      "type": "Element",
+                      "size": 16,
+                      "content": {
+                        "type": "Quantity",
+                        "signed": true,
+                        "lsb": 10.0,
+                        "unit": "ft"
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "LAT",
+                    "title": "In WGS.84 in Two's Complement",
+                    "rule": {
+                      "type": "Element",
+                      "size": 24,
+                      "content": {
+                        "type": "Quantity",
+                        "signed": true,
+                        "lsb": 2.1457672119140625e-05,
+                        "unit": "°"
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "LON",
+                    "title": "In WGS.84 in Two's Complement",
+                    "rule": {
+                      "type": "Element",
+                      "size": 24,
+                      "content": {
+                        "type": "Quantity",
+                        "signed": true,
+                        "lsb": 2.1457672119140625e-05,
+                        "unit": "°"
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "PT",
+                    "title": "Point Type",
+                    "rule": {
+                      "type": "Element",
+                      "size": 4,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Unknown",
+                          "1": "Fly by waypoint (LT)",
+                          "2": "Fly over waypoint (LT)",
+                          "3": "Hold pattern (LT)",
+                          "4": "Procedure hold (LT)",
+                          "5": "Procedure turn (LT)",
+                          "6": "RF leg (LT)",
+                          "7": "Top of climb (VT)",
+                          "8": "Top of descent (VT)",
+                          "9": "Start of level (VT)",
+                          "10": "Cross-over altitude (VT)",
+                          "11": "Transition altitude (VT)"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "TD",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 2,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "N/A",
+                          "1": "Turn right",
+                          "2": "Turn left",
+                          "3": "No turn"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "TRA",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "TTR not available",
+                          "1": "TTR available"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "TOA",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "TOV available",
+                          "1": "TOV not available"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "TOV",
+                    "title": "Time Over Point",
+                    "rule": {
+                      "type": "Element",
+                      "size": 24,
+                      "content": {
+                        "type": "Quantity",
+                        "signed": false,
+                        "lsb": 1.0,
+                        "unit": "s"
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "TTR",
+                    "title": "TCP Turn Radius",
+                    "rule": {
+                      "type": "Element",
+                      "size": 16,
+                      "content": {
+                        "type": "Quantity",
+                        "signed": false,
+                        "lsb": 0.01,
+                        "unit": "NM"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I130": {
+      "title": "Position in WGS-84 Co-ordinates",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "LAT",
+            "title": "Latitude",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 2.1457672119140625e-05,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "LON",
+            "title": "Longitude",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 2.1457672119140625e-05,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I131": {
+      "title": "High-Resolution Position in WGS-84 Co-ordinates",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "LAT",
+            "title": "Latitude",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 1.6763806343078613e-07,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "LON",
+            "title": "Longitude",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 1.6763806343078613e-07,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I132": {
+      "title": "Message Amplitude",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 1.0,
+          "unit": "dBm"
+        }
+      }
+    },
+    "I140": {
+      "title": "Geometric Height",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 6.25,
+          "unit": "ft"
+        }
+      }
+    },
+    "I145": {
+      "title": "Flight Level",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 0.25,
+          "unit": "FL"
+        }
+      }
+    },
+    "I146": {
+      "title": "Selected Altitude",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAS",
+            "title": "Source Availability",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No source information provided",
+                  "1": "Source Information provided"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "S",
+            "title": "Source",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Unknown",
+                  "1": "Aircraft Altitude (Holding Altitude)",
+                  "2": "MCP/FCU Selected Altitude",
+                  "3": "FMS Selected Altitude"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ALT",
+            "title": "Altitude",
+            "rule": {
+              "type": "Element",
+              "size": 13,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 25.0,
+                "unit": "ft"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I148": {
+      "title": "Final State Selected Altitude",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "MV",
+            "title": "Manage Vertical Mode",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Not active or unknown",
+                  "1": "Active"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "AH",
+            "title": "Altitude Hold Mode",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Not active or unknown",
+                  "1": "Active"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "AM",
+            "title": "Approach Mode",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Not active or unknown",
+                  "1": "Active"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ALT",
+            "title": "Altitude",
+            "rule": {
+              "type": "Element",
+              "size": 13,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 25.0,
+                "unit": "ft"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I150": {
+      "title": "Air Speed",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "IM",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Air Speed = IAS, LSB (Bit-1) = 2 -14 NM/s",
+                  "1": "Air Speed = Mach, LSB (Bit-1) = 0.001"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "AS",
+            "title": "Air Speed (IAS or Mach)",
+            "rule": {
+              "type": "Element",
+              "size": 15,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I151": {
+      "title": "True Airspeed",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "RE",
+            "title": "Range Exceeded Indicator",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Value in defined range",
+                  "1": "Value exceeds defined range"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TAS",
+            "title": "True Air Speed",
+            "rule": {
+              "type": "Element",
+              "size": 15,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 1.0,
+                "unit": "kt"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I152": {
+      "title": "Magnetic Heading",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0054931640625,
+          "unit": "°"
+        }
+      }
+    },
+    "I155": {
+      "title": "Barometric Vertical Rate",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "RE",
+            "title": "Range Exceeded Indicator",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Value in defined range",
+                  "1": "Value exceeds defined range"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "BVR",
+            "title": "Barometric Vertical Rate",
+            "rule": {
+              "type": "Element",
+              "size": 15,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 6.25,
+                "unit": "ft/min"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I157": {
+      "title": "Geometric Vertical Rate",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "RE",
+            "title": "Range Exceeded Indicator",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Value in defined range",
+                  "1": "Value exceeds defined range"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "GVR",
+            "title": "Geometric Vertical Rate",
+            "rule": {
+              "type": "Element",
+              "size": 15,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 6.25,
+                "unit": "ft/min"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I160": {
+      "title": "Airborne Ground Vector",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "RE",
+            "title": "Range Exceeded Indicator",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Value in defined range",
+                  "1": "Value exceeds defined range"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "GS",
+            "title": "Ground Speed Referenced to WGS-84",
+            "rule": {
+              "type": "Element",
+              "size": 15,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 6.103515625e-05,
+                "unit": "NM/s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TA",
+            "title": "Track Angle Clockwise Reference to True North",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0054931640625,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I161": {
+      "title": "Track Number",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Spare",
+            "size": 4
+          },
+          {
+            "type": "Item",
+            "name": "TRNUM",
+            "title": "Track Number",
+            "rule": {
+              "type": "Element",
+              "size": 12,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I165": {
+      "title": "Track Angle Rate",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Spare",
+            "size": 6
+          },
+          {
+            "type": "Item",
+            "name": "TAR",
+            "title": "Track Angle Rate",
+            "rule": {
+              "type": "Element",
+              "size": 10,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.03125,
+                "unit": "°/s"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I170": {
+      "title": "Target Identification",
+      "rule": {
+        "type": "Element",
+        "size": 48,
+        "content": {
+          "type": "String",
+          "variant": "Icao"
+        }
+      }
+    },
+    "I200": {
+      "title": "Target Status",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "ICF",
+            "title": "Intent Change Flag (see Note)",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No intent change active",
+                  "1": "Intent change flag raised"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "LNAV",
+            "title": "LNAV Mode",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "LNAV Mode engaged",
+                  "1": "LNAV Mode not engaged"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ME",
+            "title": "Military Emergency",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No military emergency",
+                  "1": "Military emergency"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "PS",
+            "title": "Priority Status",
+            "rule": {
+              "type": "Element",
+              "size": 3,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No emergency / not reported",
+                  "1": "General emergency",
+                  "2": "Lifeguard / medical emergency",
+                  "3": "Minimum fuel",
+                  "4": "No communications",
+                  "5": "Unlawful interference",
+                  "6": "DOWNED Aircraft"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SS",
+            "title": "Surveillance Status",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No condition reported",
+                  "1": "Permanent Alert (Emergency condition)",
+                  "2": "Temporary Alert (change in Mode 3/A Code other than emergency)",
+                  "3": "SPI set"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I210": {
+      "title": "MOPS Version",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Spare",
+            "size": 1
+          },
+          {
+            "type": "Item",
+            "name": "VNS",
+            "title": "Version Not Supported",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "The MOPS Version is supported by the GS",
+                  "1": "The MOPS Version is not supported by the GS"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "VN",
+            "title": "Version Number",
+            "rule": {
+              "type": "Element",
+              "size": 3,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "ED102/DO-260 [Ref. 8]",
+                  "1": "DO-260A [Ref. 9]",
+                  "2": "ED102A/DO-260B [Ref. 11]"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "LTT",
+            "title": "Link Technology Type",
+            "rule": {
+              "type": "Element",
+              "size": 3,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Other",
+                  "1": "UAT",
+                  "2": "1090 ES",
+                  "3": "VDL 4",
+                  "4": "Not assigned",
+                  "5": "Not assigned",
+                  "6": "Not assigned",
+                  "7": "Not assigned"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I220": {
+      "title": "Met Information",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "WS",
+            "title": "Wind Speed",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 1.0,
+                "unit": "kt"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "WD",
+            "title": "Wind Direction",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 1.0,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TMP",
+            "title": "Temperature",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.25,
+                "unit": "°C"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TRB",
+            "title": "Turbulence",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Integer",
+                "signed": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I230": {
+      "title": "Roll Angle",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 0.01,
+          "unit": "°"
+        }
+      }
+    },
+    "I250": {
+      "title": "Mode S MB Data",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 64,
+          "content": {
+            "type": "Bds"
+          }
+        }
+      }
+    },
+    "I260": {
+      "title": "ACAS Resolution Advisory Report",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "TYP",
+            "title": "Message Type (= 28 for 1090 ES, Version 2)",
+            "rule": {
+              "type": "Element",
+              "size": 5,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "STYP",
+            "title": "Message Sub-type (= 2 for 1090 ES, Version 2)",
+            "rule": {
+              "type": "Element",
+              "size": 3,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ARA",
+            "title": "Active Resolution Advisories",
+            "rule": {
+              "type": "Element",
+              "size": 14,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RAC",
+            "title": "RAC (RA Complement) Record",
+            "rule": {
+              "type": "Element",
+              "size": 4,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RAT",
+            "title": "RA Terminated",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "MTE",
+            "title": "Multiple Threat Encounter",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TTI",
+            "title": "Threat Type Indicator",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TID",
+            "title": "Threat Identity Data",
+            "rule": {
+              "type": "Element",
+              "size": 26,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I271": {
+      "title": "Surface Capabilities and Characteristics",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Spare",
+              "size": 2
+            },
+            {
+              "type": "Item",
+              "name": "POA",
+              "title": "Position Offset Applied",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Position transmitted is not ADS-B position reference point",
+                    "1": "Position transmitted is the ADS-B position reference point"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CDTIS",
+              "title": "Cockpit Display of Traffic Information Surface",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "CDTI not operational",
+                    "1": "CDTI operational"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "B2LOW",
+              "title": "Class B2 Transmit Power Less Than 70 Watts",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": ">= 70 Watts",
+                    "1": "< 70 Watts"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "RAS",
+              "title": "Receiving ATC Services",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Aircraft not receiving ATC-services",
+                    "1": "Aircraft receiving ATC services"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "IDENT",
+              "title": "Setting of IDENT Switch",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "IDENT switch not active",
+                    "1": "IDENT switch active"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "LW",
+              "title": "Length and Width of the Aircraft",
+              "rule": {
+                "type": "Element",
+                "size": 4,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 3
+            }
+          ]
+        ]
+      }
+    },
+    "I295": {
+      "title": "Data Ages",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "AOS",
+            "title": "Aircraft Operational Status Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TRD",
+            "title": "Target Report Descriptor Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "M3A",
+            "title": "Mode 3/A Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "QI",
+            "title": "Quality Indicators Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TI1",
+            "title": "Trajectory Intent Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "MAM",
+            "title": "Message Amplitude Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "GH",
+            "title": "Geometric Height Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "FL",
+            "title": "Flight Level Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ISA",
+            "title": "Intermediate State Selected Altitude Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "FSA",
+            "title": "Final State Selected Altitude Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "AS",
+            "title": "Air Speed Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TAS",
+            "title": "True Air Speed Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "MH",
+            "title": "Magnetic Heading Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "BVR",
+            "title": "Barometric Vertical Rate Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "GVR",
+            "title": "Geometric Vertical Rate Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "GV",
+            "title": "Ground Vector Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TAR",
+            "title": "Track Angle Rate Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TI2",
+            "title": "Target Identification Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TS",
+            "title": "Target Status Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "MET",
+            "title": "Met Information Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ROA",
+            "title": "Roll Angle Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ARA",
+            "title": "ACAS Resolution Advisory Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SCC",
+            "title": "Surface Capabilities and Characteristics Age",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "s"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I400": {
+      "title": "Receiver ID",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "RE": {
+      "title": "Reserved Expansion Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}

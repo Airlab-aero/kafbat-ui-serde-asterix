@@ -1,0 +1,2635 @@
+{
+  "category": 15,
+  "edition": "1.1",
+  "name": "Independent Non-Cooperative Surveillance System Target Reports",
+  "date": "2021-03-19",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I000",
+      "I015",
+      "I020",
+      "I030",
+      "I145",
+      "I161",
+      "I170",
+      "I050",
+      "I270",
+      "I300",
+      "I400",
+      "I600",
+      "I601",
+      "I602",
+      "I603",
+      "I604",
+      "I605",
+      "I480",
+      "I625",
+      "I626",
+      "I627",
+      "I628",
+      "I630",
+      "I631",
+      "SP"
+    ]
+  },
+  "items": {
+    "I000": {
+      "title": "Message Type",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "MT",
+            "title": "Message Type",
+            "rule": {
+              "type": "Element",
+              "size": 7,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "1": "Measurement Plot",
+                  "2": "Measurement Track",
+                  "3": "Sensor Centric Plot",
+                  "4": "Sensor Centric Track",
+                  "5": "Track End Message"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RG",
+            "title": "Report Generation",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Periodic Report",
+                  "1": "Event Driven Report"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I015": {
+      "title": "Service Identification",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I020": {
+      "title": "Target Report Descriptor",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "MOMU",
+              "title": "Mono-Static Target Report or Multi-Static Target Report",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Mono-Static Sensor",
+                    "1": "Multi-Static Sensor",
+                    "2": "Other",
+                    "3": "Unknown"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "TTAX",
+              "title": "Target Taxonomy",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Actual Target Report",
+                    "1": "Reference Target",
+                    "2": "Synthetic Target",
+                    "3": "Simulated / Replayed Target"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SCD",
+              "title": "Scanning Direction",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Unknown",
+                    "1": "Forward",
+                    "2": "Backward",
+                    "3": "Static"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 1
+            }
+          ]
+        ]
+      }
+    },
+    "I030": {
+      "title": "Warning/Error Conditions",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 0,
+        "fxMode": true,
+        "rule": {
+          "type": "Element",
+          "size": 7,
+          "content": {
+            "type": "Raw"
+          }
+        }
+      }
+    },
+    "I050": {
+      "title": "Update Period",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Spare",
+            "size": 2
+          },
+          {
+            "type": "Item",
+            "name": "UPD",
+            "title": "Update Period",
+            "rule": {
+              "type": "Element",
+              "size": 14,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0078125,
+                "unit": "s"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I145": {
+      "title": "Time of Applicability",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I161": {
+      "title": "Track/Plot Number",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Integer",
+          "signed": false
+        }
+      }
+    },
+    "I170": {
+      "title": "Track/Plot Status",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "BIZ",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Target not in Blind Zone",
+                    "1": "Target in Blind Zone"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "BAZ",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Target not in Blanked Zone",
+                    "1": "Target in Blanked Zone"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "TUR",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Track Alive",
+                    "1": "Track Terminated by User Request"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 1
+            },
+            {
+              "type": "Item",
+              "name": "CSTP",
+              "title": "Coasted - Position",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Not extrapolated",
+                    "1": "Extrapolated"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CSTH",
+              "title": "Coasted – Height",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Not extrapolated",
+                    "1": "Extrapolated"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "CNF",
+              "title": "Confirmed vs. Tentative Track",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Confirmed Track",
+                    "1": "Tentative Track"
+                  }
+                }
+              }
+            }
+          ]
+        ]
+      }
+    },
+    "I270": {
+      "title": "Target Size & Orientation",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "LEN",
+            "title": "Target Length",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.01,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "WDT",
+            "title": "Target Width",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.01,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "HGT",
+            "title": "Target Height",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.01,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ORT",
+            "title": "Target Orientation",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0054931640625,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I300": {
+      "title": "Object Classification",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "CLS",
+              "title": "Classification",
+              "rule": {
+                "type": "Element",
+                "size": 9,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "PRB",
+              "title": "Probability",
+              "rule": {
+                "type": "Element",
+                "size": 7,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I400": {
+      "title": "Measurement Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "PID",
+            "title": "Pair Identifier",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Integer",
+                "signed": false
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ON",
+            "title": "Observation Number",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Integer",
+                "signed": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I480": {
+      "title": "Associations",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 40,
+          "content": {
+            "type": "Raw"
+          }
+        }
+      }
+    },
+    "I600": {
+      "title": "Horizontal Position Information",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "P84",
+            "title": "Horizontal Position in WGS-84 Coordinates",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "LATITUDE",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 32,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 8.381903171539307e-08,
+                      "unit": "°"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "LONGITUDE",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 32,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 8.381903171539307e-08,
+                      "unit": "°"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "HPR",
+            "title": "Horizontal Position Resolution",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "RSHPX",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.5,
+                      "unit": "m"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "RSHPY",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.5,
+                      "unit": "m"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "CORSHPXY",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "HPP",
+            "title": "Horizontal Position Precision",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "SDHPX",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.25,
+                      "unit": "m"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "SDHPY",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.25,
+                      "unit": "m"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COSDHPXY",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "I601": {
+      "title": "Geometric Height Information",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "GH",
+            "title": "Geometric Height (WGS-84)",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.01,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RSGH",
+            "title": "Geometric Height Resolution",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.01,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDGH",
+            "title": "Geometric Height Precision",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.01,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CI6",
+            "title": "Confidence Interval for Geometric Height (67%)",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "UCI6",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 12,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 16.0,
+                      "unit": "m"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "LCI6",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 12,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 16.0,
+                      "unit": "m"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CI9",
+            "title": "Confidence Interval for Geometric Height (95%)",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "UCI9",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 12,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 16.0,
+                      "unit": "m"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "LCI9",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 12,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 16.0,
+                      "unit": "m"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "COGHHP",
+            "title": "Correlation of Geometric Height and Horizontal Position",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "COGHHV",
+            "title": "Correlation of Geometric Height and Horizontal Velocity",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "COGHHA",
+            "title": "Correlation of Geometric Height and Horizontal Acceleration",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "I602": {
+      "title": "Horizontal Velocity Information",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "HV",
+            "title": "Horizontal Velocity Vector",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 20,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.01,
+                      "unit": "m/s"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 20,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.01,
+                      "unit": "m/s"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RSHV",
+            "title": "Horizontal Velocity Resolution",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.01,
+                      "unit": "m/s"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.01,
+                      "unit": "m/s"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "CORSHVXY",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDHV",
+            "title": "Horizontal Velocity Precision",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.01,
+                      "unit": "m/s"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.01,
+                      "unit": "m/s"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COHVXY",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "COHVHP",
+            "title": "Correlation of Horizontal Velocity and Horizontal Position",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "COHVXHPX",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COHVXHPY",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COHVYHPX",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COHVYHPY",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "I603": {
+      "title": "Horizontal Acceleration Information",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "HA",
+            "title": "Horizontal Acceleration Vector",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 12,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0625,
+                      "unit": "m/s²"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 12,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0625,
+                      "unit": "m/s²"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDHA",
+            "title": "Horizontal Acceleration Precision",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 12,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.0625,
+                      "unit": "m/s²"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 12,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.0625,
+                      "unit": "m/s²"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COHAXY",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "COHAHP",
+            "title": "Correlation of Horizontal Acceleration and Horizontal Position",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "COHAXHPX",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COHAXHPY",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COHAYHPX",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COAYHPY",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "COHAHV",
+            "title": "Correlation of Horizontal Acceleration and Horizontal Velocity",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "COHAXHVX",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COHAXHVY",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COHAYHVX",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COHAYHVY",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "I604": {
+      "title": "Vertical Velocity Information",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "VV",
+            "title": "Vertical Velocity",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.01,
+                "unit": "m/s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RSVV",
+            "title": "Vertical Velocity Resolution",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.01,
+                "unit": "m/s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDVV",
+            "title": "Vertical Velocity Precision",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "SDVV",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.01,
+                      "unit": "m/s"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COVVGH",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "COVVHP",
+            "title": "Correlation of Vertical Velocity and Horizontal Position",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "COVVHV",
+            "title": "Correlation of Vertical Velocity and Horizontal Velocity",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "COVVHA",
+            "title": "Correlation of Vertical Velocity and Horizontal Acceleration",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "I605": {
+      "title": "Vertical Velocity Information",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "VA",
+            "title": "Vertical Acceleration",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.01,
+                "unit": "m/s²"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RSVA",
+            "title": "Vertical Acceleration Precision",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "SDVA",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.01,
+                      "unit": "m/s²"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COVAGH",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COVAVV",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "COVAHP",
+            "title": "Correlation of Vertical Acceleration and Horizontal Position",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "COVAHV",
+            "title": "Correlation of Vertical Acceleration and Horizontal Velocity",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "COVAHA",
+            "title": "Correlation of Vertical Acceleration and Horizontal Acceleration",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "X",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "Y",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "I625": {
+      "title": "Range Information",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "R",
+            "title": "Range",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.1,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RSR",
+            "title": "Range Resolution",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDR",
+            "title": "Range Precision",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RR",
+            "title": "Range Rate",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.1,
+                "unit": "m/s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RSRR",
+            "title": "Range Rate Resolution",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.1,
+                "unit": "m/s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDRR",
+            "title": "Range Rate Precision",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "SDRR",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 24,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.1,
+                      "unit": "m/s"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "CORRR",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RA",
+            "title": "Range Acceleration",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.015625,
+                "unit": "m/s²"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDRA",
+            "title": "Range Acceleration Precision",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "SDRA",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.0078125,
+                      "unit": "m/s²"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "CORAR",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "CORARR",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "I626": {
+      "title": "Doppler Information",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "DV",
+            "title": "Doppler Velocity",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.01,
+                "unit": "m/s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDDV",
+            "title": "Precision of Doppler Velocity",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.015625,
+                "unit": "m/s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "DA",
+            "title": "Doppler Acceleration",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.015625,
+                "unit": "m/s²"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDDA",
+            "title": "Precision of Doppler Acceleration",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "SDDA",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.015625,
+                      "unit": "m/s²"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "CODADV",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CODVR",
+            "title": "Correlation of Doppler Velocity and Range",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.0078125,
+                "unit": ""
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CODVRR",
+            "title": "Correlation of Doppler Velocity and Range Rate",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.0078125,
+                "unit": ""
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CODVRA",
+            "title": "Correlation of Doppler Velocity and Range Acceleration",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.0078125,
+                "unit": ""
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CODAR",
+            "title": "Correlation of Doppler Acceleration and Range",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.0078125,
+                "unit": ""
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CODARR",
+            "title": "Correlation of Doppler Acceleration and Range Rate",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.0078125,
+                "unit": ""
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "CODARA",
+            "title": "Correlation of Doppler Acceleration and Range Acceleration",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.0078125,
+                "unit": ""
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I627": {
+      "title": "Azimuth Information",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "AZ",
+            "title": "Azimuth",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0054931640625,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RSAZ",
+            "title": "Azimuth Resolution",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0006866455078125,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDASZ",
+            "title": "Standard Deviation of Azimuth",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0006866455078125,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "AZR",
+            "title": "Azimuth Rate",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.00274658203125,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDAZR",
+            "title": "Standard Deviation of Azimuth Rate",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "SDAZR",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.0006866455078125,
+                      "unit": "°"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COAZRAZ",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "AZEX",
+            "title": "Azimuth Extent",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "S",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.0054931640625,
+                      "unit": "°"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "E",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.0054931640625,
+                      "unit": "°"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "I628": {
+      "title": "Elevation Information",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "EL",
+            "title": "Elevation",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.00274658203125,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RSEL",
+            "title": "Elevation Resolution",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0006866455078125,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDEL",
+            "title": "Standard Deviation of Elevation",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0006866455078125,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ER",
+            "title": "Elevation Rate",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.00274658203125,
+                "unit": "°/s"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SDER",
+            "title": "Standard Deviation of Elevation Rate",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "SDELR",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": false,
+                      "lsb": 0.0006866455078125,
+                      "unit": "°/s"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "COELREL",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.0078125,
+                      "unit": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "ELEX",
+            "title": "Elevation Extent",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "S",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.00274658203125,
+                      "unit": "°"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "E",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 16,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 0.00274658203125,
+                      "unit": "°"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "I630": {
+      "title": "Path Quality",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "DPP",
+            "title": "Direct Path - Power",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 1.0,
+                "unit": "dB"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "DPS",
+            "title": "Direct Path - Signal to Noise Ratio (SNR)",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 1.0,
+                "unit": "dB"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RPP",
+            "title": "Reflected Path - Power",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Spare",
+                  "size": 7
+                },
+                {
+                  "type": "Item",
+                  "name": "RPP",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 9,
+                    "content": {
+                      "type": "Quantity",
+                      "signed": true,
+                      "lsb": 1.0,
+                      "unit": "dB"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RPS",
+            "title": "Reflected Path - Signal to Noise Ratio (SNR)",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 1.0,
+                "unit": "dB"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I631": {
+      "title": "Contour (Azimuth, Elevation Angle, Range Extent)",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "AZCON",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Quantity",
+                  "signed": false,
+                  "lsb": 0.0054931640625,
+                  "unit": "°"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "ELCON",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Quantity",
+                  "signed": true,
+                  "lsb": 0.00274658203125,
+                  "unit": "°"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "RGCONSTOP",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Quantity",
+                  "signed": false,
+                  "lsb": 0.152587890625,
+                  "unit": "m"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "RGCONSTART",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Quantity",
+                  "signed": false,
+                  "lsb": 0.152587890625,
+                  "unit": "m"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}

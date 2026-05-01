@@ -1,0 +1,586 @@
+{
+  "category": 19,
+  "edition": "1.3",
+  "name": "Multilateration System Status Messages",
+  "date": "2010-12-01",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I000",
+      "I140",
+      "I550",
+      "I551",
+      "I552",
+      "I553",
+      "I600",
+      "I610",
+      "I620",
+      null,
+      null,
+      "RE",
+      "SP"
+    ]
+  },
+  "items": {
+    "I000": {
+      "title": "Message Type",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "1": "Start of Update Cycle",
+            "2": "Periodic Status Message",
+            "3": "Event-triggered Status Message"
+          }
+        }
+      }
+    },
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I140": {
+      "title": "Time of Day",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I550": {
+      "title": "System Status",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "NOGO",
+            "title": "Operational Release Status of the System",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Operational",
+                  "1": "Degraded",
+                  "2": "NOGO",
+                  "3": "Undefined"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "OVL",
+            "title": "Overload Indicator",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "No overload",
+                  "1": "Overload"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TSV",
+            "title": "Time Source Validity",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Valid",
+                  "1": "Invalid"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TTF",
+            "title": "Test Target",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Test Target Operative",
+                  "1": "Test Target Failure"
+                }
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 3
+          }
+        ]
+      }
+    },
+    "I551": {
+      "title": "Tracking Processor Detailed Status",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "TP1A",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Standby",
+                  "1": "Exec"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TP1B",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Faulted",
+                  "1": "Good"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TP2A",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Standby",
+                  "1": "Exec"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TP2B",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Faulted",
+                  "1": "Good"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TP3A",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Standby",
+                  "1": "Exec"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TP3B",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Faulted",
+                  "1": "Good"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TP4A",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Standby",
+                  "1": "Exec"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TP4B",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Faulted",
+                  "1": "Good"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I552": {
+      "title": "Remote Sensor Detailed Status",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "RSI",
+              "title": "8-bit Identification Number of RS",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 1
+            },
+            {
+              "type": "Item",
+              "name": "RS1090",
+              "title": "Receiver 1090 MHz",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Not present",
+                    "1": "Present"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "TX1030",
+              "title": "Transmitter 1030 MHz",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Not present",
+                    "1": "Present"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "TX1090",
+              "title": "Transmitter 1090 MHz",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Not present",
+                    "1": "Present"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "RSS",
+              "title": "RS Status",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Faulted",
+                    "1": "Good"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "RSO",
+              "title": "RS Operational",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Offline",
+                    "1": "Online"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 2
+            }
+          ]
+        }
+      }
+    },
+    "I553": {
+      "title": "Reference Transponder Detailed Status",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "REFTR1",
+              "title": "Ref Trans 1 Status",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "1": "Warning",
+                    "2": "Faulted",
+                    "3": "Good"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 2
+            },
+            {
+              "type": "Item",
+              "name": "REFTR2",
+              "title": "Ref Trans 2 Status",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "1": "Warning",
+                    "2": "Faulted",
+                    "3": "Good"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 1
+            }
+          ],
+          [
+            {
+              "type": "Item",
+              "name": "REFTR3",
+              "title": "Ref Trans 3 Status",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "1": "Warning",
+                    "2": "Faulted",
+                    "3": "Good"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 2
+            },
+            {
+              "type": "Item",
+              "name": "REFTR4",
+              "title": "Ref Trans 4 Status",
+              "rule": {
+                "type": "Element",
+                "size": 2,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "1": "Warning",
+                    "2": "Faulted",
+                    "3": "Good"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 1
+            }
+          ]
+        ]
+      }
+    },
+    "I600": {
+      "title": "Position of the MLT System Reference Point",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "LAT",
+            "title": "Latitude",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 1.6763806343078613e-07,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "LON",
+            "title": "Longitude",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 1.6763806343078613e-07,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I610": {
+      "title": "Height of the MLT System Reference Point",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 0.25,
+          "unit": "m"
+        }
+      }
+    },
+    "I620": {
+      "title": "WGS-84 Undulation",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 1.0,
+          "unit": "m"
+        }
+      }
+    },
+    "RE": {
+      "title": "Reserved Expansion Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}

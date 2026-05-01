@@ -1,0 +1,331 @@
+{
+  "category": 2,
+  "edition": "1.0",
+  "name": "Transmission of Monoradar Service Messages",
+  "date": "1997-11-01",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I000",
+      "I020",
+      "I030",
+      "I041",
+      "I050",
+      "I060",
+      "I070",
+      "I100",
+      "I090",
+      "I080",
+      null,
+      "SP",
+      "rfs"
+    ]
+  },
+  "items": {
+    "I000": {
+      "title": "Message Type",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "1": "North marker message",
+            "2": "Sector crossing message",
+            "3": "South marker message",
+            "8": "Activation of blind zone filtering",
+            "9": "Stop of blind zone filtering"
+          }
+        }
+      }
+    },
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I020": {
+      "title": "Sector Number",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 1.40625,
+          "unit": "°"
+        }
+      }
+    },
+    "I030": {
+      "title": "Time of Day",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I041": {
+      "title": "Antenna Rotation Speed",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I050": {
+      "title": "Station Configuration Status",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 0,
+        "fxMode": true,
+        "rule": {
+          "type": "Element",
+          "size": 7,
+          "content": {
+            "type": "Raw"
+          }
+        }
+      }
+    },
+    "I060": {
+      "title": "Station Processing Mode",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 0,
+        "fxMode": true,
+        "rule": {
+          "type": "Element",
+          "size": 7,
+          "content": {
+            "type": "Raw"
+          }
+        }
+      }
+    },
+    "I070": {
+      "title": "Plot Count Values",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "A",
+              "title": "Aerial Identification",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Counter for antenna 1",
+                    "1": "Counter for antenna 2"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "IDENT",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 5,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "1": "Sole primary plots",
+                    "2": "Sole SSR plots",
+                    "3": "Combined plots"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "COUNTER",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 10,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I080": {
+      "title": "Warning/Error Conditions",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 0,
+        "fxMode": true,
+        "rule": {
+          "type": "Element",
+          "size": 7,
+          "content": {
+            "type": "Raw"
+          }
+        }
+      }
+    },
+    "I090": {
+      "title": "Collimation Error",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "RE",
+            "title": "Range Error",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.0078125,
+                "unit": "NM"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "AE",
+            "title": "Azimuth Error",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.02197265625,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I100": {
+      "title": "Dynamic Window Type 1",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "RS",
+            "title": "Rho Start",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0078125,
+                "unit": "NM"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RE",
+            "title": "Rho End",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0078125,
+                "unit": "NM"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TS",
+            "title": "Theta Start",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0054931640625,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TE",
+            "title": "Theta End",
+            "rule": {
+              "type": "Element",
+              "size": 16,
+              "content": {
+                "type": "Quantity",
+                "signed": false,
+                "lsb": 0.0054931640625,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}

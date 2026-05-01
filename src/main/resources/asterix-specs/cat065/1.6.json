@@ -1,0 +1,240 @@
+{
+  "category": 65,
+  "edition": "1.6",
+  "name": "SDPS Service Status Reports",
+  "date": "2023-03-21",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I000",
+      "I015",
+      "I030",
+      "I020",
+      "I040",
+      "I050",
+      null,
+      null,
+      null,
+      null,
+      null,
+      "RE",
+      "SP"
+    ]
+  },
+  "items": {
+    "I000": {
+      "title": "Message Type",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "1": "SDPS Status",
+            "2": "End of Batch",
+            "3": "Service Status Report"
+          }
+        }
+      }
+    },
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I015": {
+      "title": "Service Identification",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I020": {
+      "title": "Batch Number",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Integer",
+          "signed": false
+        }
+      }
+    },
+    "I030": {
+      "title": "Time of Message",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I040": {
+      "title": "SDPS Configuration and Status",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "NOGO",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Operational",
+                  "1": "Degraded",
+                  "2": "Not currently connected",
+                  "3": "Unknown"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "OVL",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Default",
+                  "1": "Overload"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TSV",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Default",
+                  "1": "Invalid Time Source"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "PSS",
+            "title": "Processing System Status",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Not applicable",
+                  "1": "SDPS-1 selected",
+                  "2": "SDPS-2 selected",
+                  "3": "SDPS-3 selected"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "STTN",
+            "title": "Track Re-numbering Indication",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 1
+          }
+        ]
+      }
+    },
+    "I050": {
+      "title": "Service Status Report",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "1": "Service degradation",
+            "2": "Service degradation ended",
+            "3": "Main radar out of service",
+            "4": "Service interrupted by the operator",
+            "5": "Service interrupted due to contingency",
+            "6": "Ready for service restart after contingency",
+            "7": "Service ended by the operator",
+            "8": "Failure of user main radar",
+            "9": "Service restarted by the operator",
+            "10": "Main radar becoming operational",
+            "11": "Main radar becoming degraded",
+            "12": "Service continuity interrupted due to disconnection with adjacent unit",
+            "13": "Service continuity restarted",
+            "14": "Service synchronised on backup radar",
+            "15": "Service synchronised on main radar",
+            "16": "Main and backup radar, if any, failed"
+          }
+        }
+      }
+    },
+    "RE": {
+      "title": "Reserved Expansion Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}

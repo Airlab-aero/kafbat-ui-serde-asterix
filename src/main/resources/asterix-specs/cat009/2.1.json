@@ -1,0 +1,358 @@
+{
+  "category": 9,
+  "edition": "2.1",
+  "name": "Composite Weather Reports",
+  "date": "2014-10-22",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I000",
+      "I020",
+      "I030",
+      "I060",
+      "I070",
+      "I080",
+      "I090",
+      "I100"
+    ]
+  },
+  "items": {
+    "I000": {
+      "title": "Message Type",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "2": "Cartesian vector",
+            "253": "Intermediate-update-step message",
+            "254": "Start-of-picture message",
+            "255": "End-of-picture message"
+          }
+        }
+      }
+    },
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I020": {
+      "title": "Vector Qualifier",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "ORG",
+              "title": "",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "Local Coordinates",
+                    "1": "System Coordinates"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "I",
+              "title": "Intensity Level",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "S",
+              "title": "Shading Orientation with Respect to North",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Table",
+                  "values": {
+                    "0": "0°",
+                    "1": "22.5°",
+                    "2": "45°",
+                    "3": "67.5°",
+                    "4": "90°",
+                    "5": "112.5°",
+                    "6": "135°",
+                    "7": "157.5°"
+                  }
+                }
+              }
+            }
+          ]
+        ]
+      }
+    },
+    "I030": {
+      "title": "Sequence of Cartesian Vectors",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "X",
+              "title": "X-coordinate",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Integer",
+                  "signed": true
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "Y",
+              "title": "Y-coordinate",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Integer",
+                  "signed": true
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "L",
+              "title": "Vector Length",
+              "rule": {
+                "type": "Element",
+                "size": 16,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I060": {
+      "title": "Synchronisation/Control Signal",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "SN",
+              "title": "Step Number",
+              "rule": {
+                "type": "Element",
+                "size": 6,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 1
+            }
+          ]
+        ]
+      }
+    },
+    "I070": {
+      "title": "Time of Day",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I080": {
+      "title": "Processing Status",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "F",
+              "title": "Scaling Factor",
+              "rule": {
+                "type": "Element",
+                "size": 5,
+                "content": {
+                  "type": "Integer",
+                  "signed": true
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "R",
+              "title": "Current Reduction Stage in Use",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "Q",
+              "title": "Processing Parameters",
+              "rule": {
+                "type": "Element",
+                "size": 15,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            }
+          ]
+        ]
+      }
+    },
+    "I090": {
+      "title": "Radar Configuration and Status",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Item",
+              "name": "SAC",
+              "title": "SAC of Radar Concerned",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "SIC",
+              "title": "SIC of Radar Concerned",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Spare",
+              "size": 3
+            },
+            {
+              "type": "Item",
+              "name": "CP",
+              "title": "Circular Polarisation",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "WO",
+              "title": "Weather Channel Overload",
+              "rule": {
+                "type": "Element",
+                "size": 1,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "R",
+              "title": "Reduction Step in Use By Radar  Concerned",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I100": {
+      "title": "Vector Count",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Integer",
+          "signed": false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,419 @@
+{
+  "category": 205,
+  "edition": "1.0",
+  "name": "Radio Direction Finder Reports",
+  "date": "2020-03-17",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I015",
+      "I000",
+      "I030",
+      "I040",
+      "I090",
+      "I050",
+      "I060",
+      "I070",
+      "I080",
+      "I100",
+      "I110",
+      "I120",
+      "I130",
+      "I140",
+      "I150",
+      "I160",
+      "I170",
+      "I180",
+      "I190",
+      "I200",
+      "SP"
+    ]
+  },
+  "items": {
+    "I000": {
+      "title": "Message Type",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "1": "System Position Report",
+            "2": "System Bearing Report",
+            "3": "System Position Report of conflicting transmission",
+            "4": "System Detection End Report",
+            "5": "Sensor Data Report"
+          }
+        }
+      }
+    },
+    "I010": {
+      "title": "Data Source Identifier",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I015": {
+      "title": "Service Identification",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I030": {
+      "title": "Time of Day",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I040": {
+      "title": "Report Number",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I050": {
+      "title": "Position in WGS-84 Coordinates",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "LAT",
+            "title": "Latitude in WGS-84",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 5.364418029785156e-06,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "LON",
+            "title": "Longitude in WGS-84",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 5.364418029785156e-06,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I060": {
+      "title": "Position in Cartesian Coordinates",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "X",
+            "title": "X-coordinate",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.5,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "Y",
+            "title": "Y-coordinate",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.5,
+                "unit": "m"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I070": {
+      "title": "Local Bearing",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.01,
+          "unit": "°"
+        }
+      }
+    },
+    "I080": {
+      "title": "System Bearing",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.01,
+          "unit": "°"
+        }
+      }
+    },
+    "I090": {
+      "title": "Radio Channel Name",
+      "rule": {
+        "type": "Element",
+        "size": 56,
+        "content": {
+          "type": "String",
+          "variant": "Ascii"
+        }
+      }
+    },
+    "I100": {
+      "title": "Quality of Measurement",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I110": {
+      "title": "Estimated Uncertainty",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 100.0,
+          "unit": "m"
+        }
+      }
+    },
+    "I120": {
+      "title": "Contributing Sensors",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Element",
+          "size": 8,
+          "content": {
+            "type": "Raw"
+          }
+        }
+      }
+    },
+    "I130": {
+      "title": "Conflicting Transmitter Position in WGS-84 Coordinates",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "LAT",
+            "title": "Latitude in WGS-84",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 5.364418029785156e-06,
+                "unit": "°"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "LON",
+            "title": "Longitude in WGS-84",
+            "rule": {
+              "type": "Element",
+              "size": 32,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 5.364418029785156e-06,
+                "unit": "°"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I140": {
+      "title": "Conflicting Transmitter Position in Cartesian Coordinates",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "X",
+            "title": "X-coordinate",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.5,
+                "unit": "m"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "Y",
+            "title": "Y-coordinate",
+            "rule": {
+              "type": "Element",
+              "size": 24,
+              "content": {
+                "type": "Quantity",
+                "signed": true,
+                "lsb": 0.5,
+                "unit": "m"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I150": {
+      "title": "Conflicting Transmitter Estimated Uncertainty",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 100.0,
+          "unit": "m"
+        }
+      }
+    },
+    "I160": {
+      "title": "Track Number",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I170": {
+      "title": "Sensor Identification",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I180": {
+      "title": "Signal Level",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 0.01,
+          "unit": "dBµV"
+        }
+      }
+    },
+    "I190": {
+      "title": "Signal Quality",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Raw"
+        }
+      }
+    },
+    "I200": {
+      "title": "Signal Elevation",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": true,
+          "lsb": 0.01,
+          "unit": "°"
+        }
+      }
+    },
+    "SP": {
+      "title": "Special Purpose Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}

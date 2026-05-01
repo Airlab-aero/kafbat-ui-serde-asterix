@@ -1,0 +1,874 @@
+{
+  "category": 32,
+  "edition": "1.1",
+  "name": "Miniplan Reports to an SDPS",
+  "date": "2020-12-11",
+  "uap": {
+    "type": "flat",
+    "items": [
+      "I010",
+      "I015",
+      "I018",
+      "I035",
+      "I020",
+      "I040",
+      "I050",
+      "I060",
+      "I400",
+      "I410",
+      "I420",
+      "I440",
+      "I450",
+      "I480",
+      "I490",
+      "I430",
+      "I435",
+      "I460",
+      "I500",
+      null,
+      "RE"
+    ]
+  },
+  "items": {
+    "I010": {
+      "title": "Server Identification Tag",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I015": {
+      "title": "User Number",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Integer",
+          "signed": false
+        }
+      }
+    },
+    "I018": {
+      "title": "Data Source Identification Tag",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "SAC",
+            "title": "System Area Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SIC",
+            "title": "System Identification Code",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I020": {
+      "title": "Time of ASTERIX Report Generation",
+      "rule": {
+        "type": "Element",
+        "size": 24,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.0078125,
+          "unit": "s"
+        }
+      }
+    },
+    "I035": {
+      "title": "Type of Message",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "FAMILY",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 4,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "1": "Information sent by an FPPS"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "NATURE",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 4,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "1": "Flight Plan to track initial correlation",
+                  "2": "Miniplan update",
+                  "3": "End of correlation",
+                  "4": "Miniplan Cancellation",
+                  "5": "Retained Miniplan"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I040": {
+      "title": "Track Number",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Integer",
+          "signed": false
+        }
+      }
+    },
+    "I050": {
+      "title": "Composed Track Number",
+      "rule": {
+        "type": "Extended",
+        "groups": [
+          [
+            {
+              "type": "Item",
+              "name": "SUI",
+              "title": "System Unit Identification",
+              "rule": {
+                "type": "Element",
+                "size": 8,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "STN",
+              "title": "System Track Number",
+              "rule": {
+                "type": "Element",
+                "size": 15,
+                "content": {
+                  "type": "Integer",
+                  "signed": false
+                }
+              }
+            }
+          ]
+        ]
+      }
+    },
+    "I060": {
+      "title": "Track Mode 3/A",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Spare",
+            "size": 4
+          },
+          {
+            "type": "Item",
+            "name": "MODE3A",
+            "title": "(Mode 3/A Code) 4 Digits, Octal Representation",
+            "rule": {
+              "type": "Element",
+              "size": 12,
+              "content": {
+                "type": "String",
+                "variant": "Octal"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I400": {
+      "title": "Callsign",
+      "rule": {
+        "type": "Element",
+        "size": 56,
+        "content": {
+          "type": "String",
+          "variant": "Ascii"
+        }
+      }
+    },
+    "I410": {
+      "title": "Plan Number",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Integer",
+          "signed": false
+        }
+      }
+    },
+    "I420": {
+      "title": "Flight Category",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "GATOAT",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Unknown",
+                  "1": "General Air Traffic",
+                  "2": "Operational Air Traffic",
+                  "3": "Not applicable"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "FR1FR2",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 2,
+              "content": {
+                "type": "Table",
+                "values": {
+                  "0": "Instrument Flight Rules",
+                  "1": "Visual Flight rules",
+                  "2": "Not applicable",
+                  "3": "Controlled Visual Flight Rules"
+                }
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SP3",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SP2",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SP1",
+            "title": "",
+            "rule": {
+              "type": "Element",
+              "size": 1,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Spare",
+            "size": 1
+          }
+        ]
+      }
+    },
+    "I430": {
+      "title": "Type of Aircraft",
+      "rule": {
+        "type": "Element",
+        "size": 32,
+        "content": {
+          "type": "String",
+          "variant": "Ascii"
+        }
+      }
+    },
+    "I435": {
+      "title": "Wake Turbulence Category",
+      "rule": {
+        "type": "Element",
+        "size": 8,
+        "content": {
+          "type": "Table",
+          "values": {
+            "76": "Light",
+            "77": "Medium",
+            "72": "Heavy",
+            "74": "Super"
+          }
+        }
+      }
+    },
+    "I440": {
+      "title": "Departure Aerodrome",
+      "rule": {
+        "type": "Element",
+        "size": 32,
+        "content": {
+          "type": "String",
+          "variant": "Ascii"
+        }
+      }
+    },
+    "I450": {
+      "title": "Destination Aerodrome",
+      "rule": {
+        "type": "Element",
+        "size": 32,
+        "content": {
+          "type": "String",
+          "variant": "Ascii"
+        }
+      }
+    },
+    "I460": {
+      "title": "Allocated SSR Codes",
+      "rule": {
+        "type": "Repetitive",
+        "repSize": 1,
+        "fxMode": false,
+        "rule": {
+          "type": "Group",
+          "items": [
+            {
+              "type": "Spare",
+              "size": 4
+            },
+            {
+              "type": "Item",
+              "name": "OCT1",
+              "title": "1st Octal Digit",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "OCT2",
+              "title": "2nd Octal Digit",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "OCT3",
+              "title": "3rd Octal Digit",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            },
+            {
+              "type": "Item",
+              "name": "OCT4",
+              "title": "4th Octal Digit",
+              "rule": {
+                "type": "Element",
+                "size": 3,
+                "content": {
+                  "type": "Raw"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "I480": {
+      "title": "Current Cleared Flight Level",
+      "rule": {
+        "type": "Element",
+        "size": 16,
+        "content": {
+          "type": "Quantity",
+          "signed": false,
+          "lsb": 0.25,
+          "unit": "FL"
+        }
+      }
+    },
+    "I490": {
+      "title": "Current Control Position",
+      "rule": {
+        "type": "Group",
+        "items": [
+          {
+            "type": "Item",
+            "name": "CEN",
+            "title": "Centre",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "POS",
+            "title": "Position",
+            "rule": {
+              "type": "Element",
+              "size": 8,
+              "content": {
+                "type": "Raw"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "I500": {
+      "title": "Supplementary Flight Data",
+      "rule": {
+        "type": "Compound",
+        "items": [
+          {
+            "type": "Item",
+            "name": "IFI",
+            "title": "IFPS FLIGHT ID",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "TYP",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 2,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Plan Number",
+                        "1": "Unit 1 internal flight number",
+                        "2": "Unit 2 internal flight number",
+                        "3": "Unit 3 internal flight number"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Spare",
+                  "size": 3
+                },
+                {
+                  "type": "Item",
+                  "name": "NBR",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 27,
+                    "content": {
+                      "type": "Integer",
+                      "signed": false
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RVP",
+            "title": "RVSM & Flight Priority",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Spare",
+                  "size": 5
+                },
+                {
+                  "type": "Item",
+                  "name": "RVSM",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 2,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Unknown",
+                        "1": "Approved",
+                        "2": "Exempt",
+                        "3": "Not approved"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "HPR",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 1,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Normal Priority Flight",
+                        "1": "High Priority Flight"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "RDS",
+            "title": "Runway Designation",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "NU1",
+                  "title": "First Number",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "String",
+                      "variant": "Ascii"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "NU2",
+                  "title": "Second Number",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "String",
+                      "variant": "Ascii"
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "LTR",
+                  "title": "Letter",
+                  "rule": {
+                    "type": "Element",
+                    "size": 8,
+                    "content": {
+                      "type": "String",
+                      "variant": "Ascii"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "TOD",
+            "title": "Time of Departure / Arrival",
+            "rule": {
+              "type": "Repetitive",
+              "repSize": 1,
+              "fxMode": false,
+              "rule": {
+                "type": "Group",
+                "items": [
+                  {
+                    "type": "Item",
+                    "name": "TYP",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 5,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Scheduled Off-Block Time",
+                          "1": "Estimated Off-Block Time",
+                          "2": "Estimated Take-Off Time",
+                          "3": "Actual Off-Block Time",
+                          "4": "Predicted Time at Runway Hold",
+                          "5": "Actual Time at Runway Hold",
+                          "6": "Actual Line-Up Time",
+                          "7": "Actual Take-Off Time",
+                          "8": "Estimated Time of Arrival",
+                          "9": "Predicted Landing Time",
+                          "10": "Actual Landing Time",
+                          "11": "Actual Time off Runway",
+                          "12": "Predicted Time to Gate",
+                          "13": "Actual On-Block Time"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "DAY",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 2,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Today",
+                          "1": "Yesterday",
+                          "2": "Tomorrow",
+                          "3": "Invalid"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Spare",
+                    "size": 4
+                  },
+                  {
+                    "type": "Item",
+                    "name": "HOR",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 5,
+                      "content": {
+                        "type": "Integer",
+                        "signed": false
+                      }
+                    }
+                  },
+                  {
+                    "type": "Spare",
+                    "size": 2
+                  },
+                  {
+                    "type": "Item",
+                    "name": "MIN",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 6,
+                      "content": {
+                        "type": "Integer",
+                        "signed": false
+                      }
+                    }
+                  },
+                  {
+                    "type": "Item",
+                    "name": "AVS",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 1,
+                      "content": {
+                        "type": "Table",
+                        "values": {
+                          "0": "Seconds available",
+                          "1": "Seconds not available"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Spare",
+                    "size": 1
+                  },
+                  {
+                    "type": "Item",
+                    "name": "SEC",
+                    "title": "",
+                    "rule": {
+                      "type": "Element",
+                      "size": 6,
+                      "content": {
+                        "type": "Integer",
+                        "signed": false
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "AST",
+            "title": "Aircraft Stand",
+            "rule": {
+              "type": "Element",
+              "size": 48,
+              "content": {
+                "type": "String",
+                "variant": "Ascii"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "STS",
+            "title": "Stand Status",
+            "rule": {
+              "type": "Group",
+              "items": [
+                {
+                  "type": "Item",
+                  "name": "EMP",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 2,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Empty",
+                        "1": "Occupied",
+                        "2": "Unknown",
+                        "3": "Invalid"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Item",
+                  "name": "AVL",
+                  "title": "",
+                  "rule": {
+                    "type": "Element",
+                    "size": 2,
+                    "content": {
+                      "type": "Table",
+                      "values": {
+                        "0": "Available",
+                        "1": "Not available",
+                        "2": "Unknown",
+                        "3": "Invalid"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Spare",
+                  "size": 4
+                }
+              ]
+            }
+          },
+          {
+            "type": "Item",
+            "name": "SID",
+            "title": "Standard Instrument Departure",
+            "rule": {
+              "type": "Element",
+              "size": 56,
+              "content": {
+                "type": "String",
+                "variant": "Ascii"
+              }
+            }
+          },
+          {
+            "type": "Item",
+            "name": "STAR",
+            "title": "Standard Instrument Arrival",
+            "rule": {
+              "type": "Element",
+              "size": 56,
+              "content": {
+                "type": "String",
+                "variant": "Ascii"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "RE": {
+      "title": "Reserved Expansion Field",
+      "rule": {
+        "type": "Explicit"
+      }
+    }
+  }
+}
