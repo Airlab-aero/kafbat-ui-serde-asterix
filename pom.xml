@@ -25,7 +25,13 @@
     </properties>
 
     <dependencies>
-        <!-- Kafbat UI Serde API - provided by the running application -->
+        <!--
+            Kafbat UI Serde API - compile-only; the full JAR is provided at
+            runtime by the kafbat-ui classloader. A minimal stub is bundled
+            under lib/ and installed into the local Maven cache during the
+            initialize phase (see maven-install-plugin below) so the build
+            works without access to kafbat's GitHub Packages registry.
+        -->
         <dependency>
             <groupId>io.kafbat.ui</groupId>
             <artifactId>serde-api</artifactId>
@@ -65,6 +71,31 @@
 
     <build>
         <plugins>
+            <!--
+                Install the bundled serde-api stub JAR into the local Maven
+                cache during initialize so subsequent compile phases can
+                resolve io.kafbat.ui:serde-api:1.0.0 without needing the
+                kafbat GitHub Packages registry.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>install-serde-api-stub</id>
+                        <phase>initialize</phase>
+                        <goals><goal>install-file</goal></goals>
+                        <configuration>
+                            <file>${project.basedir}/lib/serde-api-1.0.0.jar</file>
+                            <groupId>io.kafbat.ui</groupId>
+                            <artifactId>serde-api</artifactId>
+                            <version>1.0.0</version>
+                            <packaging>jar</packaging>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
