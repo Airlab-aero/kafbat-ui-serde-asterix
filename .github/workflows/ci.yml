@@ -35,3 +35,70 @@ jobs:
           name: surefire-reports
           path: target/surefire-reports/
           retention-days: 14
+
+  publish:
+    name: Publish (main only)
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Build uber JAR
+        run: mvn -B -q package -DskipTests
+
+      - name: Publish SNAPSHOT to GitHub Packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<'SETTINGS'
+          <settings>
+            <servers>
+              <server>
+                <id>github</id>
+                <username>${env.GITHUB_ACTOR}</username>
+                <password>${env.GITHUB_TOKEN}</password>
+              </server>
+            </servers>
+          </settings>
+          SETTINGS
+          mvn -B -q deploy -DskipTests
+
+      - name: Update rolling 'latest' release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          JAR=$(ls target/*-uber.jar | head -1)
+          JAR_NAME=$(basename "$JAR")
+          SHORT_SHA=$(git rev-parse --short HEAD)
+
+          # Remove stale tag/release so we can recreate it cleanly
+          gh release delete latest --yes 2>/dev/null || true
+          git push origin :refs/tags/latest    2>/dev/null || true
+
+          gh release create latest \
+            --title "Latest (main)" \
+            --notes "Rolling snapshot from \`main\`. Commit: \`${SHORT_SHA}\`
+
+          Install via \`filePath\` in kafbat-ui:
+          \`\`\`yaml
+          serde:
+            - name: ASTERIX
+              className: io.airlab.kafbat.serde.asterix.AsterixSerde
+              filePath: /opt/serdes/${JAR_NAME}
+          \`\`\`" \
+            --prerelease \
+            "$JAR#$JAR_NAME"
