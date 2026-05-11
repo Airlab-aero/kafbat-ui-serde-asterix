@@ -36,9 +36,9 @@ class AsterixParserTest {
      *
      * <pre>
      * Header:  30 00 0D             CAT=48 (0x30), LEN=13
-     * FSPEC:   B0                   I010, I140, I040 present (bits 7,5,4 set; FX=0)
+     * FSPEC:   D0                   I010, I140, I040 present (bits 7,6,4 set; FX=0)
      * I010:    00 01                SAC=0, SIC=1
-     * I140:    46 50 00             ToD = 4608000 / 128 = 36000.0 s (10:00:00 UTC)
+     * I140:    46 50 00             ToD = 0x465000 / 128 = 36000.0 s (10:00:00 UTC)
      * I040:    64 00 40 00          RHO=25600/256=100.0 NM, THETA=16384*360/65536=90.0°
      * </pre>
      */
@@ -46,7 +46,7 @@ class AsterixParserTest {
     void cat048_basicPosition() {
         byte[] msg = {
             0x30, 0x00, 0x0D,         // CAT=48, LEN=13
-            (byte) 0xB0,              // FSPEC: I010 (bit7), I140 (bit5), I040 (bit4)
+            (byte) 0xD0,              // FSPEC: I010 (bit7), I140 (bit6), I040 (bit4)
             0x00, 0x01,               // I010: SAC=0, SIC=1
             0x46, 0x50, 0x00,         // I140: ToD=36000.0 s
             0x64, 0x00, 0x40, 0x00    // I040: RHO=100.0 NM, THETA=90.0 deg
@@ -65,8 +65,8 @@ class AsterixParserTest {
         assertThat(record.get("I010").get("SAC").asInt()).isEqualTo(0);
         assertThat(record.get("I010").get("SIC").asInt()).isEqualTo(1);
 
-        // I140 – time of day
-        assertThat(record.get("I140").get("ToD").asDouble()).isCloseTo(36000.0, within(0.01));
+        // I140 – time of day; spec encodes as Element Quantity, wrapped to {"val": <seconds>}
+        assertThat(record.get("I140").get("val").asDouble()).isCloseTo(36000.0, within(0.01));
 
         // I040 – polar position
         assertThat(record.get("I040").get("RHO").asDouble()).isCloseTo(100.0, within(0.01));
@@ -99,9 +99,9 @@ class AsterixParserTest {
         ArrayNode result = parser.parse(msg);
         JsonNode record = result.get(0).get("records").get(0);
 
-        // Mode-3/A
-        assertThat(record.get("I070").get("squawk").asText()).isEqualTo("7700");
-        assertThat(record.get("I070").get("V").asInt()).isEqualTo(0);
+        // Mode-3/A; V/G/L are Table-encoded → {"val":n,"label":"..."}; MODE3A is Octal-encoded
+        assertThat(record.get("I070").get("MODE3A").asText()).isEqualTo("7700");
+        assertThat(record.get("I070").get("V").get("val").asInt()).isEqualTo(0);
 
         // Flight level: FL raw = 1400, physical = 1400 * 0.25 = 350.0 FL
         assertThat(record.get("I090").get("FL").asDouble()).isCloseTo(350.0, within(0.01));
@@ -134,8 +134,10 @@ class AsterixParserTest {
         ArrayNode result = parser.parse(msg);
         JsonNode record = result.get(0).get("records").get(0);
 
-        assertThat(record.get("I220").get("Addr").asText()).isEqualTo("3C6CF2");
-        assertThat(record.get("I240").get("TId").asText()).isEqualTo("BAW123");
+        // I220 is a 24-bit Raw Element, wrapped to {"val": <long>}
+        assertThat(record.get("I220").get("val").asLong()).isEqualTo(0x3C6CF2L);
+        // I240 is a 48-bit ICAO6 string Element, wrapped to {"val": "<callsign>"}
+        assertThat(record.get("I240").get("val").asText()).isEqualTo("BAW123");
     }
 
     // -----------------------------------------------------------------------
@@ -172,7 +174,8 @@ class AsterixParserTest {
         JsonNode record = block.get("records").get(0);
         assertThat(record.get("I010").get("SAC").asInt()).isEqualTo(0);
         assertThat(record.get("I010").get("SIC").asInt()).isEqualTo(1);
-        assertThat(record.get("I000").get("MT").asInt()).isEqualTo(1);
+        // I000 is a Table-encoded Element, wrapped to {"val": 1, "label": "North marker message"}
+        assertThat(record.get("I000").get("val").asInt()).isEqualTo(1);
     }
 
     // -----------------------------------------------------------------------
@@ -231,15 +234,17 @@ class AsterixParserTest {
      */
     @Test
     void cat021_wgs84Position() {
-        // LAT: 48.0 deg, raw = round(48 * 2^23 / 180) = 2236453 = 0x2225A5
-        // LON: 2.35 deg, raw = round(2.35 * 2^23 / 360) = 54749 = 0x00D60D
+        // CAT021 I130 uses lsb = 180/2^23 for both LAT and LON (signed 24-bit)
+        // LAT: 48.0 deg, raw = round(48 * 2^23 / 180)
+        // LON: 2.35 deg, raw = round(2.35 * 2^23 / 180)
         int latRaw = (int) Math.round(48.0 * (1 << 23) / 180.0);
-        int lonRaw = (int) Math.round(2.35 * (1 << 23) / 360.0);
+        int lonRaw = (int) Math.round(2.35 * (1 << 23) / 180.0);
 
+        // CAT021 UAP (ed 2.4): [I010, I040, I161, I015, I071, I130, ...]
+        // FSPEC for I010 (bit7) + I130 (bit2) = 0x84
         byte[] msg = {
             0x15, 0x00, 0x0C,              // CAT=21, LEN=12
-            // FSPEC: I010 (bit7), I130 (bit4) → 0x90
-            (byte) 0x90,
+            (byte) 0x84,                   // FSPEC: I010 (bit7), I130 (bit2)
             0x00, 0x04,                    // I010: SAC=0, SIC=4
             // I130: LAT(3 bytes), LON(3 bytes)
             (byte)((latRaw >> 16) & 0xFF),
