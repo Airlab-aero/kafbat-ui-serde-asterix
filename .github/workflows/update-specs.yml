@@ -6,8 +6,8 @@ on:
     - cron: '0 4 1 * *'
   workflow_dispatch:
     inputs:
-      all_editions:
-        description: 'Download all editions (not just latest)'
+      latest_only:
+        description: 'Download only the latest edition per category (default: all editions)'
         required: false
         default: 'false'
         type: boolean
@@ -44,8 +44,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [ "${{ github.event.inputs.all_editions }}" = "true" ]; then
-            python3 tools/update-specs.py --all-editions
+          if [ "${{ github.event.inputs.latest_only }}" = "true" ]; then
+            python3 tools/update-specs.py --latest-only
           else
             python3 tools/update-specs.py
           fi

@@ -10,6 +10,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Main ASTERIX binary-to-JSON parser.
@@ -32,9 +33,20 @@ public class AsterixParser {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private final CategoryRegistry registry;
+    /** category number → edition string to use instead of the registry's latest. */
+    private final Map<Integer, String> editionOverrides;
 
     public AsterixParser(CategoryRegistry registry) {
+        this(registry, Map.of());
+    }
+
+    /**
+     * @param editionOverrides map of category number → edition string;
+     *                         categories absent from the map use the latest registered edition.
+     */
+    public AsterixParser(CategoryRegistry registry, Map<Integer, String> editionOverrides) {
         this.registry = registry;
+        this.editionOverrides = Map.copyOf(editionOverrides);
     }
 
     // -----------------------------------------------------------------------
@@ -80,7 +92,10 @@ public class AsterixParser {
             return block;
         }
 
-        CategoryDefinition catDef = registry.get(cat);
+        String overrideEdition = editionOverrides.get(cat);
+        CategoryDefinition catDef = (overrideEdition != null)
+                ? registry.get(cat, overrideEdition)
+                : registry.get(cat);
         if (catDef == null) {
             // Unknown category – return a raw hex dump
             int remaining = endPos - buf.position();
@@ -92,6 +107,7 @@ public class AsterixParser {
         }
 
         block.put("name", catDef.name);
+        block.put("edition", catDef.edition);
         ArrayNode records = MAPPER.createArrayNode();
 
         while (buf.position() < endPos) {
