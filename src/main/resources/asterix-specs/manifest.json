@@ -112,6 +112,14 @@
       "name": "Transmission of A-SMGCS Data",
       "date": "2008-05-01",
       "file": "cat011/1.2.json",
+      "latest": false
+    },
+    {
+      "category": 11,
+      "edition": "1.3",
+      "name": "Transmission of A-SMGCS Data",
+      "date": "2020-05-11",
+      "file": "cat011/1.3.json",
       "latest": true
     },
     {
@@ -216,6 +224,14 @@
       "name": "ADS-B Target Reports",
       "date": "2021-12-21",
       "file": "cat021/2.6.json",
+      "latest": false
+    },
+    {
+      "category": 21,
+      "edition": "2.7",
+      "name": "ADS-B Target Reports",
+      "date": "2025-07-02",
+      "file": "cat021/2.7.json",
       "latest": true
     },
     {
@@ -360,6 +376,14 @@
       "name": "SDPS Track Messages",
       "date": "2023-02-13",
       "file": "cat062/1.20.json",
+      "latest": false
+    },
+    {
+      "category": 62,
+      "edition": "1.21",
+      "name": "SDPS Track Messages",
+      "date": "2025-06-05",
+      "file": "cat062/1.21.json",
       "latest": true
     },
     {

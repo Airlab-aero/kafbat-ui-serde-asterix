@@ -171,6 +171,6 @@ class MultiEditionTest {
 
         assertThat(registry.get(48).edition).isEqualTo("1.32");
         assertThat(registry.get(2).edition).isEqualTo("1.2");
-        assertThat(registry.get(21).edition).isEqualTo("2.6");
+        assertThat(registry.get(21).edition).isEqualTo("2.7");
     }
 }
