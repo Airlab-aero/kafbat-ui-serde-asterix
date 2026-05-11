@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import io.airlab.kafbat.serde.asterix.category.CategoryRegistry;
 import io.airlab.kafbat.serde.asterix.parser.AsterixParser;
 import io.kafbat.ui.serde.api.*;
+import io.kafbat.ui.serde.api.Serde.Target;
 
 import java.util.HashMap;
 import java.util.Map;
