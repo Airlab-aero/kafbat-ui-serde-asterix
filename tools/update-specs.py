@@ -7,7 +7,7 @@ parses them into a normalized JSON schema, and writes the result to
 src/main/resources/asterix-specs/.
 
 Usage:
-    python3 tools/update-specs.py [--output-dir DIR] [--cat CAT] [--all-editions]
+    python3 tools/update-specs.py [--output-dir DIR] [--cat CAT] [--latest-only]
 
 Environment:
     GITHUB_TOKEN  – optional, increases API rate limit
@@ -542,8 +542,8 @@ def main():
                     help="Directory to write JSON specs")
     ap.add_argument("--cat", type=int, default=None,
                     help="Only update this category number")
-    ap.add_argument("--all-editions", action="store_true",
-                    help="Download all editions (default: latest only)")
+    ap.add_argument("--latest-only", action="store_true",
+                    help="Download only the latest edition per category (default: all editions)")
     args = ap.parse_args()
 
     out_dir = args.output_dir
@@ -568,7 +568,7 @@ def main():
         cat_dir = os.path.join(out_dir, f"cat{cat_num:03d}")
         os.makedirs(cat_dir, exist_ok=True)
 
-        to_process = editions if args.all_editions else [editions[-1]]
+        to_process = [editions[-1]] if args.latest_only else editions
 
         for edition in to_process:
             cat_str = f"cat{cat_num:03d}"

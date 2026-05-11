@@ -45,16 +45,16 @@ public class SpecLoader {
 
         JsonNode specs = manifest.path("specs");
         for (JsonNode entry : specs) {
-            if (!entry.path("latest").asBoolean(true)) continue; // only latest edition
-
+            boolean latest = entry.path("latest").asBoolean(false);
             String file = entry.path("file").asText();
             String resource = "asterix-specs/" + file;
             try {
                 CategoryDefinition def = loadSpec(resource);
                 if (def != null) {
-                    registry.register(def);
-                    LOG.fine(() -> "Loaded CAT%03d edition %s from %s"
-                        .formatted(def.category, entry.path("edition").asText(), resource));
+                    registry.register(def, latest);
+                    LOG.fine(() -> "Loaded CAT%03d edition %s%s from %s"
+                        .formatted(def.category, def.edition,
+                                   latest ? " (latest)" : "", resource));
                 }
             } catch (Exception e) {
                 LOG.warning("Failed to load spec " + resource + ": " + e.getMessage());
@@ -84,6 +84,7 @@ public class SpecLoader {
 
     private static CategoryDefinition parseSpec(JsonNode root) {
         int category = root.path("category").asInt();
+        String edition = root.path("edition").asText("unknown");
         String name = root.path("name").asText("CAT " + category);
 
         // Build UAP array
@@ -103,7 +104,7 @@ public class SpecLoader {
         ensureExplicit(items, uap, "SP");
         ensureExplicit(items, uap, "RE");
 
-        return new CategoryDefinition(category, name, uap, items);
+        return new CategoryDefinition(category, edition, name, uap, items);
     }
 
     private static String[] buildUap(JsonNode uapNode) {

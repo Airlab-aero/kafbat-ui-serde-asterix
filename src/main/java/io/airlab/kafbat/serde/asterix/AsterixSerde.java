@@ -6,8 +6,10 @@ import io.airlab.kafbat.serde.asterix.category.CategoryRegistry;
 import io.airlab.kafbat.serde.asterix.parser.AsterixParser;
 import io.kafbat.ui.serde.api.*;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -16,7 +18,7 @@ import java.util.regex.Pattern;
  * <h2>What it does</h2>
  * <ul>
  *   <li><b>Deserialise</b>: Converts raw ASTERIX binary messages to pretty-printed JSON.
- *       Supports CAT002, CAT010, CAT021, CAT034, CAT048.  Unknown categories are
+ *       Supports all categories bundled in the spec manifest.  Unknown categories are
  *       returned as a hex dump.</li>
  *   <li><b>Serialise</b>: Accepts a hex-encoded string (e.g. {@code "30000D..."}) and
  *       converts it back to raw bytes for publishing test messages.</li>
@@ -24,8 +26,12 @@ import java.util.regex.Pattern;
  *
  * <h2>Configuration properties (all optional)</h2>
  * <pre>
- *   topicKeysPattern   – regex; if set, key serde is only applied to matching topics
- *   topicValuesPattern – regex; if set, value serde is only applied to matching topics
+ *   topicKeysPattern   – regex; key serde applied only to matching topics
+ *   topicValuesPattern – regex; value serde applied only to matching topics
+ *   cat002Edition      – edition to use for CAT002 (e.g. "1.1"); default: latest
+ *   cat048Edition      – edition to use for CAT048 (e.g. "1.29"); default: latest
+ *   cat021Edition      – edition to use for CAT021 (e.g. "2.1"); default: latest
+ *   (repeat for any category: cat{NNN}Edition)
  * </pre>
  *
  * <h2>Kafbat UI YAML example</h2>
@@ -38,11 +44,16 @@ import java.util.regex.Pattern;
  *             className: io.airlab.kafbat.serde.asterix.AsterixSerde
  *             filePath: /opt/serdes/kafbat-ui-serde-asterix-1.0.0-SNAPSHOT-uber.jar
  *             topicValuesPattern: "asterix.*"
+ *             properties:
+ *               cat048Edition: "1.29"   # override for legacy producers
+ *               cat021Edition: "2.1"
  * </pre>
  */
 public class AsterixSerde implements Serde {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
+    /** Matches property keys like "cat048Edition", capturing the category number. */
+    private static final Pattern EDITION_PROP = Pattern.compile("cat(\\d+)Edition");
 
     private AsterixParser parser;
     private Pattern keyPattern;
@@ -58,7 +69,18 @@ public class AsterixSerde implements Serde {
                           PropertyResolver globalProperties) {
 
         CategoryRegistry registry = CategoryRegistry.withBuiltins();
-        this.parser = new AsterixParser(registry);
+
+        // Collect per-category edition overrides from "cat{NNN}Edition" properties
+        Map<Integer, String> editionOverrides = new HashMap<>();
+        // PropertyResolver has no "list all keys" API, so we probe all known categories
+        for (int cat = 1; cat <= 255; cat++) {
+            final int catFinal = cat;
+            String propName = "cat" + cat + "Edition";
+            serdeProperties.getProperty(propName, String.class)
+                .ifPresent(edition -> editionOverrides.put(catFinal, edition));
+        }
+
+        this.parser = new AsterixParser(registry, editionOverrides);
 
         serdeProperties.getProperty("topicKeysPattern", String.class)
             .ifPresent(p -> keyPattern = Pattern.compile(p));
@@ -70,9 +92,11 @@ public class AsterixSerde implements Serde {
     public Optional<String> getDescription() {
         return Optional.of(
             "ASTERIX (All Purpose STructured Eurocontrol suRveillance Information eXchange) " +
-            "binary protocol decoder.  Decodes CAT002, CAT010, CAT021, CAT034, CAT048 and " +
+            "binary protocol decoder.  Supports all bundled categories and editions; " +
             "falls back to a hex dump for unknown categories.\n\n" +
-            "**Deserialise** → JSON  |  **Serialise** ← hex string"
+            "**Deserialise** → JSON  |  **Serialise** ← hex string\n\n" +
+            "Use `cat{NNN}Edition` properties to pin a specific spec edition per category " +
+            "(e.g. `cat048Edition: \"1.29\"`)."
         );
     }
 
@@ -85,7 +109,8 @@ public class AsterixSerde implements Serde {
               "items": {
                 "type": "object",
                 "properties": {
-                  "category": { "type": "integer", "description": "ASTERIX category number (e.g. 48)" },
+                  "category": { "type": "integer", "description": "ASTERIX category number" },
+                  "edition":  { "type": "string",  "description": "Spec edition used (e.g. 1.32)" },
                   "name":     { "type": "string",  "description": "Category name" },
                   "records":  {
                     "type": "array",
