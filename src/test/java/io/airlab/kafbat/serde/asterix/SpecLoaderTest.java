@@ -70,7 +70,7 @@ class SpecLoaderTest {
      *
      * <pre>
      * Header: 30 00 0D        CAT=48, LEN=13
-     * FSPEC:  B0              I010(bit7), I140(bit5), I040(bit4); FX=0
+     * FSPEC:  D0              I010(bit7), I140(bit6), I040(bit4); FX=0
      * I010:   00 01           SAC=0, SIC=1
      * I140:   46 50 00        ToD = 0x465000 / 128 = 36000.0 s (10:00:00 UTC)
      * I040:   64 00 40 00     RHO = 25600 / 256 = 100.0 NM, THETA = 16384*360/65536 = 90.0°
@@ -84,7 +84,7 @@ class SpecLoaderTest {
 
         byte[] msg = {
             0x30, 0x00, 0x0D,
-            (byte) 0xB0,
+            (byte) 0xD0,              // FSPEC: I010 (bit7), I140 (bit6), I040 (bit4)
             0x00, 0x01,
             0x46, 0x50, 0x00,
             0x64, 0x00, 0x40, 0x00
@@ -98,7 +98,8 @@ class SpecLoaderTest {
 
         assertThat(record.get("I010").get("SAC").asInt()).isEqualTo(0);
         assertThat(record.get("I010").get("SIC").asInt()).isEqualTo(1);
-        assertThat(record.get("I140").get("ToD").asDouble()).isCloseTo(36000.0, within(0.01));
+        // I140 is an Element Quantity, wrapped to {"val": <seconds>}
+        assertThat(record.get("I140").get("val").asDouble()).isCloseTo(36000.0, within(0.01));
         assertThat(record.get("I040").get("RHO").asDouble()).isCloseTo(100.0, within(0.01));
         assertThat(record.get("I040").get("THETA").asDouble()).isCloseTo(90.0, within(0.01));
     }
@@ -163,7 +164,7 @@ class SpecLoaderTest {
 
         // CAT002 north marker followed by CAT048 basic position
         byte[] cat2  = { 0x02, 0x00, 0x07, (byte)0xC0, 0x00, 0x01, 0x01 };
-        byte[] cat48 = { 0x30, 0x00, 0x0D, (byte)0xB0,
+        byte[] cat48 = { 0x30, 0x00, 0x0D, (byte)0xD0,  // I010+I140+I040
                          0x00, 0x01, 0x46, 0x50, 0x00, 0x64, 0x00, 0x40, 0x00 };
         byte[] combined = new byte[cat2.length + cat48.length];
         System.arraycopy(cat2,  0, combined, 0,           cat2.length);

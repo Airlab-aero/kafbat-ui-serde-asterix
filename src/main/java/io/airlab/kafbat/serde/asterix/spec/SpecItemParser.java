@@ -249,11 +249,11 @@ public class SpecItemParser implements ItemParser {
 
             case "String" -> {
                 String variant = content.path("variant").asText("Ascii");
-                if ("Icao".equals(variant)) {
-                    yield factory.textNode(decodeIcao(raw, bits));
-                } else {
-                    yield factory.textNode(decodeAscii(raw, bits));
-                }
+                yield switch (variant) {
+                    case "Icao"  -> factory.textNode(decodeIcao(raw, bits));
+                    case "Octal" -> factory.textNode(decodeOctal(raw, bits));
+                    default      -> factory.textNode(decodeAscii(raw, bits));
+                };
             }
 
             case "Bds", "Cf" -> factory.textNode(
@@ -321,8 +321,16 @@ public class SpecItemParser implements ItemParser {
             int c6 = (int) ((raw >> (i * 6)) & 0x3F);
             sb.append(c6 < ICAO6.length ? ICAO6[c6] : '?');
         }
-        // Reverse so MSB chars come first
-        return new StringBuilder(sb).reverse().toString().stripTrailing();
+        return sb.toString().stripTrailing();
+    }
+
+    private static String decodeOctal(long raw, int bits) {
+        int nDigits = bits / 3;
+        StringBuilder sb = new StringBuilder(nDigits);
+        for (int i = nDigits - 1; i >= 0; i--) {
+            sb.append((char) ('0' + ((raw >> (i * 3)) & 0x7)));
+        }
+        return sb.toString();
     }
 
     private static String decodeAscii(long raw, int bits) {
