@@ -222,14 +222,11 @@ class AsterixParserTest {
     /**
      * Minimal CAT021 message with I010 (DSI) and I130 (WGS-84 position).
      *
+     * <p>CAT021 I130 LSB is 180/2^23 degrees for <em>both</em> LAT and LON (signed 24-bit).
+     *
      * <pre>
-     * Latitude  = 48.0°  → raw = 48 / (180/2^23) = 48 × 2^23/180 = 2237373
-     *           = 0x22_2222 (approximately)
-     *   Exact:  48.0 × 8388608 / 180 = 48.0 × 46592.71… ≈ 2236450
-     *   Let's use exactly: raw = round(48.0 × 8388608/180) = round(2236448.0) = 2236448
-     *   = 0x222520  → bytes: 0x22, 0x25, 0x20
-     * Longitude = 2.35° → raw = round(2.35 × 8388608/360) = round(54748.7) = 54749
-     *           = 0x00D60D → bytes: 0x00, 0xD6, 0x0D
+     * Latitude  = 48.0° → raw = round(48.0 × 2^23 / 180) = 2236450 ≈ 0x222522
+     * Longitude = 2.35° → raw = round(2.35 × 2^23 / 180) = 109398  ≈ 0x01AB56
      * </pre>
      */
     @Test
