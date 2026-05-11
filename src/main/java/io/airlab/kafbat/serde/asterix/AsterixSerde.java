@@ -9,7 +9,6 @@ import io.kafbat.ui.serde.api.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -52,8 +51,6 @@ import java.util.regex.Pattern;
 public class AsterixSerde implements Serde {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
-    /** Matches property keys like "cat048Edition", capturing the category number. */
-    private static final Pattern EDITION_PROP = Pattern.compile("cat(\\d+)Edition");
 
     private AsterixParser parser;
     private Pattern keyPattern;
@@ -70,13 +67,15 @@ public class AsterixSerde implements Serde {
 
         CategoryRegistry registry = CategoryRegistry.withBuiltins();
 
-        // Collect per-category edition overrides from "cat{NNN}Edition" properties
+        // Collect per-category edition overrides from "cat{NNN}Edition" properties.
+        // Accept both zero-padded ("cat048Edition") and unpadded ("cat48Edition") forms.
         Map<Integer, String> editionOverrides = new HashMap<>();
-        // PropertyResolver has no "list all keys" API, so we probe all known categories
         for (int cat = 1; cat <= 255; cat++) {
             final int catFinal = cat;
-            String propName = "cat" + cat + "Edition";
-            serdeProperties.getProperty(propName, String.class)
+            String padded   = String.format("cat%03dEdition", cat);
+            String unpadded = "cat" + cat + "Edition";
+            serdeProperties.getProperty(padded, String.class)
+                .or(() -> serdeProperties.getProperty(unpadded, String.class))
                 .ifPresent(edition -> editionOverrides.put(catFinal, edition));
         }
 

@@ -91,6 +91,14 @@
       "latest": true
     },
     {
+      "category": 9,
+      "edition": "2.1",
+      "name": "Composite Weather Reports",
+      "date": "2014-10-22",
+      "file": "cat009/2.1.json",
+      "latest": true
+    },
+    {
       "category": 10,
       "edition": "1.1",
       "name": "Transmission of Monosensor Surface Movement Data",
@@ -392,6 +400,14 @@
       "name": "SDPS Service Status Reports",
       "date": "2023-03-21",
       "file": "cat065/1.6.json",
+      "latest": true
+    },
+    {
+      "category": 150,
+      "edition": "3.0",
+      "name": "MADAP Plan Server - Flight Data Message",
+      "date": "2004-08-20",
+      "file": "cat150/3.0.json",
       "latest": true
     },
     {

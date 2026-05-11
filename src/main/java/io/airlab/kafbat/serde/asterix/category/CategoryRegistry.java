@@ -50,13 +50,12 @@ public class CategoryRegistry {
      * its category.  Calling {@code register(def, true)} twice for the same
      * category moves the "latest" pointer to the second definition.
      */
-    public void register(CategoryDefinition def, boolean markAsLatest) {
+    public synchronized void register(CategoryDefinition def, boolean markAsLatest) {
         editions.computeIfAbsent(def.category, k -> new LinkedHashMap<>())
                 .put(def.edition, def);
         if (markAsLatest) {
             latestEditions.put(def.category, def.edition);
         } else {
-            // If no latest is set yet, use this one as a default
             latestEditions.putIfAbsent(def.category, def.edition);
         }
     }
